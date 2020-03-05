@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolAPI", "SchoolAPI\SchoolAPI.csproj", "{4070E4EB-F074-4051-9779-33225ECAB657}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThriveAPP", "ThriveAPP\ThriveAPP.csproj", "{342D45FC-2A57-4D24-AD66-75C67ED1F71C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4070E4EB-F074-4051-9779-33225ECAB657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4070E4EB-F074-4051-9779-33225ECAB657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4070E4EB-F074-4051-9779-33225ECAB657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4070E4EB-F074-4051-9779-33225ECAB657}.Release|Any CPU.Build.0 = Release|Any CPU
+		{342D45FC-2A57-4D24-AD66-75C67ED1F71C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{342D45FC-2A57-4D24-AD66-75C67ED1F71C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{342D45FC-2A57-4D24-AD66-75C67ED1F71C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{342D45FC-2A57-4D24-AD66-75C67ED1F71C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {850CF806-080F-4F0D-BB1F-CC262D2F3CA1}
+	EndGlobalSection
+EndGlobal
