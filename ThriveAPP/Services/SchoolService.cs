@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using ThriveAPP.Contracts;
 using ThriveAPP.Models;
@@ -11,21 +13,27 @@ namespace ThriveAPP.Services
 {
     public class SchoolService : ISchoolServices
     {
-        private readonly ISchoolServices _schoolService;
+        private readonly IConfiguration _config;
 
-        public SchoolService(ISchoolServices schoolService)
+        public SchoolService(IConfiguration config)
         {
-            _schoolService = schoolService;
+            _config = config;
         }
 
-        public async Task AddTeacher(Teacher teacher)
+        public async Task AddTeacherAsync(Teacher teacher)
         {
-            string json = JsonConvert.SerializeObject(teacher);
+            string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
+            url += "api/Teacher";
+            var json = JsonConvert.SerializeObject(teacher);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            using var client = new HttpClient();
 
-            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.PostAsync(url,data);
 
-            client.BaseAddress = ""
-
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonResult = await response.Content.ReadAsStringAsync();
+            } 
         }
     }
 }

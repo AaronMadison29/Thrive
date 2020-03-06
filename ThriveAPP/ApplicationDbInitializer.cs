@@ -3,19 +3,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ThriveAPP.Contracts;
+using ThriveAPP.Models;
 
 namespace ThriveAPP
 {
 
     public static class ApplicationDbInitializer
     {
-        public static void SeedUsers(UserManager<IdentityUser> userManager)
+        public static void SeedUsers(UserManager<IdentityUser> userManager, ISchoolServices schoolService)
         {
-            if (userManager.FindByNameAsync("halo@yahoo.com").Result == null)
+            if (userManager.FindByNameAsync("skingsworth0@ucoz.ru").Result == null)
             {
                 IdentityUser user = new IdentityUser();
-                user.UserName = "halo@yahoo.com";
-                user.Email = "halo@yahoo.com";
+                user.UserName = "skingsworth0@ucoz.ru";
+                user.Email = "skingsworth0@ucoz.ru";
 
                 IdentityResult result = userManager.CreateAsync(user, "Password!1").Result;
 
@@ -24,19 +26,40 @@ namespace ThriveAPP
                     userManager.AddToRoleAsync(user, "Teacher").Wait();
                 }
 
+                Teacher teacher = new Teacher
+                {
+                    Name = "Stace Kingsworth",
+                    Email = "skingsworth0@ucoz.ru",
+                    PhoneNumber = "578-682-6062",
+                    Subject = "Math",
+                    UserId = user.Id
+                };
+
+                schoolService.AddTeacherAsync(teacher).Wait();
             }
 
-            if (userManager.FindByNameAsync("halo2@yahoo.com").Result == null)
+            if (userManager.FindByNameAsync("mradbond1@salon.com").Result == null)
             {
                 IdentityUser user = new IdentityUser();
-                user.UserName = "halo2@yahoo.com";
-                user.Email = "halo2@yahoo.com";
+                user.UserName = "mradbond1@salon.com";
+                user.Email = "mradbond1@salon.com";
 
                 IdentityResult result = userManager.CreateAsync(user, "Password!1").Result;
                 if (result.Succeeded)
                 {
-                    userManager.AddToRoleAsync(user, "Student").Wait();
+                    userManager.AddToRoleAsync(user, "Teacher").Wait();
                 }
+
+                Teacher teacher = new Teacher
+                {
+                    Name = "Mahmoud Radbond",
+                    Email = "mradbond1@salon.com",
+                    PhoneNumber = "642-277-6160",
+                    Subject = "Math",
+                    UserId = user.Id
+                };
+
+                schoolService.AddTeacherAsync(teacher).Wait();
             }
         }
     }

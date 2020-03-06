@@ -63,6 +63,7 @@ namespace SchoolAPI.Controllers
             teacher.PhoneNumber = value.PhoneNumber;
             teacher.Subject = value.Subject;
             teacher.UserId = value.UserId;
+            _repo.Teachers.Update(teacher);
             _repo.Save();
         }
 

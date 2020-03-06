@@ -55,7 +55,7 @@ namespace ThriveAPP
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager, ISchoolServices schoolServices)
         {
             if (env.IsDevelopment())
             {
@@ -75,7 +75,7 @@ namespace ThriveAPP
 
             app.UseAuthentication();
 
-            //ApplicationDbInitializer.SeedUsers(userManager);
+            //ApplicationDbInitializer.SeedUsers(userManager, schoolServices);
 
             app.UseAuthorization();
 
