@@ -18,12 +18,12 @@ namespace SchoolAPI.Controllers
             _repo = repo;
         }
         [HttpGet]
-        public IEnumerable<StudentClassGrade> GetStudentGrades(int id)
+        public IEnumerable<StudentClassGrade> Get(int id)
         {
             return _repo.StudentClassGrades.FindByCondition(a => a.StudentId == id).ToList();
         }
         [HttpGet("{id}", Name = "Get")]
-        public int GetStudentClassGrade(int StudentId, int ClassId)
+        public int Get(int StudentId, int ClassId)
         {
             return _repo.StudentClassGrades.FindByCondition(a => a.StudentId == StudentId && a.ClassId == ClassId).FirstOrDefault().Grade;
         }
