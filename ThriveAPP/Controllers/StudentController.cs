@@ -5,16 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ThriveAPP.Services;
+using ThriveAPP.Contracts;
 
 namespace ThriveAPP.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly EmailService _emailService;
-        private readonly MessengerService _messengerService;
-        private readonly SchoolService _schoolService;
+        private readonly IEmailServices _emailService;
+        private readonly IMessengerServices _messengerService;
+        private readonly ISchoolServices _schoolService;
 
-        public StudentController(EmailService emailService, MessengerService messengerService, SchoolService schoolService)
+        public StudentController(IEmailServices emailService, IMessengerServices messengerService, ISchoolServices schoolService)
         {
             _emailService = emailService;
             _messengerService = messengerService;

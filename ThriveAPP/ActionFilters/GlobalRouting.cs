@@ -27,11 +27,11 @@ namespace ThriveAPP.ActionFilters
             {
                 if (_claimsPrincipal.IsInRole("Teacher"))
                 {
-                    context.Result = new RedirectToActionResult("Index", "Teachers", null);
+                    context.Result = new RedirectToActionResult("Index", "Teacher", null);
                 }
                 else if (_claimsPrincipal.IsInRole("Student"))
                 {
-                    context.Result = new RedirectToActionResult("Index", "Students", null);
+                    context.Result = new RedirectToActionResult("Index", "Student", null);
                 }
             }
         }
