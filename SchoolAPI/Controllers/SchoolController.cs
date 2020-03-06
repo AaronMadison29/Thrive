@@ -12,6 +12,7 @@ namespace SchoolAPI.Controllers
     [ApiController]
     public class SchoolController : ControllerBase
     {
+
         // GET: api/School
         [HttpGet]
         public IEnumerable<string> Get()
