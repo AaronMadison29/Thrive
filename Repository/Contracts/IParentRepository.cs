@@ -1,10 +1,11 @@
-﻿using System;
+﻿using SchoolAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Repository.Contracts
 {
-    interface IParentRepository : IRepositoryBase<Parent>
+    public interface IParentRepository : IRepositoryBase<Parent>
     {
     }
 }

@@ -4,7 +4,13 @@ using System.Text;
 
 namespace Repository.Contracts
 {
-    interface IRepositoryWrapper
+    public interface IRepositoryWrapper
     {
+        IClassRepository Classes { get; }
+        ITeacherRepository Teachers { get; }
+        IStudentRepository Students { get; }
+        IParentRepository Parents { get; }
+        IProfileRepository Profiles { get; }
+        void Save();
     }
 }

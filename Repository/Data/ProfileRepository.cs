@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Repository.Contracts;
+using SchoolAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 

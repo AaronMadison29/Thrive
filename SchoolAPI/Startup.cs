@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Repository;
+using Repository.Contracts;
 using Repository.Data;
 
 namespace SchoolAPI
@@ -30,6 +32,9 @@ namespace SchoolAPI
             services.AddDbContext<ApplicationDbContext>(opts =>
    opts.UseSqlServer(Configuration.GetConnectionString
    ("sqlConnection")));
+
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+
             services.AddControllers();
 
         }
