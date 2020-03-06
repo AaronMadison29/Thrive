@@ -22,7 +22,7 @@ namespace SchoolAPI.Controllers
         {
             return _repo.StudentClassGrades.FindAll().ToList();
         }
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public int Get(int StudentId, int ClassId)
         {
             return _repo.StudentClassGrades.FindByCondition(a => a.StudentId == StudentId && a.ClassId == ClassId).FirstOrDefault().Grade;
