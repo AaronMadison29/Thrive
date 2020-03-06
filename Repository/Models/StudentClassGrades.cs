@@ -10,7 +10,7 @@ namespace SchoolAPI.Models
     {
         [ForeignKey("Student")]
         public int StudentId { get; set; }
-        public int Student { get; set; }
+        public Student Student { get; set; }
 
         [ForeignKey("Class")]
         public int ClassId { get; set; }
