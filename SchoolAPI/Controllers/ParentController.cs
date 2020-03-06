@@ -28,7 +28,6 @@ namespace SchoolAPI.Controllers
         }
 
         // GET: api/Teacher/5
-        [HttpGet("{id}", Name = "Get")]
         public Parent Get(int id)
         {
             return _repo.Parents.FindByCondition(a => a.ParentId == id).FirstOrDefault();

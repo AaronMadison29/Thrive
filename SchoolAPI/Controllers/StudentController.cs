@@ -28,7 +28,6 @@ namespace SchoolAPI.Controllers
         }
 
         // GET: api/Teacher/5
-        [HttpGet("{id}", Name = "Get")]
         public Student Get(int id)
         {
             return _repo.Students.FindByCondition(a => a.StudentId == id).FirstOrDefault();
