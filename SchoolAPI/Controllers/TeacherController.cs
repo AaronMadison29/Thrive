@@ -54,14 +54,25 @@ namespace SchoolAPI.Controllers
 
         // PUT: api/School/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Teacher value)
         {
+            var teacher = _repo.Teachers.FindByCondition(a => a.TeacherId == id).FirstOrDefault();
+            teacher.Classes = value.Classes;
+            teacher.Email = value.Email;
+            teacher.Name = value.Name;
+            teacher.PhoneNumber = value.PhoneNumber;
+            teacher.Subject = value.Subject;
+            teacher.UserId = value.UserId;
+            _repo.Save();
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var teacher = _repo.Teachers.FindByCondition(a => a.TeacherId == id).FirstOrDefault();
+            _repo.Teachers.Delete(teacher);
+            _repo.Save();
         }
     }
 }

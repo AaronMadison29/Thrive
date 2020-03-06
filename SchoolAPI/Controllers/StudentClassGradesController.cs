@@ -18,9 +18,9 @@ namespace SchoolAPI.Controllers
             _repo = repo;
         }
         [HttpGet]
-        public IEnumerable<StudentClassGrade> Get(int id)
+        public IEnumerable<StudentClassGrade> Get()
         {
-            return _repo.StudentClassGrades.FindByCondition(a => a.StudentId == id).ToList();
+            return _repo.StudentClassGrades.FindAll().ToList();
         }
         [HttpGet("{id}", Name = "Get")]
         public int Get(int StudentId, int ClassId)
@@ -44,14 +44,20 @@ namespace SchoolAPI.Controllers
         }
         // PUT: api/School/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] StudentClassGrade value)
         {
+            var scg = _repo.StudentClassGrades.FindByCondition(a => a.StudentClassGradeId == id).FirstOrDefault();
+            scg.Grade = value.Grade;
+            _repo.Save();
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var scg = _repo.StudentClassGrades.FindByCondition(a => a.StudentClassGradeId == id).FirstOrDefault();
+            _repo.StudentClassGrades.Delete(scg);
+            _repo.Save();
         }
     }
 }
