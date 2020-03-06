@@ -4,33 +4,34 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Repository.Contracts;
+using SchoolAPI.Models;
 
 namespace SchoolAPI.Controllers
 {
 
     [Route("api/[controller]")]
     [ApiController]
-    public class SchoolController : ControllerBase
+    public class ParentController : ControllerBase
     {
         private readonly IRepositoryWrapper _repo;
-        public SchoolController(IRepositoryWrapper repo)
+        public ParentController(IRepositoryWrapper repo)
         {
             _repo = repo;
         }
 
-        // GET: api/School
+        // GET: api/Teacher/
         [HttpGet]
-        [Route("api/")]
-        public IEnumerable<string> GetTeachers()
+        public IEnumerable<Parent> GetTeachers()
         {
-            return new string[] { "value1", "value2" };
+            return _repo.Parents.FindAll().ToList();
         }
 
-        // GET: api/School/5
+        // GET: api/Teacher/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public Parent GetTeacher(int id)
         {
-            return "value";
+            return _repo.Parents.FindByCondition(a => a.ParentId == id).FirstOrDefault();
         }
 
         // POST: api/School
