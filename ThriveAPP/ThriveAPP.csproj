@@ -5,6 +5,13 @@
     <UserSecretsId>aspnet-ThriveAPP-143E6B34-F412-4FE3-8430-3032DC933A16</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20200306144832_Initial.cs" />
+    <Compile Remove="Data\Migrations\20200306144832_Initial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306153026_initial.cs" />
+    <Compile Remove="Data\Migrations\20200306153026_initial.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.1" />
