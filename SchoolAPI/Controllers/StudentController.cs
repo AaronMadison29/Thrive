@@ -45,7 +45,7 @@ namespace SchoolAPI.Controllers
                 ParentId = value.ParentId,
                 ProfileId = value.ProfileId,
                 UserId = value.UserId
-        };
+            };
             newStudent.Parent = _repo.Parents.FindByCondition(a => a.ParentId == newStudent.ParentId).FirstOrDefault();
             newStudent.Profile = _repo.Profiles.FindByCondition(a => a.ProfileId == newStudent.ProfileId).FirstOrDefault();
             _repo.Students.Create(newStudent);
