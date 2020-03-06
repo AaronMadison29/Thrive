@@ -22,14 +22,14 @@ namespace SchoolAPI.Controllers
 
         // GET: api/Teacher/
         [HttpGet]
-        public IEnumerable<Parent> GetTeachers()
+        public IEnumerable<Parent> Get()
         {
             return _repo.Parents.FindAll().ToList();
         }
 
         // GET: api/Teacher/5
         [HttpGet("{id}", Name = "Get")]
-        public Parent GetTeacher(int id)
+        public Parent Get(int id)
         {
             return _repo.Parents.FindByCondition(a => a.ParentId == id).FirstOrDefault();
         }
@@ -51,14 +51,23 @@ namespace SchoolAPI.Controllers
 
         // PUT: api/School/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Parent value)
         {
+            var parent = _repo.Parents.FindByCondition(a => a.ParentId == id).FirstOrDefault();
+            parent.Name = value.Name;
+            parent.Children = value.Children;
+            parent.Email = value.Email;
+            parent.UserId = value.UserId;
+            _repo.Save();
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var parent = _repo.Parents.FindByCondition(a => a.ParentId == id).FirstOrDefault();
+            _repo.Parents.Delete(parent);
+            _repo.Save();
         }
     }
 }
