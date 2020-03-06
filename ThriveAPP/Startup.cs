@@ -12,6 +12,9 @@ using ThriveAPP.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+using ThriveAPP.ActionFilters;
 using ThriveAPP.Contracts;
 using ThriveAPP.Services;
 
@@ -40,12 +43,19 @@ namespace ThriveAPP
             services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultUI().AddDefaultTokenProviders();
 
+            services.AddScoped<ClaimsPrincipal>(s =>
+                s.GetService<IHttpContextAccessor>().HttpContext.User);
+            services.AddControllers(config =>
+            {
+                config.Filters.Add(typeof(GlobalRouting));
+            });
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -64,6 +74,9 @@ namespace ThriveAPP
             app.UseRouting();
 
             app.UseAuthentication();
+
+            //ApplicationDbInitializer.SeedUsers(userManager);
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

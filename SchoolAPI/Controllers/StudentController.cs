@@ -36,8 +36,21 @@ namespace SchoolAPI.Controllers
 
         // POST: api/School
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Student value)
         {
+            var newStudent = new Student
+            {
+                Classes = value.Classes,
+                Email = value.Email,
+                Name = value.Name,
+                ParentId = value.ParentId,
+                ProfileId = value.ProfileId,
+                UserId = value.UserId
+        };
+            newStudent.Parent = _repo.Parents.FindByCondition(a => a.ParentId == newStudent.ParentId).FirstOrDefault();
+            newStudent.Profile = _repo.Profiles.FindByCondition(a => a.ProfileId == newStudent.ProfileId).FirstOrDefault();
+            _repo.Students.Create(newStudent);
+            _repo.Save();
         }
 
         // PUT: api/School/5

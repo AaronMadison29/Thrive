@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SchoolAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,8 +8,7 @@ namespace Repository.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions options)
-        : base(options)
+        public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
 

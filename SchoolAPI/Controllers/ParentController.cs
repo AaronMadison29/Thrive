@@ -36,8 +36,17 @@ namespace SchoolAPI.Controllers
 
         // POST: api/School
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Parent value)
         {
+            var newParent = new Parent
+            {
+                Name = value.Name,
+                Email = value.Email,
+                Children = value.Children,
+                UserId = value.UserId
+            };
+            _repo.Parents.Create(newParent);
+            _repo.Save();
         }
 
         // PUT: api/School/5

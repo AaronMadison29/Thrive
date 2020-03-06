@@ -14,7 +14,6 @@ namespace SchoolAPI.Models
         public string UserId { get; set; }
         public string Name { get; set; }
         public List<Class> Classes { get; set; }
-        public string ParentEmail { get; set; }
         public string Email { get; set; }
 
         [ForeignKey("Profile")]

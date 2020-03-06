@@ -16,6 +16,7 @@ namespace ThriveAPP.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
             builder.Entity<IdentityRole>()
             .HasData(
             new IdentityRole
@@ -34,8 +35,7 @@ namespace ThriveAPP.Data
             {
                 Name = "Student",
                 NormalizedName = "STUDENT"
-            }
-            );
+            });
         }
     }
 }

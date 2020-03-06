@@ -36,8 +36,20 @@ namespace SchoolAPI.Controllers
 
         // POST: api/School
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Teacher value)
         {
+            var newTeacher = new Teacher
+            {
+                Classes = value.Classes,
+                Email = value.Email,
+                Name = value.Name,
+                PhoneNumber = value.PhoneNumber,
+                Subject = value.Subject,
+                UserId = value.UserId
+            };
+            _repo.Teachers.Create(newTeacher);
+            _repo.Save();
+
         }
 
         // PUT: api/School/5
