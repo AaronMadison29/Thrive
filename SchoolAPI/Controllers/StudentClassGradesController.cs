@@ -23,9 +23,13 @@ namespace SchoolAPI.Controllers
             return _repo.StudentClassGrades.FindAll().ToList();
         }
         [HttpGet("{id}")]
+<<<<<<< HEAD
+        public StudentClassGrade Get(int id)
+=======
         public int Get(int StudentId, int ClassId)
+>>>>>>> 82f27281f3e77e593aa2c5c6b5b60f9bfabaa670
         {
-            return _repo.StudentClassGrades.FindByCondition(a => a.StudentId == StudentId && a.ClassId == ClassId).FirstOrDefault().Grade;
+            return _repo.StudentClassGrades.FindByCondition(a => a.StudentClassGradeId == id).FirstOrDefault();
         }
         // POST: api/School
         [HttpPost]
