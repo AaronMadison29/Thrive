@@ -28,8 +28,8 @@ namespace SchoolAPI.Controllers
         }
 
         // GET: api/Teacher/5
-        [HttpGet("{id}", Name = "Get")]
-        public Teacher GetTeacher(int id)
+        [HttpGet("{id}")]
+        public Teacher Get(int id)
         {
             return _repo.Teachers.FindByCondition(a => a.TeacherId == id).FirstOrDefault();
         }
