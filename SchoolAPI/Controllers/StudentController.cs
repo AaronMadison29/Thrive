@@ -22,14 +22,14 @@ namespace SchoolAPI.Controllers
 
         // GET: api/Teacher/
         [HttpGet]
-        public IEnumerable<Student> GetTeachers()
+        public IEnumerable<Student> Get()
         {
             return _repo.Students.FindAll().ToList();
         }
 
         // GET: api/Teacher/5
         [HttpGet("{id}", Name = "Get")]
-        public Student GetTeacher(int id)
+        public Student Get(int id)
         {
             return _repo.Students.FindByCondition(a => a.StudentId == id).FirstOrDefault();
         }
