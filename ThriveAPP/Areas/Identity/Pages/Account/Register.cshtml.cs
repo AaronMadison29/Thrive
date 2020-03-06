@@ -41,6 +41,7 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
             _roleManager = roleManager;
         }
 
+
         [BindProperty]
         public InputModel Input { get; set; }
         public SelectList Roles { get; set; }

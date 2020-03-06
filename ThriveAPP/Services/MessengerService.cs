@@ -8,6 +8,7 @@ namespace ThriveAPP.Services
 {
     public class MessengerService : IMessengerServices
     {
+
         public MessengerService()
         {
 

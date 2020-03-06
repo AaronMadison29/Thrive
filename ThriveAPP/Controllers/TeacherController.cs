@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ThriveAPP.Models;
 using ThriveAPP.Services;
+using ThriveAPP.Contracts;
 
 namespace ThriveAPP.Controllers
 {
     public class TeacherController : Controller
     {
-        private readonly EmailService _emailService;
-        private readonly MessengerService _messengerService;
-        private readonly SchoolService _schoolService;
+        private readonly IEmailServices _emailService;
+        private readonly IMessengerServices _messengerService;
+        private readonly ISchoolServices _schoolService;
 
-        public TeacherController(EmailService emailService, MessengerService messengerService, SchoolService schoolService)
+        public TeacherController(IEmailServices emailService, IMessengerServices messengerService, ISchoolServices schoolService)
         {
             _emailService = emailService;
             _messengerService = messengerService;
@@ -36,23 +39,30 @@ namespace ThriveAPP.Controllers
         // GET: Teacher/Create
         public ActionResult Create()
         {
-            return View();
+            var teacher = new Teacher();
+            return View(teacher);
         }
 
         // POST: Teacher/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(Teacher teacher)
         {
             try
             {
                 // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                    teacher.UserId = userId;
+                    await _schoolService.AddTeacherAsync(teacher);
+                }
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(teacher);
             }
         }
 

@@ -60,7 +60,33 @@ namespace ThriveAPP
                 };
 
                 schoolService.AddTeacherAsync(teacher).Wait();
+
             }
+
+            if (userManager.FindByNameAsync("miltchev2@cnbc.com").Result == null)
+            {
+                IdentityUser user = new IdentityUser();
+                user.UserName = "miltchev2@cnbc.com";
+                user.Email = "miltchev2@cnbc.com";
+
+                IdentityResult result = userManager.CreateAsync(user, "Password!1").Result;
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, "Teacher").Wait();
+                }
+
+                Teacher teacher = new Teacher
+                {
+                    Name = "Melessa Iltchev",
+                    Email = "miltchev2@cnbc.com",
+                    PhoneNumber = "642-277-6160",
+                    Subject = "Math",
+                    UserId = user.Id
+                };
+
+                schoolService.AddTeacherAsync(teacher).Wait();
+            }
+
         }
     }
 
