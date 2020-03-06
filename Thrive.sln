@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolAPI", "SchoolAPI\SchoolAPI.csproj", "{4070E4EB-F074-4051-9779-33225ECAB657}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThriveAPP", "ThriveAPP\ThriveAPP.csproj", "{342D45FC-2A57-4D24-AD66-75C67ED1F71C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThriveAPP", "ThriveAPP\ThriveAPP.csproj", "{342D45FC-2A57-4D24-AD66-75C67ED1F71C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{7DC8E25D-38A0-4B9D-85FE-4DC8435019D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{342D45FC-2A57-4D24-AD66-75C67ED1F71C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{342D45FC-2A57-4D24-AD66-75C67ED1F71C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{342D45FC-2A57-4D24-AD66-75C67ED1F71C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DC8E25D-38A0-4B9D-85FE-4DC8435019D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DC8E25D-38A0-4B9D-85FE-4DC8435019D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DC8E25D-38A0-4B9D-85FE-4DC8435019D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DC8E25D-38A0-4B9D-85FE-4DC8435019D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
