@@ -28,6 +28,7 @@ namespace SchoolAPI.Controllers
         }
 
         // GET: api/Teacher/5
+        [HttpGet("{id}")]
         public Student Get(int id)
         {
             return _repo.Students.FindByCondition(a => a.StudentId == id).FirstOrDefault();
@@ -42,12 +43,9 @@ namespace SchoolAPI.Controllers
                 Classes = value.Classes,
                 Email = value.Email,
                 Name = value.Name,
-                ParentId = value.ParentId,
-                ProfileId = value.ProfileId,
-                UserId = value.UserId
+                UserId = value.UserId,
+                ParentId = value.ParentId
             };
-            newStudent.Parent = _repo.Parents.FindByCondition(a => a.ParentId == newStudent.ParentId).FirstOrDefault();
-            newStudent.Profile = _repo.Profiles.FindByCondition(a => a.ProfileId == newStudent.ProfileId).FirstOrDefault();
             _repo.Students.Create(newStudent);
             _repo.Save();
         }

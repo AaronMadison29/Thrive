@@ -28,6 +28,7 @@ namespace SchoolAPI.Controllers
         }
 
         // GET: api/Teacher/5
+        [HttpGet("{id}")]
         public Teacher Get(int id)
         {
             return _repo.Teachers.FindByCondition(a => a.TeacherId == id).FirstOrDefault();
@@ -48,6 +49,7 @@ namespace SchoolAPI.Controllers
             };
             _repo.Teachers.Create(newTeacher);
             _repo.Save();
+
         }
 
         // PUT: api/School/5

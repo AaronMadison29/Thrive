@@ -22,10 +22,11 @@ namespace SchoolAPI.Controllers
         {
             return _repo.StudentClassGrades.FindAll().ToList();
         }
-        [HttpGet("{id}", Name = "Get")]
-        public int Get(int StudentId, int ClassId)
+
+        [HttpGet("{id}")]
+        public StudentClassGrade Get(int id)
         {
-            return _repo.StudentClassGrades.FindByCondition(a => a.StudentId == StudentId && a.ClassId == ClassId).FirstOrDefault().Grade;
+            return _repo.StudentClassGrades.FindByCondition(a => a.StudentClassGradeId == id).FirstOrDefault();
         }
         // POST: api/School
         [HttpPost]
@@ -37,8 +38,6 @@ namespace SchoolAPI.Controllers
                 ClassId = value.ClassId,
                 Grade = value.Grade
             };
-            newStudentClassGrade.Student = _repo.Students.FindByCondition(a => a.StudentId == newStudentClassGrade.StudentId).FirstOrDefault();
-            newStudentClassGrade.Class = _repo.Classes.FindByCondition(a => a.ClassId == newStudentClassGrade.ClassId).FirstOrDefault();
             _repo.StudentClassGrades.Create(newStudentClassGrade);
             _repo.Save();
         }
