@@ -10,11 +10,13 @@ namespace ThriveAPP.Controllers
 {
     public class StudentController : Controller
     {
+        private readonly EmailService _emailService;
         private readonly MessengerService _messengerService;
         private readonly SchoolService _schoolService;
 
-        public StudentController(MessengerService messengerService, SchoolService schoolService)
+        public StudentController(EmailService emailService, MessengerService messengerService, SchoolService schoolService)
         {
+            _emailService = emailService;
             _messengerService = messengerService;
             _schoolService = schoolService;
         }
