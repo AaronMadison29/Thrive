@@ -11,9 +11,16 @@ namespace SchoolAPI.Controllers
     [ApiController]
     public class SchoolController : ControllerBase
     {
+        private readonly IRepositoryWrapper _repo;
+        public SchoolController(IRepositoryWrapper repo)
+        {
+            _repo = repo;
+        }
+
         // GET: api/School
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("api/")]
+        public IEnumerable<string> GetTeachers()
         {
             return new string[] { "value1", "value2" };
         }
