@@ -1,15 +1,31 @@
-﻿using Repository.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using Repository.Contracts;
 using SchoolAPI.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Repository.Data
 {
-    class StudentClassGradesRepository : RepositoryBase<StudentClassGrade>, IStudentClassGrade
+    class StudentClassGradesRepository : RepositoryBase<StudentClassGrade>, IStudentClassGradeRepository
     {
         public StudentClassGradesRepository(ApplicationDbContext applicationDbContext) : base(applicationDbContext)
         {
+        }
+
+        public void CreateStudentClassGrade(StudentClassGrade scg)
+        {
+            Create(scg);
+        }
+
+        public StudentClassGrade GetStudentClassGrade(int id)
+        {
+            return FindByCondition(a => a.StudentClassGradeId == id).SingleOrDefault();
+        }
+        public StudentClassGrade GetStudentClassGradeIncludeAll(int id)
+        {
+            return FindByCondition(a => a.StudentClassGradeId == id).Include(b => b.Class).Include(c => c.Student).FirstOrDefault();
         }
     }
 }

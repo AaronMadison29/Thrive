@@ -7,5 +7,7 @@ namespace Repository.Contracts
 {
     public interface IProfileRepository : IRepositoryBase<Profile>
     {
+        Profile GetProfile(int profileId);
+        void CreateProfile(Profile profile);
     }
 }

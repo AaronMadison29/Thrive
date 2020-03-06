@@ -14,7 +14,7 @@ namespace Repository
         private IParentRepository _parent;
         private IClassRepository _class;
         private IProfileRepository _profile;
-        private IStudentClassGrade _studentClassGrades;
+        private IStudentClassGradeRepository _studentClassGrades;
         public ITeacherRepository Teachers
         {
             get
@@ -70,7 +70,7 @@ namespace Repository
                 return _profile;
             }
         }
-        public IStudentClassGrade StudentClassGrades
+        public IStudentClassGradeRepository StudentClassGrades
         {
             get
             {
