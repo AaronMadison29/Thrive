@@ -27,6 +27,12 @@ namespace ThriveAPP.Data
 
             new IdentityRole
             {
+                Name = "Parent",
+                NormalizedName = "PARENT"
+            },
+
+            new IdentityRole
+            {
                 Name = "Student",
                 NormalizedName = "STUDENT"
             });

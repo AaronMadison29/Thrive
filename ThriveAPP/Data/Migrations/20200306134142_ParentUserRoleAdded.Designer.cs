@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ThriveAPP.Data;
 
 namespace ThriveAPP.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200306134142_ParentUserRoleAdded")]
+    partial class ParentUserRoleAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,24 +50,24 @@ namespace ThriveAPP.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a6cf2762-67c8-4272-88b0-aaa9228c2290",
-                            ConcurrencyStamp = "ebe02120-ba69-48d9-b27c-cb0325d0948a",
+                            Id = "fa658bf1-0aff-4354-bf0e-d1d0fd7145a1",
+                            ConcurrencyStamp = "92c39589-cbd4-4578-a77d-a87b80772690",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
-                            Id = "8695c97b-8d23-4d59-93fa-35ee049a2998",
-                            ConcurrencyStamp = "4edbf6fc-4dbf-4881-ad29-2b7fc0c6e2b8",
-                            Name = "Parent",
-                            NormalizedName = "PARENT"
+                            Id = "b49707bb-e7c2-45cb-ab1f-0dac76044144",
+                            ConcurrencyStamp = "dccc9ff0-818e-4e49-8619-f1108dd1a728",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "85fe2ff4-2048-481d-a36a-b870ee7a5ef1",
-                            ConcurrencyStamp = "5171dedc-46a1-4443-8713-4de77ee195b5",
-                            Name = "Student",
-                            NormalizedName = "STUDENT"
+                            Id = "0a336db9-01ce-46ce-b26e-2bd75459e662",
+                            ConcurrencyStamp = "2f00a93e-9832-4103-bf84-8ce4558fe06f",
+                            Name = "Parent",
+                            NormalizedName = "PARENT"
                         });
                 });
 
