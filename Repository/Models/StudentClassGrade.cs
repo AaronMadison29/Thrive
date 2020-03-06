@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SchoolAPI.Models
 {
-    public class StudentClassGrades
+    public class StudentClassGrade
     {
+        [Key]
+        public int StudentClassGradeId { get; set; }
+
         [ForeignKey("Student")]
         public int StudentId { get; set; }
-        public int Student { get; set; }
+        public Student Student { get; set; }
 
         [ForeignKey("Class")]
         public int ClassId { get; set; }

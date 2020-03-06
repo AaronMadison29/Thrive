@@ -11,6 +11,7 @@ namespace Repository.Contracts
         IStudentRepository Students { get; }
         IParentRepository Parents { get; }
         IProfileRepository Profiles { get; }
+        IStudentClassGrade StudentClassGrades { get; }
         void Save();
     }
 }
