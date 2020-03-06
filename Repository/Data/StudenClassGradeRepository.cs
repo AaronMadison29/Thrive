@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Repository.Data
 {
-    class StudentClassGradesRepository : RepositoryBase<StudentClassGrades>, IStudentClassGrades
+    class StudentClassGradesRepository : RepositoryBase<StudentClassGrade>, IStudentClassGrade
     {
         public StudentClassGradesRepository(ApplicationDbContext applicationDbContext) : base(applicationDbContext)
         {

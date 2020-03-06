@@ -18,20 +18,20 @@ namespace SchoolAPI.Controllers
             _repo = repo;
         }
         [HttpGet]
-        public IEnumerable<StudentClassGrades> GetStudentGrades(int id)
+        public IEnumerable<StudentClassGrade> GetStudentGrades(int id)
         {
             return _repo.StudentClassGrades.FindByCondition(a => a.StudentId == id).ToList();
         }
         [HttpGet("{id}", Name = "Get")]
         public int GetStudentClassGrade(int StudentId, int ClassId)
         {
-            return _repo.StudentClassGrades.FindByCondition(a => a.StudentId == StudentId && a.ClassId == ClassId).FirstOrDefault();
+            return _repo.StudentClassGrades.FindByCondition(a => a.StudentId == StudentId && a.ClassId == ClassId).FirstOrDefault().Grade;
         }
         // POST: api/School
         [HttpPost]
-        public void Post([FromBody] StudentClassGrades value)
+        public void Post([FromBody] StudentClassGrade value)
         {
-            var newStudentClassGrade = new StudentClassGrades
+            var newStudentClassGrade = new StudentClassGrade
             {
                 StudentId = value.StudentId,
                 ClassId = value.ClassId,

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Repository.Contracts
 {
-    interface IStudentClassGrades : IRepositoryBase<StudentClassGrades>
+    public interface IStudentClassGrade : IRepositoryBase<StudentClassGrade>
     {
     }
 }
