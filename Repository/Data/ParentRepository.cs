@@ -18,6 +18,6 @@ namespace Repository.Data
         public Parent GetParent(int parentId) => FindByCondition(c => c.ParentId == parentId).SingleOrDefault();
         public void CreateParent(Parent parent) => Create(parent);
         public Parent GetParentIncludeAll(int parentId) => FindByCondition(c => c.ParentId == parentId).Include(c => c.Children).SingleOrDefault();
-        public List<Parent> GetCustomersIncludeAll() => FindAll().Include(c => c.Children).ToList();
+        public List<Parent> GetParentsIncludeAll() => FindAll().Include(c => c.Children).ToList();
     }
 }

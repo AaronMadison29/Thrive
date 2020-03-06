@@ -7,9 +7,9 @@ namespace Repository.Contracts
 {
     public interface IParentRepository : IRepositoryBase<Parent>
     {
-        Class GetClass(int classId);
-        void CreateClass(Class newClass);
-        Class GetClassIncludeAll(int classId);
-        List<Class> GetClassesIncludeAll();
+        Parent GetParent(int parentId);
+        void CreateParent(Parent parent);
+        Parent GetParentIncludeAll(int classId);
+        List<Parent> GetParentsIncludeAll();
     }
 }
