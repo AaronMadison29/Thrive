@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using ThriveAPP.Models;
 using ThriveAPP.Services;
 using ThriveAPP.Contracts;
+using Microsoft.AspNetCore.Identity;
 
 namespace ThriveAPP.Controllers
 {
@@ -16,12 +17,14 @@ namespace ThriveAPP.Controllers
         private readonly IEmailServices _emailService;
         private readonly IMessengerServices _messengerService;
         private readonly ISchoolServices _schoolService;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public TeacherController(IEmailServices emailService, IMessengerServices messengerService, ISchoolServices schoolService)
+        public TeacherController(UserManager<IdentityUser> userManager, IEmailServices emailService, IMessengerServices messengerService, ISchoolServices schoolService)
         {
             _emailService = emailService;
             _messengerService = messengerService;
             _schoolService = schoolService;
+            _userManager = userManager;
         }
 
         // GET: Teacher
@@ -53,8 +56,9 @@ namespace ThriveAPP.Controllers
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
-                    var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                    teacher.UserId = userId;
+                    var user = _userManager.FindByIdAsync(this.User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
+                    teacher.UserId = user.Id;
+                    teacher.Email = user.Email;
                     await _schoolService.AddTeacherAsync(teacher);
                 }
 

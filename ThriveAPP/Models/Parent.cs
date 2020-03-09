@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace ThriveAPP.Models
 {
-    public class Teacher
+    public class Parent
     {
+        [Key]
+        public int ParentId { get; set; }
         public string UserId { get; set; }
         [Required]
         public string Name { get; set; }
+        public List<Student> Children { get; set; }
         public string Email { get; set; }
-        [Required]
-        public string PhoneNumber { get; set; }
-        [Required]
-        public string Subject { get; set; }
     }
 }
