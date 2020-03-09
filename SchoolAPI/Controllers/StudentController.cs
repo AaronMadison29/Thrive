@@ -60,15 +60,13 @@ namespace SchoolAPI.Controllers
 
         // PUT: api/School/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Student value)
+        public void Put(int id, [FromBody] Profile value)
         {
-            var student = _repo.Students.GetStudent(id);
-            student.Name = value.Name;
-            student.Classes = value.Classes;
-            student.Email = value.Email;
-            student.ParentId = value.ParentId;
-            student.ProfileId = value.ProfileId;
-            student.UserId = value.UserId;
+            var profile = _repo.Profiles.GetProfile(id);
+            profile.FavoriteSubject = value.FavoriteSubject;
+            profile.LearningStyle = value.LearningStyle;
+            profile.Notes = value.Notes;
+            _repo.Profiles.Update(profile);
             _repo.Save();
         }
 

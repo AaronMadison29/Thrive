@@ -134,7 +134,7 @@ namespace ThriveAPP.Services
         public async Task EditStudentProfile(int id, Profile profile)
         {
             string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
-            url += $"api/Teacher?id={id}";
+            url += $"api/Student?id={id}";
             var json = JsonConvert.SerializeObject(profile);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
             using var client = new HttpClient();
