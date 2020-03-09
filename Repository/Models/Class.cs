@@ -16,8 +16,6 @@ namespace SchoolAPI.Models
         [ForeignKey("Teacher")]
         public int TeacherId { get; set; }
         public Teacher ClassTeacher { get; set; }
-
-        [NotMapped]
         public List<Student> Students { get; set; }
     }
 }
