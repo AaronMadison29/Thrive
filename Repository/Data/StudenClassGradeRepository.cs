@@ -27,5 +27,9 @@ namespace Repository.Data
         {
             return FindByCondition(a => a.StudentClassGradeId == id).Include(b => b.Class).Include(c => c.Student).FirstOrDefault();
         }
+        public List<StudentClassGrade> GetAllStudentClassGradesIncludeAll()
+        {
+            return FindAll().Include(a => a.Class).Include(b => b.Student).ToList();
+        }
     }
 }
