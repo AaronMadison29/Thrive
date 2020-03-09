@@ -53,7 +53,8 @@ namespace SchoolAPI.Controllers
                 UserId = value.UserId,
                 ParentId = value.ParentId
             };
-            _repo.Students.Create(newStudent);
+            _repo.Profiles.CreateProfile(newStudent.Profile);
+            _repo.Students.CreateStudent(newStudent);
             _repo.Save();
         }
 
