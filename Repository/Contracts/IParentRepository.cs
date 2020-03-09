@@ -11,5 +11,6 @@ namespace Repository.Contracts
         void CreateParent(Parent parent);
         Parent GetParentIncludeAll(int classId);
         List<Parent> GetParentsIncludeAll();
+        public Parent GetParentByUserIdInclude(string userId);
     }
 }

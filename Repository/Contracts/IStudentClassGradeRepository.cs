@@ -10,5 +10,6 @@ namespace Repository.Contracts
         public void CreateStudentClassGrade(StudentClassGrade scg);
         public StudentClassGrade GetStudentClassGrade(int id);
         public StudentClassGrade GetStudentClassGradeIncludeAll(int id);
+        public List<StudentClassGrade> GetAllStudentClassGradesIncludeAll();
     }
 }

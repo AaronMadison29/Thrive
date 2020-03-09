@@ -24,14 +24,20 @@ namespace SchoolAPI.Controllers
         [HttpGet]
         public IEnumerable<Parent> Get()
         {
-            return _repo.Parents.FindAll().ToList();
+            return _repo.Parents.GetParentsIncludeAll();
+        }
+
+        [HttpGet("{stringId}")]
+        public Parent Get(string stringId)
+        {
+            return _repo.Parents.GetParentByUserIdInclude(stringId);
         }
 
         // GET: api/Teacher/5
         [HttpGet("{id}")]
         public Parent Get(int id)
         {
-            return _repo.Parents.FindByCondition(a => a.ParentId == id).FirstOrDefault();
+            return _repo.Parents.GetParentIncludeAll(id);
         }
 
         // POST: api/School
@@ -53,7 +59,7 @@ namespace SchoolAPI.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Parent value)
         {
-            var parent = _repo.Parents.FindByCondition(a => a.ParentId == id).FirstOrDefault();
+            var parent = _repo.Parents.GetParent(id);
             parent.Name = value.Name;
             parent.Children = value.Children;
             parent.Email = value.Email;
@@ -65,7 +71,7 @@ namespace SchoolAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var parent = _repo.Parents.FindByCondition(a => a.ParentId == id).FirstOrDefault();
+            var parent = _repo.Parents.GetParent(id);
             _repo.Parents.Delete(parent);
             _repo.Save();
         }
