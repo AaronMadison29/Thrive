@@ -8,6 +8,7 @@ namespace ThriveAPP.Models
 {
     public class Teacher
     {
+        public int TeacherId { get; set; }
         public string UserId { get; set; }
         [Required]
         public string Name { get; set; }

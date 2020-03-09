@@ -101,6 +101,21 @@ namespace ThriveAPP.Services
             return null;
         }
 
+        public async Task<Parent> GetParent(int id)
+        {
+            HttpClient client = new HttpClient();
+            string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
+            url += $"api/Parent/{id}";
+            HttpResponseMessage response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<Parent>(json);
+            }
+            return null;
+        }
+
         public async Task<Student> GetStudent(string userId)
         {
             HttpClient client = new HttpClient();
@@ -134,7 +149,7 @@ namespace ThriveAPP.Services
         public async Task EditStudentProfile(int id, Profile profile)
         {
             string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
-            url += $"api/Student?id={id}";
+            url += $"api/Student/{id}";
             var json = JsonConvert.SerializeObject(profile);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
             using var client = new HttpClient();

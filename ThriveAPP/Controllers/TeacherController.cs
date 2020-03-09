@@ -65,9 +65,11 @@ namespace ThriveAPP.Controllers
                 if (ModelState.IsValid)
                 {
                     var user = _userManager.FindByIdAsync(this.User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
-                    teacher.UserId = user.Id;
-                    teacher.Email = user.Email;
-                    await _schoolService.AddTeacherAsync(teacher);
+                    var teacherToLink = _schoolService.GetStudent(teacher.TeacherId).Result;
+                    teacherToLink.UserId = user.Id;
+                    teacherToLink.Email = user.Email;
+
+                    //EDIT STUDENT IN API DB HERE
                 }
 
                 return RedirectToAction(nameof(Index));
@@ -89,11 +91,11 @@ namespace ThriveAPP.Controllers
         // POST: Teacher/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditStudentProfile(int id, Profile profile)
+        public async Task<ActionResult> EditStudentProfile(Profile profile)
         {
             try
             {
-                await _schoolService.EditStudentProfile(id, profile);
+                await _schoolService.EditStudentProfile(profile.ProfileId, profile);
                 return RedirectToAction(nameof(Index));
             }
             catch
