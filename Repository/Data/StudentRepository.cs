@@ -1,5 +1,5 @@
 ﻿using Repository.Contracts;
-using SchoolAPI.Models;
+using Repository.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,7 +19,7 @@ namespace Repository.Data
         public List<Student> GetStudentsIncludeAll() => FindAll().Include(s => s.Parent).Include(s => s.Profile).ToList();
         public Student GetStudentInclude(int studentId)
         {
-            return FindByCondition(a => a.StudentId == studentId).Include(a => a.Parent).Include(a => a.Profile).FirstOrDefault();
+            return FindByCondition(a => a.StudentId == studentId).Include(a => a.Parent).Include(a => a.Profile).Include(a => a.Classes).FirstOrDefault();
         }
         public Student GetStudentByUserIdInclude(string studentId)
         {

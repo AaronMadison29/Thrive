@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SchoolAPI.Models
+namespace Repository.Models
 {
     public class Profile
     {
@@ -13,6 +13,7 @@ namespace SchoolAPI.Models
         public int ProfileId { get; set; }
         public string FavoriteSubject { get; set; }
         public string LearningStyle { get; set; }
+        [NotMapped]
         public List<string> Notes { get; set; }
     }
 }

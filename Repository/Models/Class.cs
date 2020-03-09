@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SchoolAPI.Models
+namespace Repository.Models
 {
     public class Class
     {
@@ -15,7 +15,8 @@ namespace SchoolAPI.Models
 
         [ForeignKey("Teacher")]
         public int TeacherId { get; set; }
-        public Teacher ClassTeacher { get; set; }
+        public Teacher Teacher { get; set; }
+        [NotMapped]
         public List<Student> Students { get; set; }
     }
 }

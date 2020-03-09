@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Repository.Contracts;
-using SchoolAPI.Models;
+using Repository.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace Repository.Data
 
         public Class GetClass(int classId) => FindByCondition(c => c.ClassId == classId).SingleOrDefault();
         public void CreateClass(Class newClass) => Create(newClass);
-        public Class GetClassIncludeAll(int classId) => FindByCondition(c => c.ClassId == classId).Include(c => c.ClassTeacher).SingleOrDefault();
-        public List<Class> GetClassesIncludeAll() => FindAll().Include(c => c.ClassTeacher).ToList();
+        public Class GetClassIncludeAll(int classId) => FindByCondition(c => c.ClassId == classId).Include(c => c.Teacher).SingleOrDefault();
+        public List<Class> GetClassesIncludeAll() => FindAll().Include(c => c.Teacher).ToList();
     }
 }

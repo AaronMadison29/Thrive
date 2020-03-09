@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Repository.Contracts;
-using SchoolAPI.Models;
+using Repository.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

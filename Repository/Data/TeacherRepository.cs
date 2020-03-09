@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Repository.Contracts;
-using SchoolAPI.Models;
+using Repository.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +26,7 @@ namespace Repository.Data
 
         public Teacher GetTeacherIncludeAll(int teacherId)
         {
-            return FindByCondition(a => a.TeacherId.Equals(teacherId)).Include(b => b.Classes).SingleOrDefault();
+            return FindByCondition(a => a.TeacherId.Equals(teacherId)).Include(b => b.Class).SingleOrDefault();
         }
         public List<Teacher> GetAllTeachersIncludeAll()
         {
@@ -35,7 +35,7 @@ namespace Repository.Data
 
         public Teacher GetTeacherByUserIdInclude(string userId)
         {
-            return FindByCondition(a => a.UserId == userId).FirstOrDefault();
+            return FindByCondition(a => a.UserId == userId).Include(x => x.Class).FirstOrDefault();
         }
     }
 }
