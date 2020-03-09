@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using ThriveAPP.Contracts;
@@ -14,10 +15,12 @@ namespace ThriveAPP.Services
     public class SchoolService : ISchoolServices
     {
         private readonly IConfiguration _config;
+        private readonly ClaimsPrincipal _claimsPrincipal;
 
-        public SchoolService(IConfiguration config)
+        public SchoolService(IConfiguration config, ClaimsPrincipal claimsPrincipal)
         {
             _config = config;
+            _claimsPrincipal = claimsPrincipal;
         }
 
         public async Task AddTeacherAsync(Teacher teacher)
@@ -34,6 +37,20 @@ namespace ThriveAPP.Services
             {
                 string jsonResult = await response.Content.ReadAsStringAsync();
             } 
+        }
+
+        public async Task<Teacher> GetTeacher()
+        {
+            var userId = _claimsPrincipal.FindFirstValue(ClaimTypes.NameIdentifier);
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync($"ApiHostUrl:BaseUrl" + "api/teacher/stringId=" + userId);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<Teacher>(json);
+            }
+            return null;
         }
     }
 }
