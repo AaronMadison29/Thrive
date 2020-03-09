@@ -73,7 +73,7 @@ namespace ThriveAPP.Services
         public async Task<Teacher> GetTeacher(string userId)
         {
             HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync($"ApiHostUrl:BaseUrl" + "api/teacher/stringId=" + userId);
+            HttpResponseMessage response = await client.GetAsync($"ApiHostUrl:BaseUrl" + "api/teacher/" + userId);
 
             if (response.IsSuccessStatusCode)
             {
