@@ -61,7 +61,6 @@ namespace ThriveAPP.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
                     var user = _userManager.FindByIdAsync(this.User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
@@ -69,7 +68,6 @@ namespace ThriveAPP.Controllers
                     student.Email = user.Email;
                     await _schoolService.AddStudentAsync(student);
                 }
-
                 return RedirectToAction(nameof(Index));
             }
             catch
