@@ -16,12 +16,10 @@ namespace ThriveAPP.Services
     public class SchoolService : ISchoolServices
     {
         private readonly IConfiguration _config;
-        private readonly UserManager<IdentityUser> _userManager;
 
-        public SchoolService(UserManager<IdentityUser> userManager, IConfiguration config)
+        public SchoolService(IConfiguration config)
         {
             _config = config;
-            _userManager = userManager;
         }
 
         public async Task AddTeacherAsync(Teacher teacher)
