@@ -17,11 +17,11 @@ namespace Repository.Data
 
         public Parent GetParent(int parentId) => FindByCondition(c => c.ParentId == parentId).SingleOrDefault();
         public void CreateParent(Parent parent) => Create(parent);
-        public Parent GetParentIncludeAll(int parentId) => FindByCondition(c => c.ParentId == parentId).Include(c => c.Children).SingleOrDefault();
-        public List<Parent> GetParentsIncludeAll() => FindAll().Include(c => c.Children).ToList();
+        public Parent GetParentIncludeAll(int parentId) => FindByCondition(c => c.ParentId == parentId).Include(c => c.Student).SingleOrDefault();
+        public List<Parent> GetParentsIncludeAll() => FindAll().Include(c => c.Student).ToList();
         public Parent GetParentByUserIdInclude(string userId)
         {
-            return FindByCondition(c => c.UserId == userId).Include(c => c.Children).SingleOrDefault();
+            return FindByCondition(c => c.UserId == userId).Include(c => c.Student).SingleOrDefault();
         }
     }
 }

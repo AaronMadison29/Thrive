@@ -16,6 +16,8 @@ namespace Repository.Models
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Subject { get; set; }
+        [ForeignKey("Class")]
+        public int ClassId { get; set; }
         public Class Class { get; set; }
     }
 }

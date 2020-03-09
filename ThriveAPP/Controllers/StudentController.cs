@@ -67,7 +67,6 @@ namespace ThriveAPP.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
                     var user = _userManager.FindByIdAsync(this.User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
@@ -77,7 +76,6 @@ namespace ThriveAPP.Controllers
                     
                     //EDIT STUDENT IN API DB HERE
                 }
-
                 return RedirectToAction(nameof(Index));
             }
             catch

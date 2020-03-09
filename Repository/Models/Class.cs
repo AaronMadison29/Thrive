@@ -12,9 +12,6 @@ namespace Repository.Models
         [Key]
         public int ClassId { get; set; }
         public string Subject { get; set; }
-
-        [ForeignKey("Teacher")]
-        public int TeacherId { get; set; }
         public Teacher Teacher { get; set; }
         [NotMapped]
         public List<Student> Students { get; set; }

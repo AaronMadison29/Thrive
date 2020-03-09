@@ -50,8 +50,7 @@ namespace SchoolAPI.Controllers
                 Classes = value.Classes,
                 Email = value.Email,
                 Name = value.Name,
-                UserId = value.UserId,
-                ParentId = value.ParentId
+                UserId = value.UserId
             };
             _repo.Profiles.CreateProfile(newStudent.Profile);
             _repo.Students.CreateStudent(newStudent);
@@ -70,11 +69,12 @@ namespace SchoolAPI.Controllers
             _repo.Save();
         }
 
-        [HttpPut("{userId}")]
-        public void Put(int id, string userId)
+        [HttpPut]
+        public void Put(Student student)
         {
-            var student = _repo.Students.GetStudent(id);
-            student.UserId = userId;
+            var user = _repo.Students.GetStudent(student.StudentId);
+            user.UserId = student.UserId;
+            user.Email = student.Email;
             _repo.Students.Update(student);
             _repo.Save();
         }
