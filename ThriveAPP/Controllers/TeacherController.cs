@@ -29,14 +29,14 @@ namespace ThriveAPP.Controllers
         {
             if (ModelState.IsValid)
             {
-                var teacher = await _schoolService.GetTeacher();
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var teacher = await _schoolService.GetTeacher(userId);
                 return View(teacher);
             }
             else
             {
                 return View();
             }
-
         }
 
         // GET: Teacher/Details/5

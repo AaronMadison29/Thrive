@@ -15,12 +15,10 @@ namespace ThriveAPP.Services
     public class SchoolService : ISchoolServices
     {
         private readonly IConfiguration _config;
-        private readonly ClaimsPrincipal _claimsPrincipal;
 
-        public SchoolService(IConfiguration config, ClaimsPrincipal claimsPrincipal)
+        public SchoolService(IConfiguration config)
         {
             _config = config;
-            _claimsPrincipal = claimsPrincipal;
         }
 
         public async Task AddTeacherAsync(Teacher teacher)
@@ -39,11 +37,12 @@ namespace ThriveAPP.Services
             } 
         }
 
-        public async Task<Teacher> GetTeacher()
+        public async Task<Teacher> GetTeacher(string userId)
         {
-            var userId = _claimsPrincipal.FindFirstValue(ClaimTypes.NameIdentifier);
             HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync($"ApiHostUrl:BaseUrl" + "api/teacher/stringId=" + userId);
+            string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
+            url += $"api/Teacher/" + userId;
+            HttpResponseMessage response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
             {

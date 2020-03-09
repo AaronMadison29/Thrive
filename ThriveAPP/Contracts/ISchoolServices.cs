@@ -9,8 +9,7 @@ namespace ThriveAPP.Contracts
     public interface ISchoolServices
     {
         Task AddTeacherAsync(Teacher teacher);
-
-        Task<Teacher> GetTeacher();
+        Task<Teacher> GetTeacher(string userId);
 
     }
 }
