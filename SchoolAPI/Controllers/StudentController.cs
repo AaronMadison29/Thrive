@@ -34,7 +34,7 @@ namespace SchoolAPI.Controllers
         }
 
         // GET: api/Teacher/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public Student Get(int id)
         {
             return _repo.Students.GetStudentInclude(id);
