@@ -25,9 +25,18 @@ namespace ThriveAPP.Controllers
         }
 
         // GET: Teacher
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var teacher = await _schoolService.GetTeacher();
+                return View(teacher);
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
         // GET: Teacher/Details/5
@@ -50,7 +59,6 @@ namespace ThriveAPP.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
                     var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
