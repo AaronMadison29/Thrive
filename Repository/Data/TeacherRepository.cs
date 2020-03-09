@@ -32,5 +32,10 @@ namespace Repository.Data
         {
             return FindAll().Include(a => a.Classes).ToList();
         }
+
+        public Teacher GetTeacherByUserIdInclude(string userId)
+        {
+            return FindByCondition(a => a.UserId == userId).Include(a => a.Classes).FirstOrDefault();
+        }
     }
 }

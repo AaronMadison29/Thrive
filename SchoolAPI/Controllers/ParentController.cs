@@ -27,6 +27,12 @@ namespace SchoolAPI.Controllers
             return _repo.Parents.GetParentsIncludeAll();
         }
 
+        [HttpGet("{stringId}")]
+        public Parent Get(string stringId)
+        {
+            return _repo.Parents.GetParentByUserIdInclude(stringId);
+        }
+
         // GET: api/Teacher/5
         [HttpGet("{id}")]
         public Parent Get(int id)

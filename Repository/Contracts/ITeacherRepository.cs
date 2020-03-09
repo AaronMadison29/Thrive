@@ -11,5 +11,6 @@ namespace Repository.Contracts
         public Teacher GetTeacher(int teacherId);
         public Teacher GetTeacherIncludeAll(int teacherId);
         public List<Teacher> GetAllTeachersIncludeAll();
+        public Teacher GetTeacherByUserIdInclude(string userId);
     }
 }

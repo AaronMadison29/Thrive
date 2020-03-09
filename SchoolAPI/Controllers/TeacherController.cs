@@ -26,7 +26,11 @@ namespace SchoolAPI.Controllers
         {
             return _repo.Teachers.GetAllTeachersIncludeAll();
         }
-
+        [HttpGet("{stringId}")]
+        public Teacher Get(string stringId)
+        {
+            return _repo.Teachers.GetTeacherByUserIdInclude(stringId);
+        }
         // GET: api/Teacher/5
         [HttpGet("{id}")]
         public Teacher Get(int id)

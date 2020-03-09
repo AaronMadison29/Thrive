@@ -21,5 +21,9 @@ namespace Repository.Data
         {
             return FindByCondition(a => a.StudentId == studentId).Include(a => a.Parent).Include(a => a.Profile).FirstOrDefault();
         }
+        public Student GetStudentByUserIdInclude(string studentId)
+        {
+            return FindByCondition(a => a.UserId == studentId).Include(a => a.Parent).Include(a => a.Profile).FirstOrDefault();
+        }
     }
 }

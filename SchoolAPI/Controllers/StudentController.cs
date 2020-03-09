@@ -27,12 +27,19 @@ namespace SchoolAPI.Controllers
             return _repo.Students.GetStudentsIncludeAll();
         }
 
+        [HttpGet("{stringId}")]
+        public Student Get(string stringId)
+        {
+            return _repo.Students.GetStudentByUserIdInclude(stringId);
+        }
+
         // GET: api/Teacher/5
         [HttpGet("{id}")]
         public Student Get(int id)
         {
             return _repo.Students.GetStudentInclude(id);
         }
+
 
         // POST: api/School
         [HttpPost]
