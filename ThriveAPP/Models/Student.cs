@@ -5,17 +5,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SchoolAPI.Models
+namespace ThriveAPP.Models
 {
-    public class Teacher
+    public class Student
     {
-        [Key]
-        public int TeacherId { get; set; }
+        public int StudentId { get; set; }
         public string UserId { get; set; }
+        [Required]
         public string Name { get; set; }
+        public List<Class> Classes { get; set; }
         public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Subject { get; set; }
-        public List<Class>  Classes { get; set; }
+        public int? ProfileId { get; set; }
+        public Profile Profile { get; set; }
+        public int? ParentId { get; set; }
+        public Parent Parent { get; set; }
     }
 }

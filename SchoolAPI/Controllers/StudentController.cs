@@ -24,15 +24,22 @@ namespace SchoolAPI.Controllers
         [HttpGet]
         public IEnumerable<Student> Get()
         {
-            return _repo.Students.FindAll().ToList();
+            return _repo.Students.GetStudentsIncludeAll();
+        }
+
+        [HttpGet("{stringId}")]
+        public Student Get(string stringId)
+        {
+            return _repo.Students.GetStudentByUserIdInclude(stringId);
         }
 
         // GET: api/Teacher/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public Student Get(int id)
         {
-            return _repo.Students.FindByCondition(a => a.StudentId == id).FirstOrDefault();
+            return _repo.Students.GetStudentInclude(id);
         }
+
 
         // POST: api/School
         [HttpPost]
@@ -54,14 +61,12 @@ namespace SchoolAPI.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Student value)
         {
-            var student = _repo.Students.FindByCondition(a => a.StudentId == id).FirstOrDefault();
+            var student = _repo.Students.GetStudent(id);
             student.Name = value.Name;
             student.Classes = value.Classes;
             student.Email = value.Email;
             student.ParentId = value.ParentId;
-            student.Parent = _repo.Parents.FindByCondition(a => a.ParentId == student.ParentId).FirstOrDefault();
             student.ProfileId = value.ProfileId;
-            student.Profile = _repo.Profiles.FindByCondition(a => a.ProfileId == student.ProfileId).FirstOrDefault();
             student.UserId = value.UserId;
             _repo.Save();
         }
@@ -70,7 +75,7 @@ namespace SchoolAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var student = _repo.Students.FindByCondition(a => a.StudentId == id).FirstOrDefault();
+            var student = _repo.Students.GetStudent(id);
             _repo.Students.Delete(student);
             _repo.Save();
         }

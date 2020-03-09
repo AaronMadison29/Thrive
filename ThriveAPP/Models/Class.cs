@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SchoolAPI.Models
+namespace ThriveAPP.Models
 {
     public class Class
     {
@@ -16,6 +16,8 @@ namespace SchoolAPI.Models
         [ForeignKey("Teacher")]
         public int TeacherId { get; set; }
         public Teacher ClassTeacher { get; set; }
+
+        [NotMapped]
         public List<Student> Students { get; set; }
     }
 }

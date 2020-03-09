@@ -1,24 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ThriveAPP.Contracts;
+using ThriveAPP.Models;
 using ThriveAPP.Services;
 
 namespace ThriveAPP.Controllers
 {
     public class ParentController : Controller
     {
-        private readonly EmailService _emailService;
-        private readonly MessengerService _messengerService;
-        private readonly SchoolService _schoolService;
+        private readonly IEmailServices _emailService;
+        private readonly IMessengerServices _messengerService;
+        private readonly ISchoolServices _schoolService;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public ParentController(EmailService emailService, MessengerService messengerService, SchoolService schoolService)
+        public ParentController(UserManager<IdentityUser> userManager, IEmailServices emailService, IMessengerServices messengerService, ISchoolServices schoolService)
         {
             _emailService = emailService;
             _messengerService = messengerService;
             _schoolService = schoolService;
+            _userManager = userManager;
         }
 
         // GET: Parent
@@ -33,26 +39,33 @@ namespace ThriveAPP.Controllers
             return View();
         }
 
-        // GET: Parent/Create
         public ActionResult Create()
         {
-            return View();
+            var parent = new Parent();
+            return View(parent);
         }
 
-        // POST: Parent/Create
+        // POST: Teacher/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(Parent parent)
         {
             try
             {
                 // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    var user = _userManager.FindByIdAsync(this.User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
+                    parent.UserId = user.Id;
+                    parent.Email = user.Email;
+                    await _schoolService.AddParentAsync(parent);
+                }
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(parent);
             }
         }
 

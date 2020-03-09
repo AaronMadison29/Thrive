@@ -18,10 +18,9 @@ namespace SchoolAPI.Controllers
             _repo = repo;
         }
         // GET: api/School
-        [HttpGet]
-        public string Get()
-        {
-            return _repo.ToString();
-        }
+        //[HttpGet]
+        //public string Get()
+        //{
+        //}
     }
 }

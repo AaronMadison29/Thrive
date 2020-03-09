@@ -17,5 +17,13 @@ namespace Repository.Data
         public Student GetStudent(int studentId) => FindByCondition(s => s.StudentId == studentId).SingleOrDefault();
         public void CreateStudent(Student student) => Create(student);
         public List<Student> GetStudentsIncludeAll() => FindAll().Include(s => s.Parent).Include(s => s.Profile).ToList();
+        public Student GetStudentInclude(int studentId)
+        {
+            return FindByCondition(a => a.StudentId == studentId).Include(a => a.Parent).Include(a => a.Profile).FirstOrDefault();
+        }
+        public Student GetStudentByUserIdInclude(string studentId)
+        {
+            return FindByCondition(a => a.UserId == studentId).Include(a => a.Parent).Include(a => a.Profile).FirstOrDefault();
+        }
     }
 }

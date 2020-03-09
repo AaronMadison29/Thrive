@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SchoolAPI.Models
+namespace ThriveAPP.Models
 {
-    public class Teacher
+    public class Parent
     {
         [Key]
-        public int TeacherId { get; set; }
+        public int ParentId { get; set; }
         public string UserId { get; set; }
+        [Required]
         public string Name { get; set; }
+        public List<Student> Children { get; set; }
         public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Subject { get; set; }
-        public List<Class>  Classes { get; set; }
     }
 }
