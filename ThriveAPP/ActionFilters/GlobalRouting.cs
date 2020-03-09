@@ -33,6 +33,10 @@ namespace ThriveAPP.ActionFilters
                 {
                     context.Result = new RedirectToActionResult("Index", "Student", null);
                 }
+                else if (_claimsPrincipal.IsInRole("Parent"))
+                {
+                    context.Result = new RedirectToActionResult("Index", "Parent", null);
+                }
             }
         }
     }
