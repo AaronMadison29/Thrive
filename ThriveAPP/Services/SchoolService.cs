@@ -86,7 +86,7 @@ namespace ThriveAPP.Services
             return null;
         }
 
-        public async Task<Teacher> GetParent(string userId)
+        public async Task<Parent> GetParent(string userId)
         {
             HttpClient client = new HttpClient();
             string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
@@ -96,12 +96,12 @@ namespace ThriveAPP.Services
             if (response.IsSuccessStatusCode)
             {
                 string json = response.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<Teacher>(json);
+                return JsonConvert.DeserializeObject<Parent>(json);
             }
             return null;
         }
 
-        public async Task<Teacher> GetStudent(string userId)
+        public async Task<Student> GetStudent(string userId)
         {
             HttpClient client = new HttpClient();
             string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
@@ -111,9 +111,40 @@ namespace ThriveAPP.Services
             if (response.IsSuccessStatusCode)
             {
                 string json = response.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<Teacher>(json);
+                return JsonConvert.DeserializeObject<Student>(json);
             }
             return null;
+        }
+
+        public async Task<Student> GetStudent(int id)
+        {
+            HttpClient client = new HttpClient();
+            string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
+            url += $"api/Student/{id}";
+            HttpResponseMessage response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<Student>(json);
+            }
+            return null;
+        }
+
+        public async Task EditStudentProfile(int id, Profile profile)
+        {
+            string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
+            url += $"api/Teacher?id={id}";
+            var json = JsonConvert.SerializeObject(profile);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            using var client = new HttpClient();
+
+            HttpResponseMessage response = await client.PutAsync(url, data);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonResult = await response.Content.ReadAsStringAsync();
+            }
         }
     }
 }

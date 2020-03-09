@@ -79,20 +79,21 @@ namespace ThriveAPP.Controllers
         }
 
         // GET: Teacher/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> EditStudentProfile(int id)
         {
-            return View();
+            var studentFromDb = await _schoolService.GetStudent(id);
+            var profileFromDb = studentFromDb.Profile;
+            return View(profileFromDb);
         }
 
         // POST: Teacher/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> EditStudentProfile(int id, Profile profile)
         {
             try
             {
-                // TODO: Add update logic here
-
+                await _schoolService.EditStudentProfile(id, profile);
                 return RedirectToAction(nameof(Index));
             }
             catch
