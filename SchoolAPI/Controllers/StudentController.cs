@@ -59,7 +59,7 @@ namespace SchoolAPI.Controllers
         }
 
         // PUT: api/School/5
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public void Put(int id, [FromBody] Profile value)
         {
             var profile = _repo.Profiles.GetProfile(id);
@@ -67,6 +67,15 @@ namespace SchoolAPI.Controllers
             profile.LearningStyle = value.LearningStyle;
             profile.Notes = value.Notes;
             _repo.Profiles.Update(profile);
+            _repo.Save();
+        }
+
+        [HttpPut("{userId}")]
+        public void Put(int id, string userId)
+        {
+            var student = _repo.Students.GetStudent(id);
+            student.UserId = userId;
+            _repo.Students.Update(student);
             _repo.Save();
         }
 
