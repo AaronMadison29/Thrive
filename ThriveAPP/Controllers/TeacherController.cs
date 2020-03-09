@@ -40,7 +40,6 @@ namespace ThriveAPP.Controllers
             {
                 return View();
             }
-
         }
 
         // GET: Teacher/Details/5

@@ -28,9 +28,18 @@ namespace ThriveAPP.Controllers
         }
 
         // GET: Student
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var student = await _schoolService.GetStudent(userId);
+                return View(student);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // GET: Student/Details/5
