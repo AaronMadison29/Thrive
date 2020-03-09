@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SchoolAPI.Models
+namespace Repository.Models
 {
     public class Teacher
     {
@@ -16,6 +16,6 @@ namespace SchoolAPI.Models
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Subject { get; set; }
-        public List<Class>  Classes { get; set; }
+        public Class Class { get; set; }
     }
 }

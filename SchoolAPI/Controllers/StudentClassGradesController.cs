@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Contracts;
-using SchoolAPI.Models;
+using Repository.Models;
 namespace SchoolAPI.Controllers
 {
     [Route("api/[controller]")]

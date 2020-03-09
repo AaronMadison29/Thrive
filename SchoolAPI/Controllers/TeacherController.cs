@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Contracts;
-using SchoolAPI.Models;
+using Repository.Models;
 
 namespace SchoolAPI.Controllers
 {
@@ -44,7 +44,7 @@ namespace SchoolAPI.Controllers
         {
             var newTeacher = new Teacher
             {
-                Classes = value.Classes,
+                Class = value.Class,
                 Email = value.Email,
                 Name = value.Name,
                 PhoneNumber = value.PhoneNumber,
@@ -61,7 +61,7 @@ namespace SchoolAPI.Controllers
         public void Put(int id, [FromBody] Teacher value)
         {
             var teacher = _repo.Teachers.GetTeacher(id);
-            teacher.Classes = value.Classes;
+            teacher.Class = value.Class;
             teacher.Email = value.Email;
             teacher.Name = value.Name;
             teacher.PhoneNumber = value.PhoneNumber;
