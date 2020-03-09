@@ -10,5 +10,6 @@ namespace Repository.Contracts
         Student GetStudent(int studentId);
         void CreateStudent(Student student);
         List<Student> GetStudentsIncludeAll();
+        Student GetStudentInclude(int studentId);
     }
 }
