@@ -9,6 +9,11 @@ namespace Repository.Models
 {
     public class Student
     {
+        public Student()
+        {
+            Profile = new Profile();
+        }
+
         [Key]
         public int StudentId { get; set; }
         public string UserId { get; set; }

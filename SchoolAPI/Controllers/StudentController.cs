@@ -53,12 +53,13 @@ namespace SchoolAPI.Controllers
                 UserId = value.UserId,
                 ParentId = value.ParentId
             };
-            _repo.Students.Create(newStudent);
+            _repo.Profiles.CreateProfile(newStudent.Profile);
+            _repo.Students.CreateStudent(newStudent);
             _repo.Save();
         }
 
         // PUT: api/School/5
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public void Put(int id, [FromBody] Profile value)
         {
             var profile = _repo.Profiles.GetProfile(id);
@@ -66,6 +67,16 @@ namespace SchoolAPI.Controllers
             profile.LearningStyle = value.LearningStyle;
             profile.Notes = value.Notes;
             _repo.Profiles.Update(profile);
+            _repo.Save();
+        }
+
+        [HttpPut]
+        public void Put(Student student)
+        {
+            var user = _repo.Students.GetStudent(student.StudentId);
+            user.UserId = student.UserId;
+            user.Email = student.Email;
+            _repo.Students.Update(student);
             _repo.Save();
         }
 
