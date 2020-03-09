@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using ThriveAPP.Contracts;
@@ -14,6 +15,7 @@ namespace ThriveAPP.Services
     public class SchoolService : ISchoolServices
     {
         private readonly IConfiguration _config;
+
 
         public SchoolService(IConfiguration config)
         {

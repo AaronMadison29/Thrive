@@ -27,6 +27,8 @@ namespace ThriveAPP.Controllers
         // GET: Teacher
         public ActionResult Index()
         {
+            //_messengerService.GetUsers();
+
             return View();
         }
 
