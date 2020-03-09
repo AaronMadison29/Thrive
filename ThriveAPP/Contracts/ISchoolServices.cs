@@ -10,7 +10,7 @@ namespace ThriveAPP.Contracts
     {
         Task AddTeacherAsync(Teacher teacher);
 
-        Task<Teacher> GetTeacher();
+        Task<Teacher> GetTeacher(string userId);
 
     }
 }

@@ -32,7 +32,7 @@ namespace SchoolAPI.Controllers
             return _repo.Teachers.GetTeacherByUserIdInclude(stringId);
         }
         // GET: api/Teacher/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public Teacher Get(int id)
         {
             return _repo.Teachers.GetTeacher(id);
