@@ -50,8 +50,7 @@ namespace SchoolAPI.Controllers
                 Classes = value.Classes,
                 Email = value.Email,
                 Name = value.Name,
-                UserId = value.UserId,
-                ParentId = value.ParentId
+                UserId = value.UserId
             };
             _repo.Profiles.CreateProfile(newStudent.Profile);
             _repo.Students.CreateStudent(newStudent);

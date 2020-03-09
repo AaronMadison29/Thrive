@@ -7,6 +7,12 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200306165337_initial.cs" />
     <Compile Remove="Migrations\20200306165337_initial.Designer.cs" />
+    <Compile Remove="Migrations\20200309211410_seededData.cs" />
+    <Compile Remove="Migrations\20200309211410_seededData.Designer.cs" />
+    <Compile Remove="Migrations\20200309211938_seededData.cs" />
+    <Compile Remove="Migrations\20200309211938_seededData.Designer.cs" />
+    <Compile Remove="Migrations\20200309212147_seededData.cs" />
+    <Compile Remove="Migrations\20200309212147_seededData.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
