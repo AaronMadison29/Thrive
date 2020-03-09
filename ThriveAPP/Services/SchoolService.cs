@@ -73,7 +73,9 @@ namespace ThriveAPP.Services
         public async Task<Teacher> GetTeacher(string userId)
         {
             HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync($"ApiHostUrl:BaseUrl" + "api/teacher/" + userId);
+            string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
+            url += $"api/Teacher/{userId}";
+            HttpResponseMessage response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
             {
