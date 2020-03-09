@@ -56,14 +56,13 @@ namespace SchoolAPI.Controllers
         }
 
         // PUT: api/School/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Parent value)
+        [HttpPut]
+        public void Put(Parent parent)
         {
-            var parent = _repo.Parents.GetParent(id);
-            parent.Name = value.Name;
-            parent.Children = value.Children;
-            parent.Email = value.Email;
-            parent.UserId = value.UserId;
+            var user = _repo.Parents.GetParent(parent.ParentId);
+            user.UserId = parent.UserId;
+            user.Email = parent.Email;
+            _repo.Parents.Update(user);
             _repo.Save();
         }
 

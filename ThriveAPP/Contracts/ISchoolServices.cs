@@ -18,5 +18,8 @@ namespace ThriveAPP.Contracts
         Task<Student> GetStudent(string userId);
         Task<Student> GetStudent(int id);
         Task EditStudentProfile(int id, Profile profile);
+        Task LinkTeacherAccount(Teacher teacher);
+        Task LinkStudentAccount(Student student);
+        Task LinkParentAccount(Parent parent);
     }
 }

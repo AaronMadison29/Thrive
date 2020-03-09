@@ -56,17 +56,12 @@ namespace SchoolAPI.Controllers
 
         }
 
-        // PUT: api/School/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Teacher value)
+        [HttpPut]
+        public void Put(Teacher teacher)
         {
-            var teacher = _repo.Teachers.GetTeacher(id);
-            teacher.Class = value.Class;
-            teacher.Email = value.Email;
-            teacher.Name = value.Name;
-            teacher.PhoneNumber = value.PhoneNumber;
-            teacher.Subject = value.Subject;
-            teacher.UserId = value.UserId;
+            var user = _repo.Teachers.GetTeacher(teacher.TeacherId);
+            user.UserId = teacher.UserId;
+            user.Email = teacher.Email;
             _repo.Teachers.Update(teacher);
             _repo.Save();
         }
