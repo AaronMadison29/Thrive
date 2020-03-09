@@ -17,6 +17,7 @@ namespace ThriveAPP.Services
     {
         private readonly IConfiguration _config;
 
+
         public SchoolService(IConfiguration config)
         {
             _config = config;

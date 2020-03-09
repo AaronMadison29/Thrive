@@ -75,7 +75,7 @@ namespace ThriveAPP
 
             app.UseAuthentication();
 
-            ApplicationDbInitializer.SeedUsers(userManager, schoolServices);
+            //ApplicationDbInitializer.SeedUsers(userManager, schoolServices);
 
             app.UseAuthorization();
 
