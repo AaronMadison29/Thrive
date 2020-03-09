@@ -11,8 +11,10 @@ namespace ThriveAPP.Contracts
         Task AddTeacherAsync(Teacher teacher);
         Task AddStudentAsync(Student student);
         Task AddParentAsync(Parent parent);
-
         Task<Teacher> GetTeacher(string userId);
-
+        Task<Parent> GetParent(string userId);
+        Task<Student> GetStudent(string userId);
+        Task<Student> GetStudent(int id);
+        Task EditStudentProfile(int id, Profile profile);
     }
 }
