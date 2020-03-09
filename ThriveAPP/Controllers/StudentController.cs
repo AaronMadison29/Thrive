@@ -42,6 +42,12 @@ namespace ThriveAPP.Controllers
             }
         }
 
+        public IActionResult Chat()
+        {
+            return View();
+
+        }
+
         // GET: Student/Details/5
         public ActionResult Details(int id)
         {

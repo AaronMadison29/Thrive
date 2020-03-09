@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -11,7 +12,7 @@ using ThriveAPP.Contracts;
 
 namespace ThriveAPP.Services
 {
-    public class MessengerService : IMessengerServices
+    public class MessengerService : Hub, IMessengerServices
     {
         private readonly IConfiguration _config;
 
@@ -59,6 +60,11 @@ namespace ThriveAPP.Services
             }
 
             return new JObject();
+        }
+
+        public async Task SendMessage(string user, string message)
+        {
+            await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
     }

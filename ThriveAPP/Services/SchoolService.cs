@@ -129,20 +129,20 @@ namespace ThriveAPP.Services
             return null;
         }
 
-        public async Task<Parent> GetParent(int id)
-        {
-            HttpClient client = new HttpClient();
-            string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
-            url += $"api/Parent/{id}";
-            HttpResponseMessage response = await client.GetAsync(url);
+        //public async Task<Parent> GetParent(int id)
+        //{
+        //    HttpClient client = new HttpClient();
+        //    string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
+        //    url += $"api/Parent/{id}";
+        //    HttpResponseMessage response = await client.GetAsync(url);
 
-            if (response.IsSuccessStatusCode)
-            {
-                string json = response.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<Parent>(json);
-            }
-            return null;
-        }
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        string json = response.Content.ReadAsStringAsync().Result;
+        //        return JsonConvert.DeserializeObject<Parent>(json);
+        //    }
+        //    return null;
+        //}
 
         public async Task<Student> GetStudent(string userId)
         {

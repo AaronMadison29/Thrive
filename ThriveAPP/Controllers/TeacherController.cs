@@ -42,6 +42,12 @@ namespace ThriveAPP.Controllers
             }
         }
 
+        public IActionResult Chat()
+        {
+            return View();
+        }
+
+
         // GET: Teacher/Details/5
         public ActionResult Details(int id)
         {
@@ -65,7 +71,7 @@ namespace ThriveAPP.Controllers
                 if (ModelState.IsValid)
                 {
                     var user = _userManager.FindByIdAsync(this.User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
-                    var teacherToLink = _schoolService.GetStudent(teacher.TeacherId).Result;
+                    var teacherToLink = _schoolService.GetTeacher(teacher.TeacherId).Result;
                     teacherToLink.UserId = user.Id;
                     teacherToLink.Email = user.Email;
 
