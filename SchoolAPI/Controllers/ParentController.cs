@@ -48,7 +48,7 @@ namespace SchoolAPI.Controllers
             {
                 Name = value.Name,
                 Email = value.Email,
-                Children = value.Children,
+                Student = value.Student,
                 UserId = value.UserId
             };
             _repo.Parents.Create(newParent);
