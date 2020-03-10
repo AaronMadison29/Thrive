@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace ThriveAPP.Contracts
 {
-    public interface IEmail
+    interface ISmsServices
     {
-        string Email { get;  }
-        string Name { get;}
+        Task SendSMS(IPhoneNumber reveiver);
     }
 }
