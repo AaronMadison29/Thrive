@@ -7,11 +7,16 @@ using Repository.Models;
 
 namespace Repository.Models
 {
-    class Notes
+    public class Note
     {
         [Key]
         public int NoteId { get; set; }
-        public string Note { get; set; }
+
+        [Required]
+        [MaxLength(2000)]
+        public string Content { get; set; }
+
+
         [ForeignKey("Profile")]
         public int profileId { get; set; }
         public Profile Profile { get; set; }

@@ -64,13 +64,9 @@ namespace ThriveAPP.Controllers
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
-                    var user = _userManager.FindByIdAsync(this.User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
-                    var parentToLink = _schoolService.GetParent(parent.ParentId).Result;
-                    parentToLink.UserId = user.Id;
-                    parentToLink.Email = user.Email;
-                    
-                    //EDIT PARENT IN API DB HERE
+                    await _schoolService.LinkParentAccount(parent);
 
+                    //EDIT PARENT IN API DB HERE
                 }
 
                 return RedirectToAction(nameof(Index));

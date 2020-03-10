@@ -69,11 +69,8 @@ namespace ThriveAPP.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = _userManager.FindByIdAsync(this.User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
-                    var studentToLink = _schoolService.GetStudent(student.StudentId).Result;
-                    studentToLink.UserId = user.Id;
-                    studentToLink.Email = user.Email;
-                    
+                    await _schoolService.LinkStudentAccount(student);
+
                     //EDIT STUDENT IN API DB HERE
                 }
                 return RedirectToAction(nameof(Index));

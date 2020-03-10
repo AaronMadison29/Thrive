@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace Repository.Models
         public int ClassId { get; set; }
         public Class Class { get; set; }
 
+        [DefaultValue(100)]
+        [Range(0,100)]
         public int Grade { get; set; }
     }
 }
