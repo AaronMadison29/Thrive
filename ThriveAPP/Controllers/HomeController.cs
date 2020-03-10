@@ -32,7 +32,7 @@ namespace ThriveAPP.Controllers
 
         public async Task<IActionResult> ScanSystem()
         {
-            var students = _schoolService.
+            //var students = _schoolService.
 
 
             return View(nameof(Index));
