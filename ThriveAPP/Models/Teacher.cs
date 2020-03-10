@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using ThriveAPP.Contracts;
 
 namespace ThriveAPP.Models
 {
-    public class Teacher
+    public class Teacher : IEmail
     {
         public int TeacherId { get; set; }
         public string UserId { get; set; }

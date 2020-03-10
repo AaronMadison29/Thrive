@@ -31,21 +31,18 @@ namespace Repository.Data
                 {
                     ClassId = 1,
                     Subject = "Math",
-                    Teacher = null
                 },
 
                 new Class
                 {
                     ClassId = 2,
                     Subject = "Science",
-                    Teacher = null
                 },
 
                 new Class
                 {
                     ClassId = 3,
                     Subject = "History",
-                    Teacher = null
                 });
 
             builder.Entity<Teacher>().HasData(
@@ -138,7 +135,6 @@ namespace Repository.Data
                 {
                     StudentId = 9,
                     Name = "Phil Collins",
-
                     Profile = null
                 },
 
@@ -219,6 +215,23 @@ namespace Repository.Data
                     Name = "Bob Vogg",
                     StudentId = 10
                 });
+
+            var studentClassGrades1 = new List<StudentClassGrade>();
+            var studentClassGrades2 = new List<StudentClassGrade>();
+            var studentClassGrades3 = new List<StudentClassGrade>();
+
+            var id = 0;
+            for (var i = 1; i <= 10; i++)
+            {
+                studentClassGrades1.Add(new StudentClassGrade { StudentClassGradeId = ++id, StudentId = i, ClassId = 1, Grade = 100 });
+                studentClassGrades2.Add(new StudentClassGrade { StudentClassGradeId = ++id, StudentId = i, ClassId = 2, Grade = 100 });
+                studentClassGrades3.Add(new StudentClassGrade { StudentClassGradeId = ++id, StudentId = i, ClassId = 3, Grade = 100 });
+            }
+
+            builder.Entity<StudentClassGrade>().HasData(studentClassGrades1);
+            builder.Entity<StudentClassGrade>().HasData(studentClassGrades2);
+            builder.Entity<StudentClassGrade>().HasData(studentClassGrades3);
+
         }
 
         public DbSet<Teacher> Teachers { get; set; }
@@ -227,5 +240,6 @@ namespace Repository.Data
         public DbSet<Class> Classes { get; set; }
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<StudentClassGrade> StudentClassGrades { get; set; }
+        public DbSet<Note> Notes { get; set; }
     }
 }

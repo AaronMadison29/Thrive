@@ -10,8 +10,8 @@ using Repository.Data;
 namespace Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200309212351_seededData")]
-    partial class seededData
+    [Migration("20200310004123_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,15 +28,10 @@ namespace Repository.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("StudentId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ClassId");
-
-                    b.HasIndex("StudentId");
 
                     b.ToTable("Classes");
 
@@ -58,6 +53,28 @@ namespace Repository.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Repository.Models.Note", b =>
+                {
+                    b.Property<int>("NoteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(2000)")
+                        .HasMaxLength(2000);
+
+                    b.Property<int>("profileId")
+                        .HasColumnType("int");
+
+                    b.HasKey("NoteId");
+
+                    b.HasIndex("profileId");
+
+                    b.ToTable("Notes");
+                });
+
             modelBuilder.Entity("Repository.Models.Parent", b =>
                 {
                     b.Property<int>("ParentId")
@@ -66,10 +83,13 @@ namespace Repository.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
@@ -79,8 +99,7 @@ namespace Repository.Migrations
 
                     b.HasKey("ParentId");
 
-                    b.HasIndex("StudentId")
-                        .IsUnique();
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Parents");
 
@@ -155,10 +174,10 @@ namespace Repository.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("FavoriteSubject")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(25)");
 
                     b.Property<string>("LearningStyle")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("ProfileId");
 
@@ -176,7 +195,8 @@ namespace Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(75)");
 
                     b.Property<int?>("ProfileId")
                         .HasColumnType("int");
@@ -266,6 +286,218 @@ namespace Repository.Migrations
                     b.HasIndex("StudentId");
 
                     b.ToTable("StudentClassGrades");
+
+                    b.HasData(
+                        new
+                        {
+                            StudentClassGradeId = 1,
+                            ClassId = 1,
+                            Grade = 100,
+                            StudentId = 1
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 4,
+                            ClassId = 1,
+                            Grade = 100,
+                            StudentId = 2
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 7,
+                            ClassId = 1,
+                            Grade = 100,
+                            StudentId = 3
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 10,
+                            ClassId = 1,
+                            Grade = 100,
+                            StudentId = 4
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 13,
+                            ClassId = 1,
+                            Grade = 100,
+                            StudentId = 5
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 16,
+                            ClassId = 1,
+                            Grade = 100,
+                            StudentId = 6
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 19,
+                            ClassId = 1,
+                            Grade = 100,
+                            StudentId = 7
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 22,
+                            ClassId = 1,
+                            Grade = 100,
+                            StudentId = 8
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 25,
+                            ClassId = 1,
+                            Grade = 100,
+                            StudentId = 9
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 28,
+                            ClassId = 1,
+                            Grade = 100,
+                            StudentId = 10
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 2,
+                            ClassId = 2,
+                            Grade = 100,
+                            StudentId = 1
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 5,
+                            ClassId = 2,
+                            Grade = 100,
+                            StudentId = 2
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 8,
+                            ClassId = 2,
+                            Grade = 100,
+                            StudentId = 3
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 11,
+                            ClassId = 2,
+                            Grade = 100,
+                            StudentId = 4
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 14,
+                            ClassId = 2,
+                            Grade = 100,
+                            StudentId = 5
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 17,
+                            ClassId = 2,
+                            Grade = 100,
+                            StudentId = 6
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 20,
+                            ClassId = 2,
+                            Grade = 100,
+                            StudentId = 7
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 23,
+                            ClassId = 2,
+                            Grade = 100,
+                            StudentId = 8
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 26,
+                            ClassId = 2,
+                            Grade = 100,
+                            StudentId = 9
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 29,
+                            ClassId = 2,
+                            Grade = 100,
+                            StudentId = 10
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 3,
+                            ClassId = 3,
+                            Grade = 100,
+                            StudentId = 1
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 6,
+                            ClassId = 3,
+                            Grade = 100,
+                            StudentId = 2
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 9,
+                            ClassId = 3,
+                            Grade = 100,
+                            StudentId = 3
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 12,
+                            ClassId = 3,
+                            Grade = 100,
+                            StudentId = 4
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 15,
+                            ClassId = 3,
+                            Grade = 100,
+                            StudentId = 5
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 18,
+                            ClassId = 3,
+                            Grade = 100,
+                            StudentId = 6
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 21,
+                            ClassId = 3,
+                            Grade = 100,
+                            StudentId = 7
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 24,
+                            ClassId = 3,
+                            Grade = 100,
+                            StudentId = 8
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 27,
+                            ClassId = 3,
+                            Grade = 100,
+                            StudentId = 9
+                        },
+                        new
+                        {
+                            StudentClassGradeId = 30,
+                            ClassId = 3,
+                            Grade = 100,
+                            StudentId = 10
+                        });
                 });
 
             modelBuilder.Entity("Repository.Models.Teacher", b =>
@@ -282,21 +514,24 @@ namespace Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subject")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(25)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TeacherId");
 
-                    b.HasIndex("ClassId")
-                        .IsUnique();
+                    b.HasIndex("ClassId");
 
                     b.ToTable("Teachers");
 
@@ -327,18 +562,20 @@ namespace Repository.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Repository.Models.Class", b =>
+            modelBuilder.Entity("Repository.Models.Note", b =>
                 {
-                    b.HasOne("Repository.Models.Student", null)
-                        .WithMany("Classes")
-                        .HasForeignKey("StudentId");
+                    b.HasOne("Repository.Models.Profile", "Profile")
+                        .WithMany()
+                        .HasForeignKey("profileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Repository.Models.Parent", b =>
                 {
                     b.HasOne("Repository.Models.Student", "Student")
-                        .WithOne("Parent")
-                        .HasForeignKey("Repository.Models.Parent", "StudentId")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -368,8 +605,8 @@ namespace Repository.Migrations
             modelBuilder.Entity("Repository.Models.Teacher", b =>
                 {
                     b.HasOne("Repository.Models.Class", "Class")
-                        .WithOne("Teacher")
-                        .HasForeignKey("Repository.Models.Teacher", "ClassId")
+                        .WithMany()
+                        .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

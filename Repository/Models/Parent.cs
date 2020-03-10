@@ -12,8 +12,16 @@ namespace Repository.Models
         [Key]
         public int ParentId { get; set; }
         public string UserId { get; set; }
+
+        [Required]
+        [MaxLength(50)]
         public string Name { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        [MaxLength(100)]
         public string Email { get; set; }
+
+
         [ForeignKey("Student")]
         public int StudentId { get; set; }
         public Student Student { get; set; }

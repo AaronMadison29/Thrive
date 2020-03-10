@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using ThriveAPP.Contracts;
 
 namespace ThriveAPP.Models
 {
-    public class Parent
+    public class Parent : IEmail
     {
         [Key]
         public int ParentId { get; set; }

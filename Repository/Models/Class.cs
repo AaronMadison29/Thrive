@@ -11,7 +11,11 @@ namespace Repository.Models
     {
         [Key]
         public int ClassId { get; set; }
+
+        [Required]
         public string Subject { get; set; }
+
+        [NotMapped]
         public Teacher Teacher { get; set; }
         [NotMapped]
         public List<Student> Students { get; set; }

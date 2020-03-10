@@ -11,8 +11,13 @@ namespace Repository.Models
     {
         [Key]
         public int ProfileId { get; set; }
+
+        [Column(TypeName = "varchar(25)")]
         public string FavoriteSubject { get; set; }
+
+        [Column(TypeName = "varchar(50)")]
         public string LearningStyle { get; set; }
+
         [NotMapped]
         public List<string> Notes { get; set; }
     }
