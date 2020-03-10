@@ -11,7 +11,7 @@ namespace ThriveAPP.Services
 {
     public class EmailService : IEmailServices
     {
-        private readonly string apiKey = Environment.GetEnvironmentVariable("Sendgrid_Api_Key");
+        private readonly string apiKey = Api_Keys.Sendgrid_Api_Key;
         public EmailService()
         {
 
