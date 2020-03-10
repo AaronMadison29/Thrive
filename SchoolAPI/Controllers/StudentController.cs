@@ -30,14 +30,21 @@ namespace SchoolAPI.Controllers
         [HttpGet("{stringId}")]
         public Student Get(string stringId)
         {
-            return _repo.Students.GetStudentByUserIdInclude(stringId);
+            var student = _repo.Students.GetStudentByUserIdInclude(stringId);
+            if(student != null)
+            {
+                student.Parent = _repo.Parents.GetStudentsParent(student.StudentId);
+            }
+            return student;
         }
 
         // GET: api/Teacher/5
         [HttpGet("{id:int}")]
         public Student Get(int id)
         {
-            return _repo.Students.GetStudentInclude(id);
+            var student = _repo.Students.GetStudentInclude(id);
+            student.Classes = _repo.StudentClassGrades.GetStudentClasses(id);
+            return student;
         }
 
 

@@ -17,6 +17,7 @@ namespace Repository.Models
 
         [NotMapped]
         public Teacher Teacher { get; set; }
+
         [NotMapped]
         public List<Student> Students { get; set; }
     }
