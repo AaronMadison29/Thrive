@@ -159,6 +159,22 @@ namespace ThriveAPP.Services
             return null;
         }
 
+        public async Task<List<Student>> GetAllStudents()
+        {
+            HttpClient client = new HttpClient();
+            string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
+            url += $"api/Student";
+            HttpResponseMessage response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Student>>(json);
+            }
+
+            return null;
+        }
+
         public async Task EditStudentProfile(int id, Profile profile)
         {
             string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
