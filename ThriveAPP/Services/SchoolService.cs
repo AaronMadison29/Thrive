@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -279,26 +278,6 @@ namespace ThriveAPP.Services
             {
                 string jsonResult = await response.Content.ReadAsStringAsync();
             }
-
-
-            //var client = new RestClient("https://localhost:44369/api/student");
-            //client.Timeout = -1;
-            //var request = new RestRequest(Method.PUT);
-            //request.AddHeader("Content-Type", "application/json");
-            //request.AddParameter("application/json", "{\n\t\"StudentId\" : 1,\n\t\"Name\":\"Charlie\"\n}", ParameterType.RequestBody);
-            //var response = await Task.Run(() => client.Execute(request));
-
-
-            //using var client = new HttpClient();
-            //client.BaseAddress = new Uri(url);
-            //var data = new StringContent(json, Encoding.UTF8, "application/json");
-
-            //HttpResponseMessage response = await client.PutAsync("api/Student", data);
-
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    string jsonResult = await response.Content.ReadAsStringAsync();
-            //}
         }
 
         public async Task LinkParentAccount(Parent parent)

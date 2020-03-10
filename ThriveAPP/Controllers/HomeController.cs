@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ThriveAPP.Contracts;
 using ThriveAPP.Models;
+using Twilio.Types;
 
 namespace ThriveAPP.Controllers
 {
@@ -16,13 +17,16 @@ namespace ThriveAPP.Controllers
         private readonly IEmailServices _emailService;
         private readonly IMessengerServices _messengerService;
         private readonly ISchoolServices _schoolService;
+        private readonly ISmsServices _smsService;
 
-        public HomeController(ILogger<HomeController> logger, IEmailServices emailServices, IMessengerServices messengerServices, ISchoolServices schoolServices )
+        public HomeController(ILogger<HomeController> logger, IEmailServices emailServices, IMessengerServices messengerServices, ISchoolServices schoolServices, ISmsServices smsServices)
         {
             _logger = logger;
             _emailService = emailServices;
             _messengerService = messengerServices;
             _schoolService = schoolServices;
+            _smsService = smsServices;
+
         }
 
         public IActionResult Index()
@@ -71,13 +75,11 @@ namespace ThriveAPP.Controllers
                 }
             }
             
-
             var recipients = new List<IEmail>();
             recipients.AddRange(parentsWithProblemStudents);
             recipients.AddRange(teachersWithProblemStudents);
 
             await _emailService.EmailAlertAsync(new Teacher { Email = "yahoop@gmail.com", Name = "Thrive Web App"}, recipients);
-            
 
             return View(nameof(Index));
         }
