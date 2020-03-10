@@ -9,12 +9,12 @@ namespace ThriveAPP.Models
 {
     public class Parent : IEmail
     {
-        [Key]
         public int ParentId { get; set; }
         public string UserId { get; set; }
-        [Required]
         public string Name { get; set; }
-        public List<Student> Children { get; set; }
         public string Email { get; set; }
+        public int StudentId { get; set; }
+        public Student Student { get; set; }
+
     }
 }

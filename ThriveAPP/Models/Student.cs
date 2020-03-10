@@ -12,13 +12,11 @@ namespace ThriveAPP.Models
     {
         public int StudentId { get; set; }
         public string UserId { get; set; }
-        [Required]
         public string Name { get; set; }
-        public List<Class> Classes { get; set; }
         public string Email { get; set; }
         public int? ProfileId { get; set; }
         public Profile Profile { get; set; }
-        public int? ParentId { get; set; }
         public Parent Parent { get; set; }
+        public List<Class> Classes { get; set; }
     }
 }

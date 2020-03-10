@@ -8,5 +8,7 @@ namespace ThriveAPP.Contracts
     public interface IEmail
     {
         string Email { get;  }
+        string Name { get; }
+
     }
 }

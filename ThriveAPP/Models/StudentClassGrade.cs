@@ -9,17 +9,11 @@ namespace ThriveAPP.Models
 {
     public class StudentClassGrade
     {
-        [Key]
         public int StudentClassGradeId { get; set; }
-
-        [ForeignKey("Student")]
         public int StudentId { get; set; }
         public Student Student { get; set; }
-
-        [ForeignKey("Class")]
         public int ClassId { get; set; }
         public Class Class { get; set; }
-
         public int Grade { get; set; }
     }
 }
