@@ -7,7 +7,7 @@ using ThriveAPP.Contracts;
 
 namespace ThriveAPP.Models
 {
-    public class Parent : IEmail
+    public class Parent : IEmail, IPhoneNumber
     {
         public int ParentId { get; set; }
         public string UserId { get; set; }
@@ -15,6 +15,6 @@ namespace ThriveAPP.Models
         public string Email { get; set; }
         public int StudentId { get; set; }
         public Student Student { get; set; }
-
+        public string PhoneNumber { get; set; }
     }
 }

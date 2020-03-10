@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace ThriveAPP.Contracts
 {
-    public interface IEmail
+    public interface IPhoneNumber
     {
-        string Email { get;  }
-        string Name { get;}
+        string PhoneNumber { get; }
     }
 }

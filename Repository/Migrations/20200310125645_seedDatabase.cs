@@ -2,7 +2,7 @@
 
 namespace Repository.Migrations
 {
-    public partial class initial : Migration
+    public partial class seedDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,7 @@ namespace Repository.Migrations
                 {
                     ClassId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Subject = table.Column<string>(nullable: true)
+                    Subject = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
