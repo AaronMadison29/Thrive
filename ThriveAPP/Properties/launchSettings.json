@@ -14,9 +14,7 @@
       "environmentVariables": {
         "Sendgrid_Api_Key": "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",
         "Key": "Value",
-        "Twilio_AUTH_TOKEN": "a94e2b6680abb29d7b57b0b1f497f0ed",
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "Twilio_Account_SID": "AC5430bcbd3df1db895bff7a36c7478603"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "ThriveAPP": {

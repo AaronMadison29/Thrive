@@ -10,8 +10,8 @@ namespace ThriveAPP.Services
 {
     public class SmsService : ISmsServices
     {
-        private readonly string Account_SID = Environment.GetEnvironmentVariable("Twilio_Account_SID");
-        private readonly string AUTH_TOKEN = Environment.GetEnvironmentVariable("Twilio_AUTH_TOKEN");
+        private readonly string Account_SID = Api_Keys.Account_SID;
+        private readonly string AUTH_TOKEN = Api_Keys.AUTH_TOKEN;
         public SmsService()
         {
 
