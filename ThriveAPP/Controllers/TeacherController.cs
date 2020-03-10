@@ -49,9 +49,10 @@ namespace ThriveAPP.Controllers
 
 
         // GET: Teacher/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var student = await _schoolService.GetStudent(id);
+            return View(student);
         }
 
         // GET: Teacher/Create

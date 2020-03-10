@@ -66,6 +66,5 @@ namespace ThriveAPP.Services
         {
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
-
     }
 }
