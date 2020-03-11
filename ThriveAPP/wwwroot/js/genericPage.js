@@ -1,10 +1,10 @@
-	var element = document.getElementById("viewGalleryButton");
-	var gallery = document.getElementById("imageContainer");
-	var componentButtonView = document.getElementById("componentButtons");
-	var mesContainer = document.getElementById("messageContainer");
-	var gradeButton = document.getElementById("gradesButton");
-	var profileButton = document.getElementById("profilesButton");
-	var gradeContainer = document.getElementById("gradesContainer");
+var element = document.getElementById("viewGalleryButton");
+var gallery = document.getElementById("imageContainer");
+var componentButtonView = document.getElementById("componentButtons");
+var mesContainer = document.getElementById("messageContainer");
+var gradeButton = document.getElementById("gradesButton");
+var profileButton = document.getElementById("profilesButton");
+var gradesContainer = document.getElementById("gradesContainer");
 
 function change(){
 	if(element.innerHTML == "Teachers")
@@ -31,7 +31,7 @@ function change(){
 }
 
 function gradesModal(){
-	gradeContainer.innerHTML = "<h1 style='padding-left: 170px;'>STUDENT NAME HERE<h1>"+
+	gradesContainer.innerHTML = "<h1 style='padding-left: 170px;'>STUDENT NAME HERE<h1>"+
 	"<br />"+
 	"<br />"+
 	"<br />"+
@@ -39,7 +39,8 @@ function gradesModal(){
 	"<br />"+
 	"<h2 style='padding-left: 150px;'>MATH: <h2>"+
 	"<h2 style='padding-left: 150px;'>HISTORY: <h2>"+
-	"<h2 style='padding-left: 150px;'>ENGLISH: <h2>";
+		"<h2 style='padding-left: 150px;'>ENGLISH: <h2>";
+	gradesContainer.style = "visibility:visible"
 }
 
 function checkSelectedUser(){
