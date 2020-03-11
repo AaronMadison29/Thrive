@@ -30,13 +30,13 @@ namespace ThriveAPP.Controllers
             return View();
         }
 
-        public async Task<IActionResult> ScanSystem()
-        {
-            var students = _schoolService.
+        //public async Task<IActionResult> ScanSystem()
+        //{
+        //    var students = _schoolService.
 
 
-            return View(nameof(Index));
-        }
+        //    return View(nameof(Index));
+        //}
 
         public IActionResult Privacy()
         {

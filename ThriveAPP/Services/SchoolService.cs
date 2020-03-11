@@ -192,6 +192,9 @@ namespace ThriveAPP.Services
         }
         public async Task LinkTeacherAccount(Teacher teacher)
         {
+            teacher.Name = "User";
+            teacher.PhoneNumber = "111-111-1111";
+            teacher.Subject = "Math";
             string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
             url += $"api/teacher";
             var json = JsonConvert.SerializeObject(teacher);
@@ -208,6 +211,7 @@ namespace ThriveAPP.Services
 
         public async Task LinkStudentAccount(Student student)
         {
+            student.Name = "User";
             string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
             url += $"api/student";
             var json = JsonConvert.SerializeObject(student);
@@ -224,6 +228,7 @@ namespace ThriveAPP.Services
 
         public async Task LinkParentAccount(Parent parent)
         {
+            parent.Name = "User";
             string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
             url += $"api/parent";
             var json = JsonConvert.SerializeObject(parent);

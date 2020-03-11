@@ -82,7 +82,7 @@ namespace SchoolAPI.Controllers
             var user = _repo.Students.GetStudent(student.StudentId);
             user.UserId = student.UserId;
             user.Email = student.Email;
-            _repo.Students.Update(student);
+            _repo.Students.Update(user);
             _repo.Save();
         }
 

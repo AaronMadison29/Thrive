@@ -62,7 +62,7 @@ namespace SchoolAPI.Controllers
             var user = _repo.Teachers.GetTeacher(teacher.TeacherId);
             user.UserId = teacher.UserId;
             user.Email = teacher.Email;
-            _repo.Teachers.Update(teacher);
+            _repo.Teachers.Update(user);
             _repo.Save();
         }
 
