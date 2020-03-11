@@ -31,11 +31,18 @@ namespace SchoolAPI.Controllers
         {
             return _repo.Teachers.GetTeacherByUserIdInclude(stringId);
         }
+
         // GET: api/Teacher/5
         [HttpGet("{id:int}")]
         public Teacher Get(int id)
         {
             return _repo.Teachers.GetTeacher(id);
+        }
+
+        [HttpGet("{class}/{classId:int}")]
+        public Teacher GetTeacherByClassId(int classId)
+        {
+            return _repo.Teachers.GetTeacherByClassId(classId);
         }
 
         // POST: api/School

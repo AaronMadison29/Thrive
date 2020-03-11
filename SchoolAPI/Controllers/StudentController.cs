@@ -76,8 +76,8 @@ namespace SchoolAPI.Controllers
             _repo.Save();
         }
 
-        [HttpPut]
-        public void Put(Student student)
+        [HttpPut("{link}/{id:int}")]
+        public void Put(int id, [FromBody] Student student)
         {
             var user = _repo.Students.GetStudent(student.StudentId);
             user.UserId = student.UserId;

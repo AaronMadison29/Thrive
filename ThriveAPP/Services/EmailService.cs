@@ -11,7 +11,7 @@ namespace ThriveAPP.Services
 {
     public class EmailService : IEmailServices
     {
-        private readonly string apiKey = Environment.GetEnvironmentVariable("Sendgrid_Api_Key");
+        private readonly string apiKey = Api_Keys.Sendgrid_Api_Key;
         public EmailService()
         {
 
@@ -23,11 +23,9 @@ namespace ThriveAPP.Services
             var from = new EmailAddress(sender.Email, "Example User");
 
             //TODO pass in content
-            var subject = "Student Grade Alert";
+            var subject = "Sending with SendGrid is Fun";
             var to = new EmailAddress(Receiver.Email, "Example User");
-            //This is where we will edit the contents of the email
-            var plainTextContent = $"";
-            //Edit html contect of email
+            var plainTextContent = "and easy to do anywhere, even with C#";
             var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg);
@@ -40,34 +38,16 @@ namespace ThriveAPP.Services
             List<Task<Response>> tasks = new List<Task<Response>>();
             var client = new SendGridClient(apiKey);
 
-            List<EmailAddress> tos = new List<EmailAddress>();
-            foreach (IEmail receiver in recipients)
+            foreach (IEmail recipient in recipients)
             {
-                tos.Add(new EmailAddress 
-                {
-                    Email = receiver.Email, 
-                    Name = receiver.Name
-                });
+                var from = new EmailAddress(sender.Email, recipient.Name);
+                var subject = "Sending with SendGrid is Fun";
+                var to = new EmailAddress(recipient.Email, recipient.Name);
+                var plainTextContent = "and easy to do anywhere, even with C#";
+                var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
+                var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+                tasks.Add(client.SendEmailAsync(msg));
             }
-
-            //foreach (IEmail receiver in recipients)
-            //{
-            //    var from = new EmailAddress(sender.Email, "Example User");
-            //    var subject = "Sending with SendGrid is Fun";
-            //    var to = new EmailAddress(receiver.Email, "Example User");
-            //    var plainTextContent = "and easy to do anywhere, even with C#";
-            //    var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
-            //    var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-            //    tasks.Add(client.SendEmailAsync(msg));
-            //}
-
-            var from = new EmailAddress(sender.Email, "Example User");
-            var subject = "Sending with SendGrid is Fun";
-            //var to = new EmailAddress(receiver.Email, "Example User");
-            var plainTextContent = "and easy to do anywhere, even with C#";
-            var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
-            var msg = MailHelper.CreateSingleEmailToMultipleRecipients(from, tos, subject, plainTextContent, htmlContent);
-            tasks.Add(client.SendEmailAsync(msg));
 
             var results = await Task.WhenAll(tasks);
             

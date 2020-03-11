@@ -25,11 +25,11 @@ namespace Repository.Data
         }
         public StudentClassGrade GetStudentClassGradeIncludeAll(int id)
         {
-            return FindByCondition(a => a.StudentClassGradeId == id).Include(b => b.Class).Include(c => c.Student).FirstOrDefault();
+            return FindByCondition(a => a.StudentClassGradeId == id).Include(b => b.Class).Include(c => c.Student).ThenInclude(p => p.Profile).FirstOrDefault();
         }
         public List<StudentClassGrade> GetAllStudentClassGradesIncludeAll()
         {
-            return FindAll().Include(a => a.Class).Include(b => b.Student).ToList();
+            return FindAll().Include(a => a.Class).Include(b => b.Student).ThenInclude(p => p.Profile).ToList();
         }
 
         public List<Class> GetStudentClasses(int studentId)

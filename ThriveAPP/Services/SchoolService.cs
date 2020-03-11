@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,13 +90,41 @@ namespace ThriveAPP.Services
         {
             HttpClient client = new HttpClient();
             string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
-            url += $"api/teacher/{id}";
+            url += $"api/Teacher/{id}";
             HttpResponseMessage response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
             {
                 string json = response.Content.ReadAsStringAsync().Result;
                 return JsonConvert.DeserializeObject<Teacher>(json);
+            }
+            return null;
+        }
+        public async Task<Teacher> GetTeacherByClassAsync(int classId)
+        {
+            HttpClient client = new HttpClient();
+            string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
+            url += $"api/Teacher/class/{classId}";
+            HttpResponseMessage response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<Teacher>(json);
+            }
+            return null;
+        }
+        public async Task<List<Teacher>> GetTeachersAsync()
+        {
+            HttpClient client = new HttpClient();
+            string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
+            url += $"api/Teacher";
+            HttpResponseMessage response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Teacher>>(json);
             }
             return null;
         }
@@ -125,6 +154,20 @@ namespace ThriveAPP.Services
             {
                 string json = response.Content.ReadAsStringAsync().Result;
                 return JsonConvert.DeserializeObject<Parent>(json);
+            }
+            return null;
+        }
+        public async Task<List<Parent>> GetParentsAsync()
+        {
+            HttpClient client = new HttpClient();
+            string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
+            url += $"api/Parent";
+            HttpResponseMessage response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Parent>>(json);
             }
             return null;
         }
@@ -159,7 +202,7 @@ namespace ThriveAPP.Services
             return null;
         }
 
-        public async Task<List<Student>> GetAllStudents()
+        public async Task<List<Student>> GetAllStudentsAsync()
         {
             HttpClient client = new HttpClient();
             string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
@@ -172,6 +215,21 @@ namespace ThriveAPP.Services
                 return JsonConvert.DeserializeObject<List<Student>>(json);
             }
 
+            return null;
+        }
+
+        public async Task<List<StudentClassGrade>> GetStudentClassGradesAysnc()
+        {
+            HttpClient client = new HttpClient();
+            string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
+            url += $"api/StudentClassGrades";
+            HttpResponseMessage response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<StudentClassGrade>>(json);
+            }
             return null;
         }
 
@@ -196,7 +254,7 @@ namespace ThriveAPP.Services
             teacher.PhoneNumber = "111-111-1111";
             teacher.Subject = "Math";
             string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
-            url += $"api/teacher";
+            url += $"api/Teacher";
             var json = JsonConvert.SerializeObject(teacher);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
             using var client = new HttpClient();
@@ -213,7 +271,7 @@ namespace ThriveAPP.Services
         {
             student.Name = "User";
             string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
-            url += $"api/student";
+            url += $"api/student/link/{student.StudentId}";
             var json = JsonConvert.SerializeObject(student);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
             using var client = new HttpClient();
@@ -230,7 +288,7 @@ namespace ThriveAPP.Services
         {
             parent.Name = "User";
             string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
-            url += $"api/parent";
+            url += $"api/Parent";
             var json = JsonConvert.SerializeObject(parent);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
             using var client = new HttpClient();

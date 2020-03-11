@@ -9,12 +9,9 @@ namespace ThriveAPP.Models
 {
     public class Profile
     {
-        [Key]
         public int ProfileId { get; set; }
         public string FavoriteSubject { get; set; }
         public string LearningStyle { get; set; }
-
-        [NotMapped]
-        public List<string> Notes { get; set; }
+        public List<Note> Notes { get; set; }
     }
 }

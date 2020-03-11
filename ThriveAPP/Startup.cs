@@ -35,6 +35,7 @@ namespace ThriveAPP
             services.AddScoped<IEmailServices, EmailService>();
             services.AddScoped<IMessengerServices, MessengerService>();
             services.AddScoped<ISchoolServices, SchoolService>();
+            services.AddScoped<ISmsServices, SmsService>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(

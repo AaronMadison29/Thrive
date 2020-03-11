@@ -10,8 +10,9 @@ namespace ThriveAPP.Services
 {
     public class SmsService : ISmsServices
     {
-        private readonly string Account_SID = Environment.GetEnvironmentVariable("Twilio_Account_SID");
-        private readonly string AUTH_TOKEN = Environment.GetEnvironmentVariable("Twilio_AUTH_TOKEN");
+        private readonly string Account_SID = Api_Keys.Account_SID;
+        private readonly string AUTH_TOKEN = Api_Keys.AUTH_TOKEN;
+        private readonly string TwilioPhoneNumber = Api_Keys.TwilioPhoneNumber;
         public SmsService()
         {
 
@@ -23,7 +24,7 @@ namespace ThriveAPP.Services
 
             var message = await MessageResource.CreateAsync(
                 body: "Your student's grade has dropped below a 70.",
-                from: new Twilio.Types.PhoneNumber("+12512700452"),
+                from: new Twilio.Types.PhoneNumber(TwilioPhoneNumber),
                 to: new Twilio.Types.PhoneNumber($"1{receiver.PhoneNumber}")
             );
         }
