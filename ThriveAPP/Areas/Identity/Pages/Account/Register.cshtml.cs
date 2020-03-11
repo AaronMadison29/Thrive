@@ -51,8 +51,8 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
 
         [BindProperty]
         public InputModel Input { get; set; }
-        public SelectList Roles { get; set; }
-
+        //public SelectList Roles { get; set; }
+        public string Role { get; set; }
         public string ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
@@ -76,17 +76,16 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             [Required]
-            public string Role { get; set; }
-            [Required]
             public int RegistrationId { get; set; }
+
+            public string Role { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task OnGetAsync(string roleInput ,string returnUrl = null)
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            var roles = _roleManager.Roles;
-            Roles = new SelectList(roles, "Name", "Name");
+            Role = roleInput;
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -136,8 +135,6 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
             }
 
             // If we got this far, something failed, redisplay form
-            var roles = _roleManager.Roles;
-            Roles = new SelectList(roles, "Name", "Name");
             return Page();
         }
 

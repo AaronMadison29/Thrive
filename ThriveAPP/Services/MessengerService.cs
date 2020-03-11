@@ -24,7 +24,8 @@ namespace ThriveAPP.Services
 
         public async Task SendMessage(string user, string message)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
+            var name = Context.User.Identity.Name;
+            await Clients.All.SendAsync("ReceiveMessage", name, message);
         }
     }
 }

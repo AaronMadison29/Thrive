@@ -1,12 +1,51 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = null;
 }
 
-<div><button class="btn btn-primary"onclick="location.href='@Url.Action("ScanSystem","Home")';return false">Weekly Scan</button></div>
+@*<div><button class="btn btn-primary"onclick="location.href='@Url.Action("ScanSystem","Home")';return false">Weekly Scan</button></div>
 
 
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@
+
+<!DOCTYPE html>
+<htm lang="en">
+    <head>
+        <title>Thrive</title>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="~/images/favicon.png" />
+        <link rel="stylesheet" href="~/css/bootstrap.css">
+        <header>
+            <!--BEGIN THRIVE NAVBAR-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <center><a class="center" href="#"><img style="pad" class="center" src="~/images/thriveLogo250x100.png"></a></center>
+                <a asp-action="Register"><img id="registerButton" style="visibility: visible; -webkit-transform: scale(0.2); padding-left: 1500px;" src="~/images/newUserCircle.png"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor03">
+                </div>
+            </nav>
+        </header>
+    </head>
+    <body class="fade-in">
+        <!--BEGIN THRIVE BUTTONS-->
+        <div class="row animate" style="padding-left: 170px;">
+            <div class="column">
+                <img style="opacity: 1;" id="teacherButton" src="~/images/teacherCircle.png">
+            </div>
+            <div class="column">
+                <img style="opacity: 1;" id="parentButton" src="~/images/parentCircle.png">
+            </div>
+            <div class="column">
+                <img style="opacity: 1;" id="studentButton" src="~/images/studentCircle.png">
+            </div>
+            <!--JAVASCRIPT IMPORTS-->
+            <script src="~/js/style.js"></script>
+    </body>
+    <footer>
+    </footer>
+    </html>

@@ -29,6 +29,11 @@ namespace ThriveAPP.Controllers
 
         }
 
+        public IActionResult Register()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View();

@@ -1,8 +1,58 @@
 ﻿
 @{
     ViewData["Title"] = "Index";
+    Layout = null;
 }
 
-<h1>Index</h1>
-<a class="btn btn-primary" asp-action="Create">Create</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" href="~/images/favicon.png" />
+    <title>Teacher Index</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#"><img style="height: 50px; width: 125px;" src="~/images/thriveLogoWhite250x100.png"></a>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">MY STUDENTS <span class="sr-only">(current)</span></a>
+                    </li>
+            </div>
+    </header>
+</head>
+<body class="fade-in">
+    <h4 style="margin-top: 15px; margin-left: 870px;">Filter</h4>
+    <button id="viewGalleryButton" style="margin-left: 850px;" type="button" class="btn btn-outline-primary" onclick="change()">Teachers</button>
+    <div style="margin-left: 305px;" id="imageContainer" class="imageContainer">
+        <img class="imageInContainer" src="~/images/TeacherHeadshots/exampleTeacher.png">
+        <img class="imageInContainer" src="~/images/TeacherHeadshots/exampleTeacherTwo.png">
+        <img class="imageInContainer" src="~/images/TeacherHeadshots/exampleTeacherThree.png">
+    </div>
+    <div id="componentButtons" style="margin-top: 25px; margin-left: 550px;">
+        <h4 style="margin-left: 160px;">
+            Select a user to get started!<h4>
+                <img id="messagesButton" onclick="messagesModal();" style="width: 35px; height: 40px; margin-left: 10px; border-radius: 15px;" src="~/images/innerIcons/messagesIcon.png">
+                <img id="gradesButton" onclick="gradesModal();" style="width: 35px; height: 40px; margin-left: 650px; border-radius: 15px;" src="~/images/innerIcons/gradesIcon.png">
+    </div>
+    <div id="messageBox" style="margin-top: 20px; border-radius: 10px; margin-left: 550px; width:750px; height:600px;border:1px solid #000;">
+        <div id="messageContainer" style="overflow:auto; height:85%; margin:1%;"></div>
+        <div id="lowerInput" style="margin-left: 130px">
+            <input style="margin-left:1%; border-radius: 15px; font-size: 18px; text-decoration-color: #000000; border: 1px solid #000; height: 50px; width: 375px;" type="text" id="messageInputBox" name="messageInputBox" placeholder="Type your message..">
+            <button id="send" style="border-radius: 15px;" class="btn btn-outline-primary">SEND</button>
+            <input id="user" style="display:none" value="@Html.ViewContext.HttpContext.User.Identity.Name" />
+        </div>
+    </div>
+    <div id="gradesContainer" style="margin-top: 20px; border-radius: 10px; margin-left: 550px; width:750px; height:600px;border:1px solid #000;">
+    </div>
+
+    <script src="~/js/genericPage.js"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+
+</body>
+
+</html>
 
