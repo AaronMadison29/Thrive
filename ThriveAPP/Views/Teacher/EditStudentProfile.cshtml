@@ -4,23 +4,22 @@
     ViewData["Title"] = "EditStudentProfile";
 }
 
-<h1>EditStudentProfile</h1>
+<h1>Edit Student Profile</h1>
 
-<h4>Profile</h4>
 <hr />
 <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-md-8">
         <div>
-            <h3>Math: @ViewBag.Grades[0].Grade</h3>
-            <h3>Science: @ViewBag.Grades[1].Grade</h3>
-            <h3>History: @ViewBag.Grades[2].Grade</h3>
+            <h5>Math: @ViewBag.Grades[0].Grade</h5>
+            <h5>Science: @ViewBag.Grades[1].Grade</h5>
+            <h5>History: @ViewBag.Grades[2].Grade</h5>
         </div>
         <form asp-action="EditStudentProfile">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="@Model.Profile.FavoriteSubject" class="control-label"></label>
-                <input asp-for="@Model.Profile.FavoriteSubject" class="form-control" type="text"/>
+                <input asp-for="@Model.Profile.FavoriteSubject" class="form-control" type="text" />
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Profile.LearningStyle" class="control-label"></label>
@@ -28,15 +27,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Profile.Notes" class="control-label"></label>
-                <input asp-for="@Model.Profile.Notes" class="form-control" type="text"/>
-                <input asp-route-id="@Model.StudentId" class="form=control" style="visibility:hidden"/>
+                <input asp-for="@Model.Profile.Notes" class="form-control" type="text" />
+                <input asp-route-id="@Model.StudentId" class="form=control" style="visibility:hidden" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
+
     <div class="col-sm-2"></div>
+    <a asp-action="Index" class="btn btn-outline-primary">Back</a>
 </div>
 
 @section Scripts {

@@ -46,7 +46,6 @@
         <div style="" id="imageContainer" class="col-sm-10 text-center"></div>
         <div class="col-sm-1"></div>
     </div>
-    @*<a asp-action="EditStudentProfile" asp-route-id="1" class="btn">Edit</a>*@
     <div class="row" style="height:500px; margin-left:0px; margin-right:0px;">
         <div class="col-sm-4">
             <div id="modalContainers">
@@ -64,10 +63,6 @@
         </div>
         <div class="col-sm-4"></div>
     </div>
-
-    <script src="~/js/genericPage.js"></script>
-    <script src="~/js/signalr/dist/browser/signalr.js"></script>
-    <script src="~/js/chat.js"></script>
     <script>
         var gallery = document.getElementById("imageContainer");
         function fillTeachers() {
@@ -98,7 +93,7 @@
                         img.setAttribute("class", "imageInContainer");
                         img.setAttribute("id", "@student.Email");
                         img.setAttribute("src", `images/StudentHeadshots/${@student.StudentId}.png`);
-                        img.setAttribute("onclick", `generateModals(${@student.StudentId})`);
+                        img.setAttribute("onClick", "location.href='@Url.Action("EditStudentProfile","Teacher", new {id=student.StudentId})'")
                     </text>
                     @:gallery.appendChild(img);
                 }
