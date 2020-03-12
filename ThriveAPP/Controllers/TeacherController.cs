@@ -35,6 +35,7 @@ namespace ThriveAPP.Controllers
             var students = await _schoolService.GetStudentsInClassAsync(teacher.Class.ClassId);
             ViewBag.students = students;
             ViewBag.teachers = await _schoolService.GetTeachersAsync();
+            ViewBag.Grades = await _schoolService.GetStudentClassGradesAysnc();
             return View(teacher);
         }
 

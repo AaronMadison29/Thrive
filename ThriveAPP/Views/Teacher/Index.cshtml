@@ -10,7 +10,7 @@
 <head>
     <link rel="shortcut icon" href="~/images/favicon.png" />
     <meta charset="utf-8">
-    <title> Teacher Index</title > ipt >
+    <title> Teacher Index</title >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -46,14 +46,35 @@
         <div style="" id="imageContainer" class="col-sm-10 text-center"></div>
         <div class="col-sm-1"></div>
     </div>
-    <div id="componentButtons" style="margin-top: 25px;">
-        <h4 style="">Select a user to get started!</h4>
-        <img id="gradesButton" onclick="gradesModal();" style="width: 35px; height: 40px; margin-left: 650px; border-radius: 15px;" src="~/images/innerIcons/gradesIcon.png">
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-    </div>
     <div class="row" style="height:500px; margin-left:0px; margin-right:0px;">
-        <div class="col-sm-3">
-            <div id="modalContainers">
+        <div class="col-sm-3" style="visibility:hidden" id="gradeModal">
+            <div class='modal-open'>
+                <div class='modal-dialog' role='document'>
+                    <div class='modal-content'>
+                        <div class='modal-header'>
+                            <h5 class='modal-title'>PROFILE</h5>
+                            <button onclick='closeModal()' type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>
+                        <div class='modal-body'>
+                            <h5>GRADES</h5>
+                            <h3 id="Math"></h3>
+                            <h3 id="Science"></h3>
+                            <h3 id="History"></h3>
+                            <h5>FAVORITE CLASS</h5>
+                            <input style='border-radius: 3px;' type='text' placeholder='Favorite Class..' />
+                            <br />
+                            <br />
+                            <h5>STUDENT NOTES</h5>
+                            <textarea rows='4' cols='50' name='teacherNotes' form='teacherNotesForStudent' placeholder='Notes about student..'></textarea>
+                        </div>
+                        <div class='modal-footer'>
+                            <button type='button' class='btn btn-primary'>Save changes</button>
+                            <button onclick='closeModal()' type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-sm-6" style="height:100%">
@@ -70,7 +91,34 @@
         </div>
     </div>
 
-
+    <script>
+        function setStudentData(studentId) {
+            var math = document.getElementById("Math");
+            var science = document.getElementById("Science");
+            var history = document.getElementById("History");
+            $('#StudentId').val(studentId);
+            foreach(grade in @ViewBag.Grades)
+                {
+                if (Html.Hidden("#StudentId").Equals(grade.Studen
+                        tId))
+                    {
+                        switch(grade.ClassId)
+                        {
+                            case 1:
+                                @:math.innerHTML = "Math: " + @grade.Grade;
+                                break;
+                            case 2:
+                                @:science.innerHTML = "Science: " + @grade.Grade;
+                                break;
+                            case 3:
+                                @:history.innerHTML = "History: " + @grade.Grade;
+                                break;
+                        }
+                    }
+                }
+        }
+    </script>
+    @Html.Hidden("StudentId", 0);
     <script src="~/js/genericPage.js"></script>
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/chat.js"></script>
@@ -85,12 +133,9 @@
         function fillStudents() {
             gallery.innerHTML = "";
             @foreach (var student in ViewBag.students) {
-                @:gallery.innerHTML += "<img onclick='generateModals(@student.StudentId)' class='imageInContainer' src='images/StudentHeadshots/" + @student.StudentId + ".png'>";
+                @:gallery.innerHTML += "<img onclick='generateModal(@student.StudentId); setStudentData(@student.StudentId)' class='imageInContainer' src='images/StudentHeadshots/" + @student.StudentId + ".png'>";
             }
         }
-        //function generateModals() {
-        //    console.log("It worked");
-        //}
     </script>
 
 </body>
