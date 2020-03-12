@@ -43,7 +43,7 @@
 
     <div class="row">
         <div class="col-sm-1"></div>
-        <div style= "" id="imageContainer" class="col-sm-10 text-center"></div>
+        <div style="" id="imageContainer" class="col-sm-10 text-center"></div>
         <div class="col-sm-1"></div>
     </div>
     <div id="componentButtons" style="margin-top: 25px;">
@@ -53,7 +53,7 @@
     </div>
     <div class="row" style="height:500px; margin-left:0px; margin-right:0px;">
         <div class="col-sm-3">
-            <div id="modalContainer">
+            <div id="modalContainers">
             </div>
         </div>
         <div class="col-sm-6">
@@ -67,9 +67,13 @@
             </div>
         </div>
         <div class="col-sm-3">
-            </div>
         </div>
+    </div>
 
+
+    <script src="~/js/genericPage.js"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
     <script>
         var gallery = document.getElementById("imageContainer");
         function fillTeachers() {
@@ -81,13 +85,13 @@
         function fillStudents() {
             gallery.innerHTML = "";
             @foreach (var student in ViewBag.students) {
-                @:gallery.innerHTML += "<img class='imageInContainer' src='images/StudentHeadshots/" + @student.StudentId + ".png'>";
+                @:gallery.innerHTML += "<img onclick='generateModals(@student.StudentId)' class='imageInContainer' src='images/StudentHeadshots/" + @student.StudentId + ".png'>";
             }
         }
+        //function generateModals() {
+        //    console.log("It worked");
+        //}
     </script>
-    <script src="~/js/genericPage.js"></script>
-    <script src="~/js/signalr/dist/browser/signalr.js"></script>
-    <script src="~/js/chat.js"></script>
 
 </body>
 

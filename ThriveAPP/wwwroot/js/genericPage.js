@@ -42,7 +42,6 @@ function change(){
 //}
 
 function generateModals() {
-	mesContainer.style = "margin-left:7.2%; margin-top: 20px; border-radius: 10px; width:750px; height:600px; border:1px solid #000;";
 	modalContainers.innerHTML =
 		"<div class='modal-open'>" +
 		"<div class='modal-dialog' role='document'>" +
@@ -75,7 +74,6 @@ function generateModals() {
 }
 
 function closeModal() {
-	mesContainer.style = "margin-left:28%; margin-top: 20px; border-radius: 10px; width:750px; height:600px; border:1px solid #000;";
 	modalContainers.innerHTML = "";
 }
 
