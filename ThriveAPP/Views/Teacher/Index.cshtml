@@ -14,6 +14,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="~/css/bootstrap.css">
+
 </head>
 
 <body class="fade-in">
@@ -80,21 +81,46 @@
     <script>
         var gallery = document.getElementById("imageContainer");
         function fillTeachers() {
-            gallery.innerHTML = "";
-            @foreach (var teacher in ViewBag.teachers) {
-                @:gallery.innerHTML += "<img class='imageInContainer' src='images/TeacherHeadshots/" + @teacher.TeacherId + ".png'>";
-            }
+             gallery.innerHTML = "";
+            @foreach (var teacher in ViewBag.teachers)
+            {
+                if (teacher.Email != null)
+                {
+                    <text>
+                        var img = document.createElement("img");
+                        img.setAttribute("class", "imageInContainer");
+                        img.setAttribute("id", "@teacher.Email");
+                        img.setAttribute("src", `images/TeacherHeadshots/${@teacher.TeacherId}.png`);
+                    </text>
+                    @:gallery.appendChild(img);
+
+                }
+             }
         }
         function fillStudents() {
             gallery.innerHTML = "";
-            @foreach (var student in ViewBag.students) {
-                @:gallery.innerHTML += "<img onclick='generateModals(@student.StudentId)' class='imageInContainer' src='images/StudentHeadshots/" + @student.StudentId + ".png'>";
-            }
+            @foreach (var student in ViewBag.students)
+            {
+                if (student.Email != null)
+                {
+                     <text>
+                        var img = document.createElement("img");
+                        img.setAttribute("class", "imageInContainer");
+                        img.setAttribute("id", "@student.Email");
+                        img.setAttribute("src", `images/StudentHeadshots/${@student.StudentId}.png`);
+                        img.setAttribute("onclick", `generateModals(${@student.StudentId})`);
+
+                    </text>
+                    @:gallery.appendChild(img);
+                }
+             }
         }
-        //function generateModals() {
-        //    console.log("It worked");
-        //}
+
     </script>
+
+    <script src="~/js/genericPage.js"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
 
 </body>
 
