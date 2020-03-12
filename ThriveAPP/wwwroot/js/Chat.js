@@ -13,6 +13,7 @@ connection.on("ReceiveMessage", function (user, message) {
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     var encodedMsg = user + " says " + msg;
     var div = document.createElement("div");
+
     div.innerHTML = encodedMsg;
     var messageContainer = document.getElementById("messageContainer");
     messageContainer.scrollTop = messageContainer.scrollHeight;
@@ -28,27 +29,25 @@ connection.on("ReceiveMessage", function (user, message) {
 //    document.getElementById("dms").appendChild(li);
 //});
 
-//connection.on("Connected", function (userName) {
+connection.on("connected", function (userEmail) {
+    $(`#imageContainer > img[id='${userEmail}']`).css("border","solid 2px green");
+    var div = document.createElement("div");
 
-//    var message = `User ${userName} has connected!`;
+    div.innerHTML = userEmail + "has logged in!";
+    var messageContainer = document.getElementById("messageContainer");
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+    messageContainer.appendChild(div);
+});
 
-//    var li = document.createElement("li");
-//    li.textContent = message;
+connection.on("Disconnected", function (userEmail) {
+    $(`#imageContainer > img[id='${userEmail}']`).css('border', 'none');
+    var div = document.createElement("div");
 
-//    document.getElementById("users").appendChild(li);
-    
-//});
-
-//connection.on("Disconnected", function (userName) {
-
-//    var message = `User ${userName} has Left!`;
-
-//    var li = document.createElement("li");
-//    li.textContent = message;
-
-//    document.getElementById("users").appendChild(li);
-
-//});
+    div.innerHTML = userEmail + "has left!";
+    var messageContainer = document.getElementById("messageContainer");
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+    messageContainer.appendChild(div);
+});
 
 connection.start().then(function () {
     document.getElementById("send").disabled = false;
