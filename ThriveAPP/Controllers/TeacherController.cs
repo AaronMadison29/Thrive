@@ -89,8 +89,9 @@ namespace ThriveAPP.Controllers
         public async Task<ActionResult> EditStudentProfile(int id)
         {
             var studentFromDb = await _schoolService.GetStudent(id);
-            var profileFromDb = studentFromDb.Profile;
-            return View(profileFromDb);
+            var grades = await _schoolService.GetStudentClassGradesAysnc();
+            ViewBag.Grades = grades.Where(a => a.StudentId == id).ToList();
+            return View(studentFromDb);
         }
 
         // POST: Teacher/Edit/5
