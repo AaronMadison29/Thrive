@@ -15,6 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="~/css/bootstrap.css">
+
 </head>
 
 <body class="fade-in">
@@ -36,14 +37,14 @@
     <div class="text-center">
         <h4 class="text-center" style="margin-top: 15px;">Filter</h4>
         <div>
-            <button id="teachersButton" style="" type="button" class="btn btn-outline-primary" onclick=fillTeachers()>Teachers</button>
-            <button id="studentsButton" style="" type="button" class="btn btn-outline-primary" onclick=fillStudents()>Students</button>
+            <button id="teachersButton" style="" type="button" class="btn btn-outline-primary" onclick="fillTeachers()">Teachers</button>
+            <button id="studentsButton" style="" type="button" class="btn btn-outline-primary" onclick="fillStudents()">Students</button>
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-1"></div>
-        <div style= "" id="imageContainer" class="col-sm-10 text-center"></div>
+        <div style="" id="imageContainer" class="col-sm-10 text-center"></div>
         <div class="col-sm-1"></div>
     </div>
     <div id="componentButtons" style="margin-top: 25px;">
@@ -67,24 +68,56 @@
             </div>
         </div>
         <div class="col-sm-3">
-            </div>
         </div>
+    </div>
 
     <script>
         var gallery = document.getElementById("imageContainer");
         function fillTeachers() {
-            gallery.innerHTML = "";
-            @foreach (var teacher in ViewBag.teachers) {
-                @:gallery.innerHTML += "<img class='imageInContainer' src='images/TeacherHeadshots/" + @teacher.TeacherId + ".png'>";
-            }
+             gallery.innerHTML = "";
+            @foreach (var teacher in ViewBag.teachers)
+            {
+                if (teacher.Email != null)
+                {
+                    <text>
+                        var img = document.createElement("img");
+                        img.setAttribute("class", "imageInContainer");
+                        img.setAttribute("id", "@teacher.Email");
+                        img.setAttribute("src", `images/TeacherHeadshots/${@teacher.TeacherId}.png`);
+
+                    </text>
+                    @:gallery.appendChild(img);
+
+
+
+                    @*@:gallery.innerHTML += `<img class='imageInContainer' id='${@(teacher.Email)}' src='images/TeacherHeadshots/${@teacher.TeacherId}.png'>`;*@
+                    @*@:document.getElementById("image1").setAttribute("id", "@teacher.Email");*@
+                }
+             }
         }
         function fillStudents() {
             gallery.innerHTML = "";
-            @foreach (var student in ViewBag.students) {
-                @:gallery.innerHTML += "<img class='imageInContainer' src='images/StudentHeadshots/" + @student.StudentId + ".png'>";
-            }
+            @foreach (var student in ViewBag.students)
+            {
+                if (student.Email != null)
+                {
+                     <text>
+                        var img = document.createElement("img");
+                        img.setAttribute("class", "imageInContainer");
+                        img.setAttribute("id", "@student.Email");
+                        img.setAttribute("src", `images/StudentHeadshots/${@student.StudentId}.png`);
+
+                    </text>
+                    @:gallery.appendChild(img);
+
+                     @*@:gallery.innerHTML += `<img class='imageInContainer'id='${@student.Email}' src='images/StudentHeadshots/${@student.StudentId}.png'>`;*@
+                    @*@:document.getElementById("image2").setAttribute("id", "@student.Email");*@
+                }
+             }
         }
+
     </script>
+
     <script src="~/js/genericPage.js"></script>
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/chat.js"></script>

@@ -20,6 +20,7 @@ namespace ThriveAPP.Services
         private readonly ISchoolServices _schoolServices;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly static ConnectionMappings<string> _connections = new ConnectionMappings<string>();
+
         public MessengerService(IConfiguration config, ISchoolServices schoolServices, UserManager<IdentityUser> userManager)
         {
             _config = config;
@@ -75,6 +76,10 @@ namespace ThriveAPP.Services
                     Groups.AddToGroupAsync(connectionId, group);
                 }
             }
+
+            Clients.All.SendAsync("connected", userName);
+
+
             return base.OnConnectedAsync();
         }
 
@@ -89,19 +94,14 @@ namespace ThriveAPP.Services
             {
                 Groups.RemoveFromGroupAsync(connectionId, group);
             }
+            Clients.All.SendAsync("Disconnected", userName);
+
 
             return base.OnDisconnectedAsync(exception);
         }
 
-
         public void MethodToHoldTempCodeUntilAfterMerges()
         {
-
-
-
-
-
-
             //await _userManager.AddClaimAsync(user, new Claim("Group", "diamond"));
         }
     }
