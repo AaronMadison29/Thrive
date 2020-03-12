@@ -34,6 +34,8 @@ namespace ThriveAPP.Controllers
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var teacher = await _schoolService.GetTeacher(userId);
+                var students = await _schoolService.GetStudentsInClassAsync(teacher.ClassId);
+                ViewBag.students = students;
                 return View(teacher);
             }
             else
