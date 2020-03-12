@@ -15,9 +15,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="~/css/bootstrap.css">
-
-
 </head>
+
 <body class="fade-in">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand"  asp-controller="Home" asp-action="Index"><img style="height: 50px; width: 125px;" src="~/images/thriveLogoWhite250x100.png"></a>
@@ -48,10 +47,10 @@
         <img id="gradesButton" onclick="gradesModal();" style="width: 35px; height: 40px; margin-left: 650px; border-radius: 15px;" src="~/images/innerIcons/gradesIcon.png">
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
     </div>
-    <div class="row" style="height: 500px">
+    <div class="row" style="height:500px; margin-left:0px; margin-right:0px;">
         <div class="col-sm-6">
-            <div id="messageBox" style="margin-left:auto; margin-right:auto; border-radius: 10px;width:90%; height:100%;border:1px solid #000;">
-                <div id="messageContainer" style="overflow:auto; height:85%; margin:1%;"></div>
+            <div id="messageBox" style="margin-left:auto; margin-right:auto; border-radius:10px; width:90%; height:100%; border:1px solid #000;">
+                <div id="messageContainer" style="overflow:auto; height:85%; margin:1%; font-size: 18px;"></div>
                 <div id="lowerInput" class="text-center">
                     <input style="margin-left:1%; border-radius: 15px; font-size: 18px; text-decoration-color: #000000; border: 1px solid #000; height: 50px; width: 375px;" type="text" id="messageInputBox" name="messageInputBox" placeholder="Type your message..">
                     <button id="send" style="border-radius: 15px;" class="btn btn-outline-primary">SEND</button>
@@ -60,8 +59,7 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <div id="gradesContainer" style="margin-left:auto; margin-right:auto; border-radius: 10px;width:90%; height:100%;border:1px solid #000; visibility:hidden;">
-            </div>
+            <div id="gradesContainer" style="margin-left:auto; margin-right:auto; border-radius: 10px;width:90%; height:100%;border:1px solid #000; visibility:hidden;"></div>
         </div>
     </div>
 

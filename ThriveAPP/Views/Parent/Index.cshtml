@@ -26,29 +26,63 @@
     </header>
 </head>
 <body class="fade-in">
-    <h4 style="margin-top: 15px; margin-left: 870px;">Filter</h4>
-    <button id="viewGalleryButton" style="margin-left: 850px;" type="button" class="btn btn-outline-primary" onclick="change()">Teachers</button>
-    <div style="margin-left: 305px;" id="imageContainer" class="imageContainer">
-        <img class="imageInContainer" src="~/images/TeacherHeadshots/exampleTeacher.png">
-        <img class="imageInContainer" src="~/images/TeacherHeadshots/exampleTeacherTwo.png">
-        <img class="imageInContainer" src="~/images/TeacherHeadshots/exampleTeacherThree.png">
-    </div>
-    <div id="componentButtons" style="margin-top: 25px; margin-left: 550px;">
-        <h4 style="margin-left: 160px;">
-            Select a user to get started!<h4>
-                <img id="messagesButton" onclick="messagesModal();" style="width: 35px; height: 40px; margin-left: 10px; border-radius: 15px;" src="~/images/innerIcons/messagesIcon.png">
-                <img id="gradesButton" onclick="gradesModal();" style="width: 35px; height: 40px; margin-left: 650px; border-radius: 15px;" src="~/images/innerIcons/gradesIcon.png">
-    </div>
-    <div id="messageBox" style="margin-top: 20px; border-radius: 10px; margin-left: 550px; width:750px; height:600px;border:1px solid #000;">
-        <div id="messageContainer" style="overflow:auto; height:85%; margin:1%;"></div>
-        <div id="lowerInput" style="margin-left: 130px">
-            <input style="margin-left:1%; border-radius: 15px; font-size: 18px; text-decoration-color: #000000; border: 1px solid #000; height: 50px; width: 375px;" type="text" id="messageInputBox" name="messageInputBox" placeholder="Type your message..">
-            <button id="send" style="border-radius: 15px;" class="btn btn-outline-primary">SEND</button>
-            <input id="user" style="display:none" value="@Html.ViewContext.HttpContext.User.Identity.Name" />
+    @*<h4 style="margin-top: 15px; margin-left: 870px;">Filter</h4>
+        <button id="viewGalleryButton" style="margin-left: 850px;" type="button" class="btn btn-outline-primary" onclick="change()">Teachers</button>
+        <div style="margin-left: 305px;" id="imageContainer" class="imageContainer">
+            <img class="imageInContainer" src="~/images/TeacherHeadshots/exampleTeacher.png">
+            <img class="imageInContainer" src="~/images/TeacherHeadshots/exampleTeacherTwo.png">
+            <img class="imageInContainer" src="~/images/TeacherHeadshots/exampleTeacherThree.png">
+        </div>*@
+    <div class="text-center">
+        <h4 class="text-center" style="margin-top: 15px;">Filter</h4>
+        <div>
+            <button id="teachersButton" style="" type="button" class="btn btn-outline-primary" onclick="fillTeachers()">Teachers</button>
+            <button id="studentsButton" style="" type="button" class="btn btn-outline-primary" onclick="fillStudents()">Students</button>
         </div>
     </div>
-    <div id="gradesContainer" style="margin-top: 20px; border-radius: 10px; margin-left: 550px; width:750px; height:600px;border:1px solid #000;">
+    <div style="" id="imageContainer" class="imageContainer">
     </div>
+    <div id="componentButtons" style="margin-top: 25px;">
+        <h4 style="">Select a user to get started!</h4>
+        <img id="gradesButton" onclick="gradesModal();" style="width: 35px; height: 40px; margin-left: 650px; border-radius: 15px;" src="~/images/innerIcons/gradesIcon.png">
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    </div>
+    <div class="row" style="height:500px; margin-left:0px; margin-right:0px;">
+        <div class="col-sm-6">
+            <div id="messageBox" style="margin-left:auto; margin-right:auto; border-radius:10px; width:90%; height:100%; border:1px solid #000;">
+                <div id="messageContainer" style="overflow:auto; height:85%; margin:1%; font-size: 18px;"></div>
+                <div id="lowerInput" class="text-center">
+                    <input style="margin-left:1%; border-radius: 15px; font-size: 18px; text-decoration-color: #000000; border: 1px solid #000; height: 50px; width: 375px;" type="text" id="messageInputBox" name="messageInputBox" placeholder="Type your message..">
+                    <button id="send" style="border-radius: 15px;" class="btn btn-outline-primary">SEND</button>
+                    <input id="user" style="display:none" value="@Html.ViewContext.HttpContext.User.Identity.Name" />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div id="gradesContainer" style="margin-left:auto; margin-right:auto; border-radius: 10px;width:90%; height:100%;border:1px solid #000; visibility:hidden;"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <script src="~/js/genericPage.js"></script>
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/chat.js"></script>
