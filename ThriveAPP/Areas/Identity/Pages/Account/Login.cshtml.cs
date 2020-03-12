@@ -43,6 +43,7 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         public string ReturnUrl { get; set; }
+        public string Role { get; set; }
 
         [TempData]
         public string ErrorMessage { get; set; }
@@ -59,9 +60,10 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
 
             [Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }
+            public string Role { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task OnGetAsync(string roleInput, string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
@@ -74,8 +76,8 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-
             ReturnUrl = returnUrl;
+            Role = roleInput;
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)

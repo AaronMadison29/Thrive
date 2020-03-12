@@ -20,32 +20,6 @@
     <link href="~/css/bootstrap.css" rel="stylesheet" />
 
 </head>
-    @*<body class="fade-in">
-        BEGIN THRIVE BUTTONS
-        <div class="jumbotron">
-            <div class="row" style="padding-top:40%">
-                <div class="col-sm-8">
-                    <img src="~/images/thriveLogo250x100.png">
-                </div>
-                <div class="col-sm-4">
-                    <a asp-action="Register"><img id="registerButton" style="height:auto; width:auto; visibility: visible; -webkit-transform: scale(0.2);" src="~/images/newUserCircle.png"></a>
-                </div>
-            </div>
-        </div>
-        <div class="row animate">
-            <div class="col-sm-3">
-                <img style="opacity: 1; width:100%" id="teacherButton" src="~/images/teacherCircle.png">
-            </div>
-            <div class="col-sm-3">
-                <img style="opacity: 1; width:100%;" id="parentButton" src="~/images/parentCircle.png">
-            </div>
-            <div class="col-sm-3">
-                <img style="opacity: 1; width:100%;" id="studentButton" src="~/images/studentCircle.png">
-            </div>
-            JAVASCRIPT IMPORTS
-            <script src="~/js/style.js"></script>
-        </div>
-    </body>*@
 <body class='fade-in'>
     <div class="row" style="height:50vh">
         <div class="col-sm-4">
@@ -61,13 +35,13 @@
 
     <div class="row animate">
         <div class="col-sm-3">
-            <a asp-action=""><img style="opacity: 1; width:100%" id="teacherButton" src="~/images/teacherCircle.png"></a>
+            <a asp-route-roleInput="Teacher" asp-area="Identity" asp-page="/Account/Login"><img style="opacity: 1; width:100%" src="~/images/teacherCircle.png"></a>
         </div>
         <div class="col-sm-3">
-            <img style="opacity: 1; width:100%;" id="parentButton" src="~/images/parentCircle.png">
+            <a asp-route-roleInput="Parent" asp-area="Identity" asp-page="/Account/Login"><img style="opacity: 1; width:100%;" src="~/images/parentCircle.png"></a>
         </div>
         <div class="col-sm-3">
-            <img style="opacity: 1; width:100%;" id="studentButton" src="~/images/studentCircle.png">
+            <a asp-route-roleInput="Student" asp-area="Identity" asp-page="/Account/Login"><img style="opacity: 1; width:100%;" src="~/images/studentCircle.png"></a>
         </div>
         <!--JAVASCRIPT IMPORTS-->
         <script src="~/js/style.js"></script>
