@@ -1,4 +1,4 @@
-﻿
+﻿@model ThriveAPP.Models.Parent
 @{
     ViewData["Title"] = "Index";
     Layout = null;
@@ -8,39 +8,44 @@
 <html>
 <head>
     <link rel="shortcut icon" href="~/images/favicon.png" />
-    <title>Teacher Index</title>
     <meta charset="utf-8">
+    <title>Student Index</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="~/css/bootstrap.css">
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" asp-controller="Home" asp-action="Index"><img style="height: 50px; width: 125px;" src="~/images/thriveLogoWhite250x100.png"></a>
-
-            <div class="collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a asp-controller="Home" asp-action="AboutUs" class="nav-link">About Thrive<span class="sr-only">(current)</span></a>
-                    </li>
-            </div>
-            <partial name="_LoginPartial" />
-        </nav>
-    </header>
 </head>
-<body class="fade-in">
-    <div class="text-center">
-        <h4 class="text-center" style="margin-top: 15px;">Filter Users</h4>
-        <div>
-            <button id="teachersButton" style="" type="button" class="btn btn-outline-primary" onclick="fillTeachers()">Teachers</button>
-            <button id="studentsButton" style="" type="button" class="btn btn-outline-primary" onclick="fillStudents()">Students</button>
+
+<body onload="fillTeachers()" class="fade-in">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index"><img style="height: 50px; width: 125px;" src="~/images/thriveLogoWhite250x100.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="AboutUs" class="nav-link">About Thrive<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
         </div>
+        <partial name="_LoginPartial" />
+    </nav>
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div style="" id="imageContainer" class="col-sm-10 text-center"></div>
+        <div class="col-sm-1"></div>
     </div>
-    <div style="" id="imageContainer" class="imageContainer">
-    </div>
-    <div id="componentButtons" style="margin-top: 25px;">
-        <h4 style="">Select a user to get started!</h4>
-    </div>
+
     <div class="row" style="height:500px; margin-left:0px; margin-right:0px;">
-        <div class="col-sm-6">
-            <div id="messageBox" style="margin-left:auto; margin-right:auto; border-radius:10px; width:90%; height:100%; border:1px solid #000;">
+        <div class="col-sm-3">
+            <div id="modelContainers">
+            </div>
+        </div>
+        <div class="col-sm-6" style="height:100%">
+            <div id="messageBox" style="border-radius:10px; width:90%; height:100%; border:1px solid #000;">
                 <div id="messageContainer" style="overflow:auto; height:85%; margin:1%; font-size: 18px;"></div>
                 <div id="lowerInput" class="text-center">
                     <input style="margin-left:1%; border-radius: 15px; font-size: 18px; text-decoration-color: #000000; border: 1px solid #000; height: 50px; width: 375px;" type="text" id="messageInputBox" name="messageInputBox" placeholder="Type your message..">
@@ -49,36 +54,23 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div id="gradesContainer" style="margin-left:auto; margin-right:auto; border-radius: 10px;width:90%; height:100%;border:1px solid #000; visibility:hidden;"></div>
-        </div>
-    </div>
-
-    <div class="modal" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Some text in the modal.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
+        <div class="col-sm-3">
         </div>
     </div>
 
     <script src="~/js/genericPage.js"></script>
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/chat.js"></script>
+    <script>
+        var gallery = document.getElementById("imageContainer");
+        function fillTeachers() {
+            gallery.innerHTML = "";
+            @foreach (var teacher in ViewBag.teachers) {
+                @:gallery.innerHTML += "<img class='imageInContainer' src='images/TeacherHeadshots/" + @teacher.TeacherId + ".png'>";
+            }
+        }
+    </script>
 </body>
 
 </html>
-
 
