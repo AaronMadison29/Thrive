@@ -20,36 +20,37 @@
 </head>
 <body class="fade-in">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#"><img style="height: 50px; width: 125px;" src="~/images/thriveLogoWhite250x100.png"></a>
+        <a class="navbar-brand"  asp-controller="Home" asp-action="Index"><img style="height: 50px; width: 125px;" src="~/images/thriveLogoWhite250x100.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">MY STUDENTS <span class="sr-only">(current)</span></a>
-                </li>
                 <li class="nav-item">
-                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                        <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                    </form>
+                    <a asp-controller="Home" asp-action="AboutUs" class="nav-link">About Thrive<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
+        <partial name="_LoginPartial" />
     </nav>
-    <h4 style="margin-top: 15px;">Filter</h4>
-    <button id="viewGalleryButton" style="" type="button" class="btn btn-outline-primary" onclick="change()">Teachers</button>
+    <div class="text-center">
+        <h4 class="text-center" style="margin-top: 15px;">Filter</h4>
+        <div>
+            <button id="teachersButton" style="" type="button" class="btn btn-outline-primary" onclick="fillTeachers()">Teachers</button>
+            <button id="studentsButton" style="" type="button" class="btn btn-outline-primary" onclick="fillStudents()">Students</button>
+        </div>
+    </div>
     <div style="" id="imageContainer" class="imageContainer">
-        <img class="imageInContainer" src="~/images/TeacherHeadshots/exampleTeacher.png">
-        <img class="imageInContainer" src="~/images/TeacherHeadshots/exampleTeacherTwo.png">
-        <img class="imageInContainer" src="~/images/TeacherHeadshots/exampleTeacherThree.png">
     </div>
     <div id="componentButtons" style="margin-top: 25px;">
         <h4 style="">Select a user to get started!</h4>
-        <img id="messagesButton" onclick="messagesModal();" style="width: 35px; height: 40px; margin-left: 10px; border-radius: 15px;" src="~/images/innerIcons/messagesIcon.png">
         <img id="gradesButton" onclick="gradesModal();" style="width: 35px; height: 40px; margin-left: 650px; border-radius: 15px;" src="~/images/innerIcons/gradesIcon.png">
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
     </div>
-        <div class="row" style="margin-left:0px; margin-right:0px;">
-            <div id="messageBox" style="margin-top: 20px; margin-left:auto; margin-right:auto; border-radius: 10px;width:40%; height:600px;border:1px solid #000;">
+    <div class="row" style="height: 500px">
+        <div class="col-sm-6">
+            <div id="messageBox" style="margin-left:auto; margin-right:auto; border-radius: 10px;width:90%; height:100%;border:1px solid #000;">
                 <div id="messageContainer" style="overflow:auto; height:85%; margin:1%;"></div>
                 <div id="lowerInput" class="text-center">
                     <input style="margin-left:1%; border-radius: 15px; font-size: 18px; text-decoration-color: #000000; border: 1px solid #000; height: 50px; width: 375px;" type="text" id="messageInputBox" name="messageInputBox" placeholder="Type your message..">
@@ -57,7 +58,10 @@
                     <input id="user" style="display:none" value="@Html.ViewContext.HttpContext.User.Identity.Name" />
                 </div>
             </div>
-            <div id="gradesContainer" style="margin-top: 20px; margin-left:auto; margin-right:auto; border-radius:10px; width:40%; height:600px;border:1px solid #000; visibility:hidden;">
+        </div>
+        <div class="col-sm-6">
+            <div id="gradesContainer" style="margin-left:auto; margin-right:auto; border-radius: 10px;width:90%; height:100%;border:1px solid #000; visibility:hidden;">
+            </div>
         </div>
     </div>
 

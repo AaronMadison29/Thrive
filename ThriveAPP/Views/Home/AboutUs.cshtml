@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewData["Title"] = "AboutUs";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" href="~/images/favicon.png" />
+    <title>Teacher Index</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+
+
+</head>
+<body class="fade-in">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" asp-page="/Home/Index"><img style="height: 50px; width: 125px;" src="~/images/thriveLogoWhite250x100.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/Home/AboutUs">About Thrive<span class="sr-only">(current)</span></a>
+                </li>
+                @if (@Html.ViewContext.HttpContext.User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">LOGOUT <span class="sr-only">(current)</span></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Register">REGISTER <span class="sr-only">(current)</span></a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+
+    <div class="jumbotron text-center">
+        <h1 class="display-3">Hello, world!</h1>
+    </div>
+
+
+
+
+
+    <script src="~/js/genericPage.js"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+</body>
+
+</html>

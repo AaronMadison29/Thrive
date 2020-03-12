@@ -29,7 +29,8 @@ namespace SchoolAPI.Controllers
         [HttpGet("{stringId}")]
         public Teacher Get(string stringId)
         {
-            return _repo.Teachers.GetTeacherByUserIdInclude(stringId);
+            var teacher = _repo.Teachers.GetTeacherByUserIdInclude(stringId);
+            return teacher;
         }
 
         // GET: api/Teacher/5

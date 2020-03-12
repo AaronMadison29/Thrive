@@ -30,6 +30,17 @@ function change(){
 	} 
 }
 
+function fillTeachers(teachers) {
+	for (index in teachers) {
+		gallery.innerHTML += "<img class='imageInContainer' src='images/TeacherHeadshots/" + teachers[index].Name + ".png'>";
+	}
+}
+function fillStudents(students) {
+	for (index in students) {
+		gallery.innerHTML += "<img class='imageInContainer' src='images/StudentHeadshots/" + students[index].Name + ".png'>";
+	}
+}
+
 function gradesModal(){
 	gradesContainer.innerHTML = "<h1 style='padding-left: 170px;'>STUDENT NAME HERE<h1>"+
 	"<br />"+
@@ -40,7 +51,7 @@ function gradesModal(){
 	"<h2 style='padding-left: 150px;'>MATH: <h2>"+
 	"<h2 style='padding-left: 150px;'>HISTORY: <h2>"+
 		"<h2 style='padding-left: 150px;'>ENGLISH: <h2>";
-	gradesContainer.style = "visibility:visible"
+	gradesContainer.style.visibility = "visible"
 }
 
 function checkSelectedUser(){

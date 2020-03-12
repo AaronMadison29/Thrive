@@ -10697,11 +10697,7 @@ th {
 }
 
 .fade-in {
-  animation: fadeIn ease 10s;
-  -webkit-animation: fadeIn ease 10s;
-  -moz-animation: fadeIn ease 10s;
-  -o-animation: fadeIn ease 10s;
-  -ms-animation: fadeIn ease 10s;
+    animation: fadeIn ease 3s;
 }
 @keyframes fadeIn {
   0% {

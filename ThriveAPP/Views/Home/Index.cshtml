@@ -12,16 +12,16 @@
     </div>*@
 
 <!DOCTYPE html>
-<htm lang="en">
-    <head>
-        <title>Thrive</title>
-        <meta charset="utf-8">
-        <link rel="shortcut icon" href="~/images/favicon.png" />
-        <link rel="stylesheet" href="~/css/bootstrap.css">
-        
-    </head>
-    <body class="fade-in">
-        <!--BEGIN THRIVE BUTTONS-->
+<html lang="en">
+<head>
+    <title>Thrive</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="~/images/favicon.png" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+
+</head>
+    @*<body class="fade-in">
+        BEGIN THRIVE BUTTONS
         <div class="jumbotron">
             <div class="row" style="padding-top:40%">
                 <div class="col-sm-8">
@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class="row animate" style="padding-left: 170px;">
+        <div class="row animate">
             <div class="col-sm-3">
                 <img style="opacity: 1; width:100%" id="teacherButton" src="~/images/teacherCircle.png">
             </div>
@@ -42,10 +42,35 @@
             <div class="col-sm-3">
                 <img style="opacity: 1; width:100%;" id="studentButton" src="~/images/studentCircle.png">
             </div>
-            <!--JAVASCRIPT IMPORTS-->
+            JAVASCRIPT IMPORTS
             <script src="~/js/style.js"></script>
         </div>
-    </body>
-    <footer>
-    </footer>
+    </body>*@
+<body class='fade-in'>
+    <div class="row" style="height:50vh">
+        <div class="col-sm-4">
+
+        </div>
+        <div style="padding-top:20vh" class="col-sm-4 text-center">
+            <a href='~/Home/Index'><img src='~/images/thriveLogo250x100.png'></a>
+        </div>
+        <div style="padding-top:30vh; padding-left:10vh" class="col-sm-4">
+            <a asp-action="Register"><img id="registerButton" style="visibility: visible;height:15vh;width:15vh" src="~/images/newUserCircle.png"></a>
+        </div>
+    </div>
+
+    <div class="row animate">
+        <div class="col-sm-3">
+            <img style="opacity: 1; width:100%" id="teacherButton" src="~/images/teacherCircle.png">
+        </div>
+        <div class="col-sm-3">
+            <img style="opacity: 1; width:100%;" id="parentButton" src="~/images/parentCircle.png">
+        </div>
+        <div class="col-sm-3">
+            <img style="opacity: 1; width:100%;" id="studentButton" src="~/images/studentCircle.png">
+        </div>
+        <!--JAVASCRIPT IMPORTS-->
+        <script src="~/js/style.js"></script>
+    </div>
+</body>
     </html>

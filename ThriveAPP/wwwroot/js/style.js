@@ -182,42 +182,6 @@ studentSigninButton.onclick = function(){
 "</center>"+
 "</body>";
 }
-//registerButton.onclick = function(){
-//	document.body.innerHTML = "<link rel='shortcut icon' href='images/favicon.png' />"+
-//  "<title>Thrive - Signup</title>"+
-//	"<meta charset='utf-8'>"+
-//	"<link rel='stylesheet' href='css/bootstrap.css'>"+
-//	"<header>"+
-//	"<nav class='navbar navbar-expand-lg navbar-light bg-light'>"+
-//		"<center><a class='center' href='#'><img style='pad' class='center' src='images/thriveLogo250x100.png'></a></center>"+
-//  "</button>"+
-//  "<div class='collapse navbar-collapse' id='navbarColor03'>"+
-//  "</div>"+
-//"</nav>"+
-//"</header>"+
-//"</head>"+
-//"<body class='fade-in'>"+
-//"<div>"+
-//  	"<br />"+
-//  	"<br />"+
-//  	"</div>"+
-//"<center><img id='welcomeRegistery' style='padding-right: 20px;' src='images/registeryWelcoming.png'></center>"+
-//"<div class='row animate' style='padding-left: 170px;'>"+
-//  "<div class='column'>"+
-//        "<a asp-area='Identity' asp-page='/Account/Register'><img style='opacity: 1;' id='registerAsTeacher'  src='images/newTeacherCircle.png'></a>"+
-//  "</div>"+
-//  "<div class='column'>"+
-//    "<img style='opacity: 1;' id='registerAsParent' onclick='parentRegistration()' src='images/newParentCircle.png'>"+
-//  "</div>"+
-//  "<div class='column'>"+
-//    "<img style='opacity: 1;' id='registerAsStudent' onclick='studentRegistration()' src='images/newStudentCircle.png'>"+
-// "</div>"+	
-// "<div style='padding-left: 350px;'>"+
-//    "<img style='height: 125px; width: 400px;' src='images/dontRegister.png'>"+
-//  	"<img style='height: 220px; width: 225px;' onclick='location.reload();' src='images/homeCircle.png'>"+	
-//"</div>"+
-//"</body>"; 
-//}
 
 function teacherRegistration(){
 	document.body.innerHTML = "<link rel='shortcut icon' href='images/favicon.png' />"+

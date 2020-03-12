@@ -39,6 +39,11 @@ namespace ThriveAPP.Controllers
             return View();
         }
 
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> ScanSystem()
         {
             var studentClassGrades = await _schoolService.GetStudentClassGradesAysnc();

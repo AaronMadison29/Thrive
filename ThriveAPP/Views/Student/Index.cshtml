@@ -13,15 +13,14 @@
     <link rel="stylesheet" href="~/css/bootstrap.css">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#"><img style="height: 50px; width: 125px;" src="~/images/thriveLogoWhite250x100.png"></a>
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index"><img style="height: 50px; width: 125px;" src="~/images/thriveLogoWhite250x100.png"></a>
 
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">MY STUDENTS <span class="sr-only">(current)</span></a>
-                    </li>
+                    <a asp-controller="Home" asp-action="AboutUs" class="nav-link">About Thrive<span class="sr-only">(current)</span></a>
                 </ul>
             </div>
+            <partial name="_LoginPartial" />
         </nav>
     </header>
 </head>
