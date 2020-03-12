@@ -29,7 +29,8 @@ namespace SchoolAPI.Controllers
         [HttpGet("{stringId}")]
         public Teacher Get(string stringId)
         {
-            return _repo.Teachers.GetTeacherByUserIdInclude(stringId);
+            var teacher = _repo.Teachers.GetTeacherByUserIdInclude(stringId);
+            return teacher;
         }
 
         // GET: api/Teacher/5
@@ -69,7 +70,7 @@ namespace SchoolAPI.Controllers
             var user = _repo.Teachers.GetTeacher(teacher.TeacherId);
             user.UserId = teacher.UserId;
             user.Email = teacher.Email;
-            _repo.Teachers.Update(teacher);
+            _repo.Teachers.Update(user);
             _repo.Save();
         }
 

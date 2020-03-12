@@ -26,6 +26,7 @@ namespace Repository.Data
         {
             base.OnModelCreating(builder);
 
+
             builder.Entity<Class>().HasData(
                 new Class
                 {

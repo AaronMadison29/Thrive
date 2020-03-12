@@ -1,12 +1,76 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = null;
 }
 
-<div><button class="btn btn-primary"onclick="location.href='@Url.Action("ScanSystem","Home")';return false">Weekly Scan</button></div>
+@*<div><button class="btn btn-primary"onclick="location.href='@Url.Action("ScanSystem","Home")';return false">Weekly Scan</button></div>
 
 
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Thrive</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="~/images/favicon.png" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+
+</head>
+    @*<body class="fade-in">
+        BEGIN THRIVE BUTTONS
+        <div class="jumbotron">
+            <div class="row" style="padding-top:40%">
+                <div class="col-sm-8">
+                    <img src="~/images/thriveLogo250x100.png">
+                </div>
+                <div class="col-sm-4">
+                    <a asp-action="Register"><img id="registerButton" style="height:auto; width:auto; visibility: visible; -webkit-transform: scale(0.2);" src="~/images/newUserCircle.png"></a>
+                </div>
+            </div>
+        </div>
+        <div class="row animate">
+            <div class="col-sm-3">
+                <img style="opacity: 1; width:100%" id="teacherButton" src="~/images/teacherCircle.png">
+            </div>
+            <div class="col-sm-3">
+                <img style="opacity: 1; width:100%;" id="parentButton" src="~/images/parentCircle.png">
+            </div>
+            <div class="col-sm-3">
+                <img style="opacity: 1; width:100%;" id="studentButton" src="~/images/studentCircle.png">
+            </div>
+            JAVASCRIPT IMPORTS
+            <script src="~/js/style.js"></script>
+        </div>
+    </body>*@
+<body class='fade-in'>
+    <div class="row" style="height:50vh">
+        <div class="col-sm-4">
+
+        </div>
+        <div style="padding-top:20vh" class="col-sm-4 text-center">
+            <a href='~/Home/Index'><img src='~/images/thriveLogo250x100.png'></a>
+        </div>
+        <div style="padding-top:30vh; padding-left:10vh" class="col-sm-4">
+            <a asp-action="Register"><img id="registerButton" style="visibility: visible;height:15vh;width:15vh" src="~/images/newUserCircle.png"></a>
+        </div>
+    </div>
+
+    <div class="row animate">
+        <div class="col-sm-3">
+            <img style="opacity: 1; width:100%" id="teacherButton" src="~/images/teacherCircle.png">
+        </div>
+        <div class="col-sm-3">
+            <img style="opacity: 1; width:100%;" id="parentButton" src="~/images/parentCircle.png">
+        </div>
+        <div class="col-sm-3">
+            <img style="opacity: 1; width:100%;" id="studentButton" src="~/images/studentCircle.png">
+        </div>
+        <!--JAVASCRIPT IMPORTS-->
+        <script src="~/js/style.js"></script>
+    </div>
+</body>
+    </html>

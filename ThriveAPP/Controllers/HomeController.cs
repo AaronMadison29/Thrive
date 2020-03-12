@@ -29,7 +29,17 @@ namespace ThriveAPP.Controllers
 
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult AboutUs()
         {
             return View();
         }

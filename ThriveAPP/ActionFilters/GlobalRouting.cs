@@ -23,7 +23,8 @@ namespace ThriveAPP.ActionFilters
         public void OnActionExecuting(ActionExecutingContext context)
         {
             var controller = context.RouteData.Values["controller"];
-            if (controller.Equals("Home"))
+            var action = context.RouteData.Values["action"];
+            if (controller.Equals("Home") && action.Equals("Index"))
             {
                 if (_claimsPrincipal.IsInRole("Teacher"))
                 {
