@@ -90,7 +90,7 @@ namespace ThriveAPP.Controllers
         {
             var studentFromDb = await _schoolService.GetStudent(id);
             var profileFromDb = studentFromDb.Profile;
-            return View(profileFromDb);
+            return View(studentFromDb);
         }
 
         // POST: Teacher/Edit/5
