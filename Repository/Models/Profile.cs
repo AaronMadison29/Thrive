@@ -18,7 +18,7 @@ namespace Repository.Models
         [Column(TypeName = "varchar(50)")]
         public string LearningStyle { get; set; }
 
-        [NotMapped]
-        public List<Note> Notes { get; set; }
+        
+        public string Notes { get; set; }
     }
 }

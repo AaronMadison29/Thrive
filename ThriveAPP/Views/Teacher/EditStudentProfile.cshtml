@@ -29,6 +29,7 @@
             <div class="form-group">
                 <label asp-for="@Model.Profile.Notes" class="control-label"></label>
                 <input asp-for="@Model.Profile.Notes" class="form-control" type="text"/>
+                <input asp-route-id="@Model.StudentId" class="form=control" style="visibility:hidden"/>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
