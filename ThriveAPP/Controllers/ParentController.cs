@@ -30,16 +30,10 @@ namespace ThriveAPP.Controllers
         // GET: Parent
         public async Task<ActionResult> Index()
         {
-            if (ModelState.IsValid)
-            {
-                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var parent = await _schoolService.GetParent(userId);
-                return View(parent);
-            }
-            else
-            {
-                return View();
-            }
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var parent = await _schoolService.GetParent(userId);
+            ViewBag.teachers = await _schoolService.GetTeachersAsync();
+            return View(parent);
         }
 
         public IActionResult Chat()

@@ -4,13 +4,12 @@
     Layout = null;
 }
 
-@*<h1>Welcome, @Model.Name</h1>*@
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="shortcut icon" href="~/images/favicon.png" />
-    <title>Teacher Index</title>
     <meta charset="utf-8">
+    <title> Teacher Index</title > ipt >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -47,18 +46,14 @@
         <div style="" id="imageContainer" class="col-sm-10 text-center"></div>
         <div class="col-sm-1"></div>
     </div>
-    <div id="componentButtons" style="margin-top: 25px;">
-        <h4 style="">Select a user to get started!</h4>
-        <img id="gradesButton" onclick="gradesModal();" style="width: 35px; height: 40px; margin-left: 650px; border-radius: 15px;" src="~/images/innerIcons/gradesIcon.png">
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-    </div>
+    
     <div class="row" style="height:500px; margin-left:0px; margin-right:0px;">
         <div class="col-sm-3">
-            <div id="modalContainer">
+            <div id="modalContainers">
             </div>
         </div>
-        <div class="col-sm-6">
-            <div id="messageBox" style="margin-left:auto; margin-right:auto; border-radius:10px; width:90%; height:100%; border:1px solid #000;">
+        <div class="col-sm-6" style="height:100%">
+            <div id="messageBox" style="border-radius:10px; width:90%; height:100%; border:1px solid #000;">
                 <div id="messageContainer" style="overflow:auto; height:85%; margin:1%; font-size: 18px;"></div>
                 <div id="lowerInput" class="text-center">
                     <input style="margin-left:1%; border-radius: 15px; font-size: 18px; text-decoration-color: #000000; border: 1px solid #000; height: 50px; width: 375px;" type="text" id="messageInputBox" name="messageInputBox" placeholder="Type your message..">
@@ -71,6 +66,10 @@
         </div>
     </div>
 
+
+    <script src="~/js/genericPage.js"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
     <script>
         var gallery = document.getElementById("imageContainer");
         function fillTeachers() {
@@ -84,14 +83,9 @@
                         img.setAttribute("class", "imageInContainer");
                         img.setAttribute("id", "@teacher.Email");
                         img.setAttribute("src", `images/TeacherHeadshots/${@teacher.TeacherId}.png`);
-
                     </text>
                     @:gallery.appendChild(img);
 
-
-
-                    @*@:gallery.innerHTML += `<img class='imageInContainer' id='${@(teacher.Email)}' src='images/TeacherHeadshots/${@teacher.TeacherId}.png'>`;*@
-                    @*@:document.getElementById("image1").setAttribute("id", "@teacher.Email");*@
                 }
              }
         }
@@ -106,12 +100,10 @@
                         img.setAttribute("class", "imageInContainer");
                         img.setAttribute("id", "@student.Email");
                         img.setAttribute("src", `images/StudentHeadshots/${@student.StudentId}.png`);
+                        img.setAttribute("onclick", `generateModals(${@student.StudentId})`);
 
                     </text>
                     @:gallery.appendChild(img);
-
-                     @*@:gallery.innerHTML += `<img class='imageInContainer'id='${@student.Email}' src='images/StudentHeadshots/${@student.StudentId}.png'>`;*@
-                    @*@:document.getElementById("image2").setAttribute("id", "@student.Email");*@
                 }
              }
         }
