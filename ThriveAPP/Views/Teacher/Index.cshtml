@@ -48,6 +48,10 @@
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
     </div>
     <div class="row" style="height:500px; margin-left:0px; margin-right:0px;">
+        <div class="col-sm-3">
+            <div id="modalContainer">
+            </div>
+        </div>
         <div class="col-sm-6">
             <div id="messageBox" style="margin-left:auto; margin-right:auto; border-radius:10px; width:90%; height:100%; border:1px solid #000;">
                 <div id="messageContainer" style="overflow:auto; height:85%; margin:1%; font-size: 18px;"></div>
@@ -58,28 +62,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div id="gradesContainer" style="margin-left:auto; margin-right:auto; border-radius: 10px;width:90%; height:100%;border:1px solid #000; visibility:hidden;"></div>
-        </div>
-    </div>
-
-    <div class="modal" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Some text in the modal.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+        <div class="col-sm-3">
             </div>
-
         </div>
     </div>
 
