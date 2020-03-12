@@ -10,8 +10,7 @@ document.getElementById("send").disabled = true;
 //document.getElementById("sendGroup").disabled = true;
 
 connection.on("ReceiveMessage", function (user, message) {
-    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    var encodedMsg = user + " says " + msg;
+    var encodedMsg = user + " says " + message;
     var div = document.createElement("div");
 
     div.innerHTML = encodedMsg;
@@ -32,21 +31,11 @@ connection.on("ReceiveMessage", function (user, message) {
 connection.on("connected", function (userEmail) {
     $(`#imageContainer > img[id='${userEmail}']`).css("border","solid 2px green");
     var div = document.createElement("div");
-
-    div.innerHTML = userEmail + "has logged in!";
-    var messageContainer = document.getElementById("messageContainer");
-    messageContainer.scrollTop = messageContainer.scrollHeight;
-    messageContainer.appendChild(div);
 });
 
 connection.on("Disconnected", function (userEmail) {
     $(`#imageContainer > img[id='${userEmail}']`).css('border', 'none');
     var div = document.createElement("div");
-
-    div.innerHTML = userEmail + "has left!";
-    var messageContainer = document.getElementById("messageContainer");
-    messageContainer.scrollTop = messageContainer.scrollHeight;
-    messageContainer.appendChild(div);
 });
 
 connection.start().then(function () {

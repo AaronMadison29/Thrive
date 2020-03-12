@@ -97,11 +97,11 @@ namespace ThriveAPP.Controllers
         // POST: Teacher/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditStudentProfile(Profile profile)
+        public async Task<ActionResult> EditStudentProfile(Student student)
         {
             try
             {
-                await _schoolService.EditStudentProfile(profile.ProfileId, profile);
+                await _schoolService.EditStudentProfile(student.Profile.ProfileId, student.Profile);
                 return RedirectToAction(nameof(Index));
             }
             catch
