@@ -218,6 +218,23 @@ namespace ThriveAPP.Services
             return null;
         }
 
+        public async Task<List<Student>> GetStudentsInClassAsync(int classId)
+        {
+            HttpClient client = new HttpClient();
+            string url = _config.GetValue<string>("ApiHostUrl:BaseUrl");
+            url += $"api/StudentClassGrades/Students/{classId}";
+            HttpResponseMessage response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Student>>(json);
+            }
+
+            return null;
+        }
+
+
         public async Task<List<StudentClassGrade>> GetStudentClassGradesAysnc()
         {
             HttpClient client = new HttpClient();

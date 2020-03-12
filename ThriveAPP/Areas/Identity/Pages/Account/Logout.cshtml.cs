@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.SignalR;
+using ThriveAPP.Services;
+using System.Security.Claims;
 
 namespace ThriveAPP.Areas.Identity.Pages.Account
 {
@@ -15,11 +18,13 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
+        private readonly IHubContext<MessengerService> _hubContext;
 
-        public LogoutModel(SignInManager<IdentityUser> signInManager, ILogger<LogoutModel> logger)
+        public LogoutModel(SignInManager<IdentityUser> signInManager, ILogger<LogoutModel> logger, IHubContext<MessengerService> hubContext)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _hubContext = hubContext;
         }
 
         public void OnGet()
@@ -28,6 +33,9 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
+            var name = User.Identity.Name;
+            await _hubContext.Clients.All.SendAsync("Disconnected",name);
+
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
             if (returnUrl != null)

@@ -36,5 +36,11 @@ namespace Repository.Data
         {
             return FindByCondition(sc => sc.StudentId == studentId).Include(c => c.Class).Select(sc => sc.Class).ToList();
         }
+        public List<Student> GetStudentsInClass(int classId) =>
+            FindByCondition(sc => sc.ClassId == classId)
+                .Include(s => s.Student)
+                .ThenInclude(p => p.Profile)
+                .Select(sc => sc.Student)
+                .ToList();
     }
 }

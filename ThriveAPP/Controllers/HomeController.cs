@@ -89,7 +89,7 @@ namespace ThriveAPP.Controllers
             recipients.AddRange(parentsWithProblemStudents);
             recipients.AddRange(teachersWithProblemStudents);
 
-            await _emailService.EmailAlertAsync(new Teacher { Email = "yahoop@gmail.com", Name = "Thrive Web App"}, recipients);
+            await _emailService.EmailAlertAsync(recipients);
 
             return View(nameof(Index));
         }
