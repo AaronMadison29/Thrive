@@ -9,33 +9,33 @@
 <h4>Profile</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-sm-2"></div>
+    <div class="col-md-8">
+        <div>
+            <h3>Math: @ViewBag.Grades[1].Grade</h3>
+            <h3>Science: @ViewBag.Grades[2].Grade</h3>
+            <h3>History: @ViewBag.Grades[3].Grade</h3>
+        </div>
         <form asp-action="EditStudentProfile">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ProfileId" class="control-label"></label>
-                <input asp-for="ProfileId" class="form-control" />
-                <span asp-validation-for="ProfileId" class="text-danger"></span>
+                <label asp-for="@Model.Profile.FavoriteSubject" class="control-label"></label>
+                <input asp-for="@Model.Profile.FavoriteSubject" class="form-control" type="text"/>
             </div>
             <div class="form-group">
-                <label asp-for="FavoriteSubject" class="control-label"></label>
-                <input asp-for="FavoriteSubject" class="form-control" />
-                <span asp-validation-for="FavoriteSubject" class="text-danger"></span>
+                <label asp-for="@Model.Profile.LearningStyle" class="control-label"></label>
+                <input asp-for="@Model.Profile.LearningStyle" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="LearningStyle" class="control-label"></label>
-                <input asp-for="LearningStyle" class="form-control" />
-                <span asp-validation-for="LearningStyle" class="text-danger"></span>
+                <label asp-for="@Model.Profile.Notes" class="control-label"></label>
+                <input asp-for="@Model.Profile.Notes" class="form-control" type="text"/>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div class="col-sm-2"></div>
 </div>
 
 @section Scripts {
