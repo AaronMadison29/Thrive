@@ -30,16 +30,16 @@ function change(){
 	} 
 }
 
-function fillTeachers(teachers) {
-	for (index in teachers) {
-		gallery.innerHTML += "<img class='imageInContainer' src='images/TeacherHeadshots/" + teachers[index].Name + ".png'>";
-	}
-}
-function fillStudents(students) {
-	for (index in students) {
-		gallery.innerHTML += "<img class='imageInContainer' src='images/StudentHeadshots/" + students[index].Name + ".png'>";
-	}
-}
+//function fillTeachers(teachers) {
+//	for (index in teachers) {
+//		gallery.innerHTML += "<img class='imageInContainer' src='images/TeacherHeadshots/" + "Mike_Terrill" + ".png'>";
+//	}
+//}
+//function fillStudents(students) {
+//	for (index in students) {
+//		gallery.innerHTML += "<img class='imageInContainer' src='images/StudentHeadshots/" + students[index].Name + ".png'>";
+//	}
+//}
 
 function generateModals() {
 	mesContainer.style = "margin-left:7.2%; margin-top: 20px; border-radius: 10px; width:750px; height:600px; border:1px solid #000;";
