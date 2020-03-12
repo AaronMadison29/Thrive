@@ -89,6 +89,7 @@ namespace ThriveAPP.Controllers
         public async Task<ActionResult> EditStudentProfile(int id)
         {
             var studentFromDb = await _schoolService.GetStudent(id);
+            var profile = studentFromDb.Profile;
             var grades = await _schoolService.GetStudentClassGradesAysnc();
             ViewBag.Grades = grades.Where(a => a.StudentId == id).ToList();
             return View(studentFromDb);
@@ -97,11 +98,11 @@ namespace ThriveAPP.Controllers
         // POST: Teacher/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditStudentProfile(Profile profile)
+        public async Task<ActionResult> EditStudentProfile(int id, Profile profile)
         {
             try
             {
-                await _schoolService.EditStudentProfile(profile.ProfileId, profile);
+                await _schoolService.EditStudentProfile(id, profile);
                 return RedirectToAction(nameof(Index));
             }
             catch

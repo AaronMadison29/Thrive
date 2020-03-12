@@ -12,6 +12,6 @@ namespace ThriveAPP.Models
         public int ProfileId { get; set; }
         public string FavoriteSubject { get; set; }
         public string LearningStyle { get; set; }
-        public List<Note> Notes { get; set; }
+        public string Notes { get; set; }
     }
 }

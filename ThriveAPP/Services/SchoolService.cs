@@ -230,7 +230,6 @@ namespace ThriveAPP.Services
                 string json = response.Content.ReadAsStringAsync().Result;
                 return JsonConvert.DeserializeObject<List<Student>>(json);
             }
-
             return null;
         }
 

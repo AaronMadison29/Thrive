@@ -52,28 +52,6 @@ namespace Repository.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Repository.Models.Note", b =>
-                {
-                    b.Property<int>("NoteId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(2000)")
-                        .HasMaxLength(2000);
-
-                    b.Property<int>("profileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("NoteId");
-
-                    b.HasIndex("profileId");
-
-                    b.ToTable("Notes");
-                });
-
             modelBuilder.Entity("Repository.Models.Parent", b =>
                 {
                     b.Property<int>("ParentId")
@@ -177,6 +155,9 @@ namespace Repository.Migrations
 
                     b.Property<string>("LearningStyle")
                         .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProfileId");
 
@@ -559,15 +540,6 @@ namespace Repository.Migrations
                             PhoneNumber = "555-555-5555",
                             Subject = "History"
                         });
-                });
-
-            modelBuilder.Entity("Repository.Models.Note", b =>
-                {
-                    b.HasOne("Repository.Models.Profile", "Profile")
-                        .WithMany()
-                        .HasForeignKey("profileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Repository.Models.Parent", b =>

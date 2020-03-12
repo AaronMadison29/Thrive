@@ -2,7 +2,7 @@
 
 namespace Repository.Migrations
 {
-    public partial class seedDatabase : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,7 +26,8 @@ namespace Repository.Migrations
                     ProfileId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FavoriteSubject = table.Column<string>(type: "varchar(25)", nullable: true),
-                    LearningStyle = table.Column<string>(type: "varchar(50)", nullable: true)
+                    LearningStyle = table.Column<string>(type: "varchar(50)", nullable: true),
+                    Notes = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -54,26 +55,6 @@ namespace Repository.Migrations
                         column: x => x.ClassId,
                         principalTable: "Classes",
                         principalColumn: "ClassId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Notes",
-                columns: table => new
-                {
-                    NoteId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Content = table.Column<string>(maxLength: 2000, nullable: false),
-                    profileId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Notes", x => x.NoteId);
-                    table.ForeignKey(
-                        name: "FK_Notes_Profiles_profileId",
-                        column: x => x.profileId,
-                        principalTable: "Profiles",
-                        principalColumn: "ProfileId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -240,11 +221,6 @@ namespace Repository.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notes_profileId",
-                table: "Notes",
-                column: "profileId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Parents_StudentId",
                 table: "Parents",
                 column: "StudentId");
@@ -272,9 +248,6 @@ namespace Repository.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Notes");
-
             migrationBuilder.DropTable(
                 name: "Parents");
 
