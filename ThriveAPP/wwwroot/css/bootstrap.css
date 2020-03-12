@@ -10617,15 +10617,11 @@ th {
   margin-left: auto;
   margin-right: auto;
 }
-.imageContainer {
-  padding-left: 275px;
-  padding-top: 35px; 
-}
 
 .imageInContainer {
   height: 140px;
   width: 150px;
-  margin-left: 50px;
+  margin: 2%;
   border-top-left-radius: 50% 50%;
   border-top-right-radius: 50% 50%;
   border-bottom-right-radius: 50% 50%;
