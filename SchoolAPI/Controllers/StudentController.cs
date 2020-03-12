@@ -38,7 +38,7 @@ namespace SchoolAPI.Controllers
             return student;
         }
 
-        // GET: api/Teacher/5
+        // GET: api/Student/5
         [HttpGet("{id:int}")]
         public Student Get(int id)
         {

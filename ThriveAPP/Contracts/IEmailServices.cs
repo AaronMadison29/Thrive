@@ -7,6 +7,6 @@ namespace ThriveAPP.Contracts
     public interface IEmailServices
     {
         Task<bool> EmailAsync(IEmail sender, IEmail Receiver);
-        Task EmailAlertAsync(IEmail sender, IEnumerable<IEmail> recipients);
+        Task EmailAlertAsync(IEnumerable<IEmail> recipients);
     }
 }

@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.SignalR;
+using ThriveAPP.Services;
+using System.Security.Claims;
 
 namespace ThriveAPP.Areas.Identity.Pages.Account
 {
@@ -20,14 +23,18 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IHubContext<MessengerService> _hubContext;
 
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager,
+            IHubContext<MessengerService> hubContext
+            )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _hubContext = hubContext;
         }
 
         [BindProperty]
@@ -83,6 +90,8 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    var name = User.Identity.Name;
+                    await _hubContext.Clients.All.SendAsync("Connected", name);
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

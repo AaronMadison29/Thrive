@@ -12,5 +12,6 @@ namespace Repository.Contracts
         public StudentClassGrade GetStudentClassGradeIncludeAll(int id);
         public List<StudentClassGrade> GetAllStudentClassGradesIncludeAll();
         List<Class> GetStudentClasses(int studentId);
+        List<Student> GetStudentsInClass(int classId);
     }
 }

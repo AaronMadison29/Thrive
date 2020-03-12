@@ -20,11 +20,11 @@ namespace ThriveAPP.Services
         public async Task<bool> EmailAsync(IEmail sender, IEmail Receiver)
         {
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress(sender.Email, "Example User");
+            var from = new EmailAddress(sender.Email, sender.Name);
 
             //TODO pass in content
             var subject = "Sending with SendGrid is Fun";
-            var to = new EmailAddress(Receiver.Email, "Example User");
+            var to = new EmailAddress(Receiver.Email, Receiver.Name);
             var plainTextContent = "and easy to do anywhere, even with C#";
             var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
@@ -33,15 +33,15 @@ namespace ThriveAPP.Services
             return response.StatusCode == System.Net.HttpStatusCode.Accepted ? true : false;
         }
 
-        public async Task EmailAlertAsync(IEmail sender, IEnumerable<IEmail> recipients)
+        public async Task EmailAlertAsync(IEnumerable<IEmail> recipients)
         {
             List<Task<Response>> tasks = new List<Task<Response>>();
             var client = new SendGridClient(apiKey);
 
             foreach (IEmail recipient in recipients)
             {
-                var from = new EmailAddress(sender.Email, recipient.Name);
-                var subject = "Sending with SendGrid is Fun";
+                var from = new EmailAddress(Api_Keys.SystemEmail, "Thrive Web App");
+                var subject = "Student recent performance alert";
                 var to = new EmailAddress(recipient.Email, recipient.Name);
                 var plainTextContent = "and easy to do anywhere, even with C#";
                 var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
@@ -60,7 +60,6 @@ namespace ThriveAPP.Services
                 }
             }
         }
-           
-           
+                 
     }
 }

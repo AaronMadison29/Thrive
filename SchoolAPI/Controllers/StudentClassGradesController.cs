@@ -22,6 +22,12 @@ namespace SchoolAPI.Controllers
         {
             return _repo.StudentClassGrades.GetAllStudentClassGradesIncludeAll();
         }
+        
+        [HttpGet("{students}/{classId:int}")]
+        public IEnumerable<Student> GetStudentsInClass(int classId)
+        {
+            return _repo.StudentClassGrades.GetStudentsInClass(classId);
+        }
 
         [HttpGet("{id}")]
         public StudentClassGrade Get(int id)
