@@ -36,35 +36,59 @@
     <div class="text-center">
         <h4 class="text-center" style="margin-top: 15px;">Filter</h4>
         <div>
-            <button id="teachersButton" style="" type="button" class="btn btn-outline-primary" onclick="fillTeachers()">Teachers</button>
-            <button id="studentsButton" style="" type="button" class="btn btn-outline-primary" onclick="fillStudents()">Students</button>
+            <button id="teachersButton" style="" type="button" class="btn btn-outline-primary" onclick=fillTeachers()>Teachers</button>
+            <button id="studentsButton" style="" type="button" class="btn btn-outline-primary" onclick=fillStudents()>Students</button>
         </div>
     </div>
 
-    <div id="imageContainer"></div>
-            <div id="componentButtons" style="margin-top: 25px;">
-                <h4 style="">Select a user to get started!</h4>
-                <img id="gradesButton" onclick="gradesModal();" style="width: 35px; height: 40px; margin-left: 650px; border-radius: 15px;" src="~/images/innerIcons/gradesIcon.png">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div style= "" id="imageContainer" class="col-sm-10 text-center"></div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div id="componentButtons" style="margin-top: 25px;">
+        <h4 style="">Select a user to get started!</h4>
+        <img id="gradesButton" onclick="gradesModal();" style="width: 35px; height: 40px; margin-left: 650px; border-radius: 15px;" src="~/images/innerIcons/gradesIcon.png">
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    </div>
+    <div class="row" style="height:500px; margin-left:0px; margin-right:0px;">
+        <div class="col-sm-3">
+            <div id="modalContainer">
             </div>
-            <div class="row" style="height:500px; margin-left:0px; margin-right:0px;">
-                <div class="col-sm-6">
-                    <div id="messageBox" style="margin-left:auto; margin-right:auto; border-radius:10px; width:90%; height:100%; border:1px solid #000;">
-                        <div id="messageContainer" style="overflow:auto; height:85%; margin:1%; font-size: 18px;"></div>
-                        <div id="lowerInput" class="text-center">
-                            <input style="margin-left:1%; border-radius: 15px; font-size: 18px; text-decoration-color: #000000; border: 1px solid #000; height: 50px; width: 375px;" type="text" id="messageInputBox" name="messageInputBox" placeholder="Type your message..">
-                            <button id="send" style="border-radius: 15px;" class="btn btn-outline-primary">SEND</button>
-                            <input id="user" style="display:none" value="@Html.ViewContext.HttpContext.User.Identity.Name" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div id="gradesContainer" style="margin-left:auto; margin-right:auto; border-radius: 10px;width:90%; height:100%;border:1px solid #000; visibility:hidden;"></div>
+        </div>
+        <div class="col-sm-6">
+            <div id="messageBox" style="margin-left:auto; margin-right:auto; border-radius:10px; width:90%; height:100%; border:1px solid #000;">
+                <div id="messageContainer" style="overflow:auto; height:85%; margin:1%; font-size: 18px;"></div>
+                <div id="lowerInput" class="text-center">
+                    <input style="margin-left:1%; border-radius: 15px; font-size: 18px; text-decoration-color: #000000; border: 1px solid #000; height: 50px; width: 375px;" type="text" id="messageInputBox" name="messageInputBox" placeholder="Type your message..">
+                    <button id="send" style="border-radius: 15px;" class="btn btn-outline-primary">SEND</button>
+                    <input id="user" style="display:none" value="@Html.ViewContext.HttpContext.User.Identity.Name" />
                 </div>
             </div>
+        </div>
+        <div class="col-sm-3">
+            </div>
+        </div>
 
+    <script>
+        var gallery = document.getElementById("imageContainer");
+        function fillTeachers() {
+            gallery.innerHTML = "";
+            @foreach (var teacher in ViewBag.teachers) {
+                @:gallery.innerHTML += "<img class='imageInContainer' src='images/TeacherHeadshots/" + @teacher.TeacherId + ".png'>";
+            }
+        }
+        function fillStudents() {
+            gallery.innerHTML = "";
+            @foreach (var student in ViewBag.students) {
+                @:gallery.innerHTML += "<img class='imageInContainer' src='images/StudentHeadshots/" + @student.StudentId + ".png'>";
+            }
+        }
+    </script>
     <script src="~/js/genericPage.js"></script>
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/chat.js"></script>
+
 </body>
 
 </html>
