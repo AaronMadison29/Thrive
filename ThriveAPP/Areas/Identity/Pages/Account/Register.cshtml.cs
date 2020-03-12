@@ -133,7 +133,7 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
+            Role = Input.Role;
             // If we got this far, something failed, redisplay form
             return Page();
         }
