@@ -1,11 +1,10 @@
 ﻿"use strict";
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub")
-    .withAutomaticReconnect()
     .build();
 
 //Disable send button until connection is established
-document.getElementById("send").disabled = true;
+//document.getElementById("send").disabled = true;
 //document.getElementById("sendDirect").disabled = true;
 //document.getElementById("sendGroup").disabled = true;
 
@@ -19,14 +18,32 @@ connection.on("ReceiveMessage", function (user, message) {
     messageContainer.appendChild(div);
 });
 
-//connection.on("DirectMessage", function (senderName, message) {
-//    var msg = senderName + ": " + message;
+connection.on("UpdateStatus", function (boolResult) {
+    var text = "offline";
+    if (boolResult == true) {
+        text = "online";
+        $("#MessageStudentBox").show();
+    }
+    else {
+        $("#MessageStudentBox").hide();
+    }
 
-//    var li = document.createElement("li");
-//    li.textContent = msg;
+    var messageContainer = document.getElementById("onlineStatus");
+    messageContainer.innerHTML = text;
+});
 
-//    document.getElementById("dms").appendChild(li);
-//});
+connection.on("DirectMessage", function (senderName, message) {
+    var msg = senderName + ": " + message;
+
+    var div = document.createElement("div");
+    div.innerHTML = msg;
+
+    $("#hiddenSender").val(senderName);
+
+    var messageContainer = document.getElementById("messageStudent");
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+    messageContainer.appendChild(div);
+});
 
 connection.on("connected", function (userEmail) {
     $(`#imageContainer > img[id='${userEmail}']`).css("border","solid 2px green");
@@ -39,14 +56,32 @@ connection.on("Disconnected", function (userEmail) {
 });
 
 connection.start().then(function () {
-    document.getElementById("send").disabled = false;
+    //document.getElementById("send").disabled = false;
     //document.getElementById("sendDirect").disabled = false;
     //document.getElementById("sendGroup").disabled = false;
 }).catch(function (err) {
     return console.error(err.toString());
 });
 
-document.getElementById("send").addEventListener("click", function (event) {
+document.addEventListener("getStatus", function (event) {
+
+    connection.invoke("IsUserLoggedIn", event.userName)
+        .catch(function (err) {
+            return console.error(err.toString());
+        });
+    //event.preventDefault();
+});
+
+document.addEventListener("sendDirect", function (event) {
+
+    connection.invoke("MessageUser", event.userName, event.message)
+        .catch(function (err) {
+            return console.error(err.toString());
+        });
+    //event.preventDefault();
+});
+
+document.addEventListener("sendGlobal", function (event) {
     var user = document.getElementById("user").value;
     var message = document.getElementById("messageInputBox").value;
     connection.invoke("SendMessage", user, message).catch(function (err) {
@@ -54,6 +89,7 @@ document.getElementById("send").addEventListener("click", function (event) {
     });
     event.preventDefault();
 });
+
 
 //document.getElementById("sendDirect").addEventListener("click", function (event) {
 //    var sendTo = document.getElementById("dmTarget").value;

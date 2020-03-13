@@ -9,6 +9,7 @@ using ThriveAPP.Models;
 using ThriveAPP.Contracts;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.SignalR;
 
 namespace ThriveAPP.Controllers
 {
@@ -18,13 +19,15 @@ namespace ThriveAPP.Controllers
         private readonly IMessengerServices _messengerService;
         private readonly ISchoolServices _schoolService;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IHubContext<MessengerService> _hubContext;
 
-        public StudentController(UserManager<IdentityUser> userManager, IEmailServices emailService, IMessengerServices messengerService, ISchoolServices schoolService)
+        public StudentController(UserManager<IdentityUser> userManager, IEmailServices emailService, IMessengerServices messengerService, ISchoolServices schoolService, IHubContext<MessengerService> hubContext)
         {
             _emailService = emailService;
             _messengerService = messengerService;
             _schoolService = schoolService;
             _userManager = userManager;
+            _hubContext = hubContext;
         }
 
         // GET: Student

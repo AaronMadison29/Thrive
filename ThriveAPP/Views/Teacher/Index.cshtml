@@ -9,7 +9,7 @@
 <head>
     <link rel="shortcut icon" href="~/images/favicon.png" />
     <meta charset="utf-8">
-    <title> Teacher Index</title >
+    <title> Teacher Index</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -105,6 +105,16 @@
     <script src="~/js/genericPage.js"></script>
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/chat.js"></script>
+    <script>
+        document.getElementById("send").addEventListener("click", function (event) {
+            var user = document.getElementById("user").value;
+            var message = document.getElementById("messageInputBox").value;
+            connection.invoke("SendMessage", user, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+            event.preventDefault();
+        });
+    </script>
 
 </body>
 
