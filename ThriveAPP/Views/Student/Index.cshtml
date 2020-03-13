@@ -40,8 +40,16 @@
     </div>
     
     <div class="row" style="height:500px; margin-left:0px; margin-right:0px;">
-        <div class="col-sm-3">
-            <div id="modelContainers">
+        <div class="col-sm-3 text-center">
+            @*<div id="modelContainers"></div>*@
+            <div id="messageBoxer" style="border-radius:10px; width:75%; height:100%; border:1px solid #000;">
+                <div id="messageStudent" style="overflow:auto; height:85%; margin:1%; font-size: 18px;"></div>
+                <div id="lowerInput3" class="text-center">
+                    <input style="margin-left:1%; border-radius: 15px; font-size: 18px; text-decoration-color: #000000; border: 1px solid #000; height: 50px; width: 80%;" type="text" id="studentMessageBox" name="studentMessage" placeholder="Type your message..">
+                    <button id="sendToTeacher" style="border-radius: 15px;" class="btn btn-outline-primary">SEND</button>
+                    <input id="hiddenSender" style="display:none" />
+
+                </div>
             </div>
         </div>
         <div class="col-sm-6" style="height:100%">
@@ -61,6 +69,7 @@
     <script src="~/js/genericPage.js"></script>
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/chat.js"></script>
+
     <script>
         var gallery = document.getElementById("imageContainer");
         function fillTeachers() {
@@ -69,6 +78,32 @@
                 @:gallery.innerHTML += "<img class='imageInContainer' src='images/TeacherHeadshots/" + @teacher.TeacherId + ".png'>";
             }
         }
+
+        document.getElementById("send").addEventListener("click", function (event) {
+            var user = document.getElementById("user").value;
+            var message = document.getElementById("messageInputBox").value;
+            connection.invoke("SendMessage", user, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+            event.preventDefault();
+        });
+
+        document.getElementById("sendToTeacher").addEventListener("click", function (event) {
+            @*var event = document.createEvent('Event');
+            event.initEvent('SendMessage', true, true);
+            event.userName = "@Model.Email";
+            event.message = document.getElementById("studentMessageBox").value;
+            document.dispatchEvent(event);
+            e.preventDefault();*@
+
+
+            var user = document.getElementById("hiddenSender").value;
+            var message = document.getElementById("studentMessageBox").value;
+            connection.invoke("MessageUser", user, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+            event.preventDefault();
+        });
     </script>
 </body>
 

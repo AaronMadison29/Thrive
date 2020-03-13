@@ -92,6 +92,7 @@ namespace ThriveAPP.Controllers
             var profile = studentFromDb.Profile;
             var grades = await _schoolService.GetStudentClassGradesAysnc();
             ViewBag.Grades = grades.Where(a => a.StudentId == id).ToList();
+
             return View(studentFromDb);
         }
 

@@ -73,6 +73,12 @@ namespace Repository.Data
                     Subject = "History",
                     ClassId = 3
                 });
+            var profiles = new List<Profile>();
+            for (var i = 1; i <= 10; i++)
+            {
+                profiles.Add(new Profile { ProfileId = i });
+            }
+            builder.Entity<Profile>().HasData(profiles);
 
 
             builder.Entity<Student>().HasData(
@@ -80,70 +86,72 @@ namespace Repository.Data
                 {
                     StudentId = 1,
                     Name = "Aaron Madison",
-                    Profile = null
+                    ProfileId = 1
+
                 },
 
                 new Student
                 {
                     StudentId = 2,
                     Name = "Sean Clennan",
-                    Profile = null
+                    ProfileId = 2
                 },
 
                 new Student
                 {
                     StudentId = 3,
                     Name = "Zac Melton",
-                    Profile = null
+                    ProfileId = 3
                 },
 
                 new Student
                 {
                     StudentId = 4,
                     Name = "Marcus Johnson",
-                    Profile = null
+                    ProfileId = 4
                 },
 
                 new Student
                 {
                     StudentId = 5,
                     Name = "Charlie Sather",
-                    Profile = null
+                    ProfileId = 5
                 },
 
                 new Student
                 {
                     StudentId = 6,
                     Name = "Abraham Sanchez",
-                    Profile = null
+                    ProfileId = 6
                 },
 
                 new Student
                 {
                     StudentId = 7,
                     Name = "Jacob Martinez",
-                    Profile = null
+                    ProfileId = 7
+
                 },
 
                 new Student
                 {
                     StudentId = 8,
                     Name = "Billy Madison",
-                    Profile = null
+                    ProfileId = 8
                 },
 
                 new Student
                 {
                     StudentId = 9,
                     Name = "Phil Collins",
-                    Profile = null
+                    ProfileId = 9
                 },
 
                 new Student
                 {
                     StudentId = 10,
                     Name = "Parker Vogg",
-                    Profile = null
+                    ProfileId = 10
                 });
 
             builder.Entity<Parent>().HasData(

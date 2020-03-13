@@ -69,7 +69,17 @@
                 @:gallery.innerHTML += "<img class='imageInContainer' src='images/TeacherHeadshots/" + @teacher.TeacherId + ".png'>";
             }
         }
+
+        document.getElementById("send").addEventListener("click", function (event) {
+            var user = document.getElementById("user").value;
+            var message = document.getElementById("messageInputBox").value;
+            connection.invoke("SendMessage", user, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+            event.preventDefault();
+        });
     </script>
+
 </body>
 
 </html>

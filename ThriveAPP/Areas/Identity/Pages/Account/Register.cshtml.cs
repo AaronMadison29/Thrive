@@ -124,7 +124,7 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        InjectUser(user);
+                        await InjectUser(user);
                         return LocalRedirect(returnUrl);
                     }
                 }
@@ -138,23 +138,23 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
             return Page();
         }
 
-        public void InjectUser(IdentityUser user)
+        public async Task InjectUser(IdentityUser user)
         {
             switch (Input.Role)
             {
                 case "Teacher":
-                    LinkTeacher(user);
+                    await LinkTeacher(user);
                     break;
                 case "Parent":
-                    LinkParent(user);
+                    await LinkParent(user);
                     break;
                 case "Student":
-                    LinkStudent(user);
+                    await LinkStudent(user);
                     break;
             }
         }
 
-        public void LinkTeacher(IdentityUser user)
+        public async Task LinkTeacher(IdentityUser user)
         {
             Teacher teacher = new Teacher
             {
@@ -162,9 +162,10 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
                 Email = user.Email,
                 TeacherId = Input.RegistrationId
             };
-            _schoolService.LinkTeacherAccount(teacher);
+            await _schoolService.LinkTeacherAccount(teacher);
         }
-        public void LinkParent(IdentityUser user)
+
+        public async Task LinkParent(IdentityUser user)
         {
             Parent parent = new Parent
             {
@@ -172,9 +173,10 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
                 Email = user.Email,
                 ParentId = Input.RegistrationId
             };
-            _schoolService.LinkParentAccount(parent);
+            await _schoolService.LinkParentAccount(parent);
         }
-        public void LinkStudent(IdentityUser user)
+
+        public async Task LinkStudent(IdentityUser user)
         {
             Student student = new Student
             {
@@ -182,7 +184,7 @@ namespace ThriveAPP.Areas.Identity.Pages.Account
                 Email = user.Email,
                 StudentId = Input.RegistrationId
             };
-            _schoolService.LinkStudentAccount(student);
+            await _schoolService.LinkStudentAccount(student);
         }
 
     }

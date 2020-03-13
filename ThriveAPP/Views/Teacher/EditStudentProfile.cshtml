@@ -6,69 +6,140 @@
 }
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="shortcut icon" href="~/images/favicon.png" />
-    <meta charset="utf-8">
-    <title>Student Index</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="~/css/bootstrap.css">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" asp-controller="Home" asp-action="Index"><img style="height: 50px; width: 125px;" src="~/images/thriveLogoWhite250x100.png"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a asp-controller="Home" asp-action="AboutUs" class="nav-link">About Thrive<span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-        </div>
-        <partial name="_LoginPartial" />
-    </nav>
-
-
-    <h1>Edit Student Profile</h1>
-
-    <hr />
-    <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-md-6">
-            <div>
-                <h5>Math: @ViewBag.Grades[0].Grade</h5>
-                <h5>Science: @ViewBag.Grades[1].Grade</h5>
-                <h5>History: @ViewBag.Grades[2].Grade</h5>
+    <head>
+        <link rel="shortcut icon" href="~/images/favicon.png" />
+        <meta charset="utf-8">
+        <title>Student Index</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="~/css/bootstrap.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index"><img style="height: 50px; width: 125px;" src="~/images/thriveLogoWhite250x100.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a asp-controller="Home" asp-action="AboutUs" class="nav-link">About Thrive<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
             </div>
-            <form asp-action="EditStudentProfile">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="@Model.Profile.FavoriteSubject" class="control-label"></label>
-                    <input asp-for="@Model.Profile.FavoriteSubject" class="form-control" type="text" />
+            <partial name="_LoginPartial" />
+        </nav>
+        <h1 class="text-center">@Model.Name's Profile</h1>
+
+        <hr />
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-md-8">
+                <div>
+                    <h5>Math: @ViewBag.Grades[0].Grade</h5>
+                    <h5>Science: @ViewBag.Grades[1].Grade</h5>
+                    <h5>History: @ViewBag.Grades[2].Grade</h5>
                 </div>
-                <div class="form-group">
-                    <label asp-for="@Model.Profile.LearningStyle" class="control-label"></label>
-                    <input asp-for="@Model.Profile.LearningStyle" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="@Model.Profile.Notes" class="control-label"></label>
-                    <input asp-for="@Model.Profile.Notes" class="form-control" type="text" />
-                    <input asp-route-id="@Model.StudentId" class="form=control" style="visibility:hidden" />
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                </div>
-            </form>
-            <a asp-action="Index" class="btn btn-outline-primary">Home</a>
+                <form asp-action="EditStudentProfile">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Profile.FavoriteSubject" class="control-label"></label>
+                        <input asp-for="@Model.Profile.FavoriteSubject" class="form-control" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Profile.LearningStyle" class="control-label"></label>
+                        <input asp-for="@Model.Profile.LearningStyle" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Profile.Notes" class="control-label"></label>
+                        <input asp-for="@Model.Profile.Notes" class="form-control" type="text" />
+                        <input asp-route-id="@Model.StudentId" class="form=control" style="visibility:hidden" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-2"></div>
+            <a asp-action="Index" class="btn btn-outline-primary">Back</a>
         </div>
-        <div class="col-sm-3"></div>
-    </div>
-</body>
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <button id="getStatus">Check User Status</button>
+                <div id="studentEmail" value="@Model.Email">online status: <span id="onlineStatus"></span></div>
+            </div>
+            <div class="col-sm-2"></div>
+
+        </div>
+
+        <div class="row" style="height:500px">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div id="MessageStudentBox" style="border-radius:10px; width:90%; height:100%; border:1px solid #000; display:none">
+                    <div id="messageStudent" style="overflow:auto; height:85%; margin:1%; font-size: 18px;"></div>
+                    <div id="lowerInput" class="text-center">
+                        <input style="margin-left:1%; border-radius: 15px; font-size: 18px; text-decoration-color: #000000; border: 1px solid #000; height: 50px; width:80%;" type="text" id="studentMessage" name="studentMessage" placeholder="Type your message..">
+                        <button id="sendToStudent" style="border-radius: 15px;" class="btn btn-outline-primary">SEND</button>
+                        <input id="hiddenSender" style="display:none" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+
+        </div>
+
+        <script src="~/js/signalr/dist/browser/signalr.js"></script>
+        <script src="~/js/chat.js"></script>
+        <script>
+
+        window.onload = (e)=> {
+            document.getElementById("getStatus").addEventListener("click", function (e) {
+                var event = document.createEvent('Event');
+                event.initEvent('getStatus', true, true);
+                event.userName = "@Model.Email";
+                document.dispatchEvent(event);
+                e.preventDefault();
+            });
+
+            document.getElementById("sendToStudent").addEventListener("click", function (e) {
+                var event = document.createEvent('Event');
+                event.initEvent('sendDirect', true, true);
+                event.userName = "@Model.Email";
+                event.message = document.getElementById("studentMessage").value;
+                document.dispatchEvent(event);
+                e.preventDefault();
+            });
+
+            //window.setTimeout(250);
+            var eventOnLoad = document.createEvent('Event');
+            eventOnLoad.initEvent('getStatus', true, true);
+            eventOnLoad.userName = "@Model.Email";
+            document.dispatchEvent(eventOnLoad);
+        }
+
+
+
+        @*(function () {
+            window.setTimeout(25);
+            document.getElementById("getStatus").addEventListener("click", function (e) {
+                var event = document.createEvent('Event');
+                event.initEvent('getStatus', true, true);
+                event.email = "@Model.Email";
+                document.dispatchEvent(event);
+                e.preventDefault();
+            });
+
+            var eventOnLoad = document.createEvent('Event');
+            eventOnLoad.initEvent('getStatus', true, true);
+            eventOnLoad.email = "@Model.Email";
+            document.dispatchEvent(eventOnLoad);
+        }());*@
+        </script>
+    </body>
+        @*@section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }*@
 </html>

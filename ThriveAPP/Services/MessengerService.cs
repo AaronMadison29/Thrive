@@ -34,12 +34,15 @@ namespace ThriveAPP.Services
             await Clients.All.SendAsync("ReceiveMessage", name, message);
         }
 
-        public async Task MessageUser(string who, string message)
+        public async Task MessageUser(string target, string message)
         {
             var senderName = Context.User.Identity.Name;
-            List<Task> tasks = new List<Task>();
+            var senderId = Context.UserIdentifier;
 
-            foreach (var connectionId in _connections.GetConnections(who))
+            List<Task> tasks = new List<Task>();
+            tasks.Add(Clients.User(senderId).SendAsync("DirectMessage", senderName, message));
+
+            foreach (var connectionId in _connections.GetConnections(target))
             {
                 tasks.Add(Clients.Client(connectionId).SendAsync("DirectMessage", senderName, message));
             }
@@ -60,6 +63,14 @@ namespace ThriveAPP.Services
                 await Clients.Group(group).SendAsync("DirectMessage", senderName, message);
             }
 
+        }
+
+        public async Task IsUserLoggedIn(string target)
+        {
+            var userId = Context.UserIdentifier;
+            var result = _connections.HasUser(target);
+
+            await Clients.User(userId).SendAsync("UpdateStatus",result);
         }
 
         public override Task OnConnectedAsync()
@@ -170,6 +181,21 @@ namespace ThriveAPP.Services
 
                 }
 
+            }
+        }
+
+        public bool HasUser(T key)
+        {
+            lock (_connections)
+            {
+                if (_connections.ContainsKey(key))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
