@@ -40,9 +40,9 @@
     </div>
     
     <div class="row" style="height:500px; margin-left:0px; margin-right:0px;">
-        <div class="col-sm-3 text-center">
+        <div class="col-sm-3 text-center" style="height:100%">
             @*<div id="modelContainers"></div>*@
-            <div id="messageBoxer" style="border-radius:10px; width:75%; height:100%; border:1px solid #000;">
+            <div id="messageBoxer" style="border-radius:10px; width:90%; height:100%; border:1px solid #000;">
                 <div id="messageStudent" style="overflow:auto; height:85%; margin:1%; font-size: 18px;"></div>
                 <div id="lowerInput3" class="text-center">
                     <input style="margin-left:1%; border-radius: 15px; font-size: 18px; text-decoration-color: #000000; border: 1px solid #000; height: 50px; width: 80%;" type="text" id="studentMessageBox" name="studentMessage" placeholder="Type your message..">
@@ -56,7 +56,7 @@
             <div id="messageBox" style="border-radius:10px; width:90%; height:100%; border:1px solid #000;">
                 <div id="messageContainer" style="overflow:auto; height:85%; margin:1%; font-size: 18px;"></div>
                 <div id="lowerInput" class="text-center">
-                    <input style="margin-left:1%; border-radius: 15px; font-size: 18px; text-decoration-color: #000000; border: 1px solid #000; height: 50px; width: 375px;" type="text" id="messageInputBox" name="messageInputBox" placeholder="Type your message..">
+                    <input style="margin-left:1%; border-radius: 15px; font-size: 18px; text-decoration-color: #000000; border: 1px solid #000; height: 50px; width: 80%;" type="text" id="messageInputBox" name="messageInputBox" placeholder="Type your message..">
                     <button id="send" style="border-radius: 15px;" class="btn btn-outline-primary">SEND</button>
                     <input id="user" style="display:none" value="@Html.ViewContext.HttpContext.User.Identity.Name" />
                 </div>

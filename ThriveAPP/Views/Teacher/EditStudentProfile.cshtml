@@ -34,8 +34,8 @@
 
         <hr />
         <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-md-8">
+            <div class="col-sm-3"></div>
+            <div class="col-md-6">
                 <div>
                     <h5>Math: @ViewBag.Grades[0].Grade</h5>
                     <h5>Science: @ViewBag.Grades[1].Grade</h5>
@@ -60,9 +60,10 @@
                         <input type="submit" value="Save" class="btn btn-primary" />
                     </div>
                 </form>
+                <a asp-action="Index" class="btn btn-outline-primary">Back</a>
             </div>
-            <div class="col-sm-2"></div>
-            <a asp-action="Index" class="btn btn-outline-primary">Back</a>
+            <div class="col-sm-3"></div>
+            
         </div>
 
         <div class="row">
@@ -119,8 +120,6 @@
             eventOnLoad.userName = "@Model.Email";
             document.dispatchEvent(eventOnLoad);
         }
-
-
 
         @*(function () {
             window.setTimeout(25);
